@@ -1,0 +1,135 @@
+<StackLayout autocomplete="off"
+             class="nt-form"
+             [ngClass]="{'card-form': cardForm}"
+             [formGroup]="ccForm">
+
+
+    <GridLayout columns="*, auto, auto, *" class="card-display">
+        <StackLayout col="0"></StackLayout>
+        <Label col="1" [text]="cardType" class="display-card-type" ></Label>
+        <Label col="2" [text]="cardNumberField.value  | paymentCardNumber" class="display-card-number"></Label>
+        <StackLayout col="3"></StackLayout>
+    </GridLayout>
+
+    <StackLayout class="nt-input nt-label">
+
+        <Label text="CARD NUMBER" ></Label>
+        <TextField id="cardNumber"
+                    textAlignment="center"
+                   formControlName="cardNumber"
+                   keyboardType="number"
+                   secure="false"
+                   returnKeyType="next"
+                   autocorrect="false"
+                   class="-rounded">
+        </TextField>
+        <StackLayout *ngIf="cardNumberFieldInValid" class="error-label">
+            <Label *ngIf="cardNumberField.errors.required"   [text]="ccNumMissingTxt" ></Label>
+            <Label *ngIf="cardNumberField.errors.minlength"   [text]="ccNumTooShortTxt" ></Label>
+            <Label *ngIf="cardNumberField.errors.maxlength"   [text]="ccNumTooLongTxt" ></Label>
+            <Label *ngIf="cardNumberField.errors.numbersOnly"   [text]="ccNumContainsLettersTxt" ></Label>
+            <Label *ngIf="cardNumberField.errors.checksum"   [text]="ccNumChecksumInvalidTxt" ></Label>
+        </StackLayout>
+    </StackLayout>
+
+    <StackLayout class="nt-input nt-label">
+        <Label text="CARD HOLDER NAME" ></Label>
+        <TextField textAlignment="center"
+                   formControlName="name"
+                   secure="false"
+                   returnKeyType="next"
+                   autocorrect="false"
+                   class="-rounded">
+        </TextField>
+        <StackLayout *ngIf="nameFieldInValid" class="error-label">
+            <Label *ngIf="nameField.errors.required"   [text]="cardHolderMissingTxt" ></Label>
+            <Label *ngIf="nameField.errors.maxlength"   [text]="cardHolderTooLongTxt" ></Label>
+        </StackLayout>
+    </StackLayout>
+
+
+    <GridLayout columns="auto,*,auto">
+
+        <GridLayout col="0" columns="auto, auto, auto">
+
+            <StackLayout col="0" class="nt-input nt-label month-input">
+                <Label text="MONTH" ></Label>
+                <TextField textAlignment="center"
+                           place
+                           formControlName="cardExpiryMonth"
+                           keyboardType="number"
+                           secure="false"
+                           returnKeyType="next"
+                           autocorrect="false"
+                           class="-rounded">
+                </TextField>
+            </StackLayout>
+
+            <Label col="1"
+                   class="expiry-break"
+                   verticalAlignment="center"
+                   text="/">
+            </Label>
+
+            <StackLayout col="2" class="nt-input nt-label year-input">
+                <Label text="YEAR" ></Label>
+                <TextField textAlignment="center"
+                           formControlName="cardExpiryYear"
+                           keyboardType="number"
+                           secure="false"
+                           returnKeyType="next"
+                           autocorrect="false"
+                           class="-rounded">
+                </TextField>
+            </StackLayout>
+
+        </GridLayout>
+
+        <GridLayout col="1">
+
+        </GridLayout>
+
+        <StackLayout col="2" class="nt-input nt-label cvc-input">
+            <Label text="CVC" ></Label>
+            <TextField textAlignment="center"
+                       formControlName="cardCVC"
+                       keyboardType="number"
+                       secure="false"
+                       returnKeyType="go"
+                       autocorrect="false"
+                       class="-rounded">
+            </TextField>
+        </StackLayout>
+
+    </GridLayout>
+
+
+    <StackLayout class="error-label text-center" >
+
+        <StackLayout *ngIf="cardExpiryMonthFieldInValid" class="error-label">
+            <Label *ngIf="cardExpiryMonthField.errors.required"   [text]="expirationMonthMissingTxt" ></Label>
+            <Label *ngIf="cardExpiryMonthField.errors.minlength"   [text]="expirationMonthLengthTxt" ></Label>
+            <Label *ngIf="cardExpiryMonthField.errors.maxlength"   [text]="expirationMonthLengthTxt" ></Label>
+        </StackLayout>
+
+        <StackLayout *ngIf="cardExpiryYearFieldInValid" class="error-label">
+            <Label *ngIf="cardExpiryYearField.errors.required"   [text]="expirationYearMissingTxt" ></Label>
+            <Label *ngIf="cardExpiryYearField.errors.minlength"   [text]="expirationYearLengthTxt" ></Label>
+            <Label *ngIf="cardExpiryYearField.errors.maxlength"   [text]="expirationYearLengthTxt" ></Label>
+        </StackLayout>
+
+        <StackLayout *ngIf="cardCVCInValid" class="error-label">
+            <Label *ngIf="cardCVCField.errors.required"   [text]="ccvMissingTxt" ></Label>
+            <Label *ngIf="cardCVCField.errors.minlength"   [text]="ccvNumTooShortTxt" ></Label>
+            <Label *ngIf="cardCVCField.errors.maxlength"   [text]="ccvNumTooLongTxt" ></Label>
+            <Label *ngIf="cardCVCField.errors.numbersOnly"   [text]="ccvContainsLettersTxt" ></Label>
+        </StackLayout>
+
+        <StackLayout *ngIf="expirationInValid" class="error-label">
+            <Label *ngIf="ccForm.errors.expiration" [text]="cardExpiredTxt" ></Label>
+            <Label *ngIf="ccForm.errors.invalidDate" [text]="cardInvalidExpiredTxt" ></Label>
+        </StackLayout>
+
+    </StackLayout>
+
+</StackLayout>

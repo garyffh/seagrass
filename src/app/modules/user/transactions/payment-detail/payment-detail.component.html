@@ -1,0 +1,56 @@
+<GridLayout *ngIf="model === null else show">
+
+    <ns-page-title title="PAYMENT"></ns-page-title>
+
+</GridLayout>
+
+<ng-template #show>
+
+    <GridLayout rows="auto, auto">
+
+        <GridLayout row="0" rows="auto" columns="*" class="summary-bar">
+            <Label row="0" col="0" horizontalAlignment="center"
+                   [text]="'PAYMENT ' + model.documentReference">
+            </Label>
+        </GridLayout>
+
+        <GridLayout row="1">
+            <ns-card>
+                <StackLayout row="1" class="p-10">
+
+                    <ns-list-item heading="Date"
+                                  [detail]="model.documentDate | dateTimeFormat">
+                    </ns-list-item>
+
+                    <ns-list-item heading="Card"
+                                  [detail]="model.cardAmount | currency">
+                    </ns-list-item>
+
+                    <ns-list-item *ngIf="model.redeemAmount !== 0"
+                                  heading="Redeem Amount"
+                                  [detail]="model.redeemAmount | currency">
+                    </ns-list-item>
+
+                    <ns-list-item *ngIf="model.redeemPoints !== 0"
+                                  heading="Points Redeemed"
+                                  [detail]="model.redeemPoints">
+                    </ns-list-item>
+
+
+                    <ns-list-item heading="Payment Method"
+                                  [detail]="(model.userPaymentTypeId | paymentMethodType) + ' ' +  model.userPaymentName">
+                    </ns-list-item>
+
+                    <ns-list-item heading="Message"
+                                  [detail]="model.paymentResponseMessage">
+                    </ns-list-item>
+
+                </StackLayout>
+
+            </ns-card>
+        </GridLayout>
+
+    </GridLayout>
+
+</ng-template>
+

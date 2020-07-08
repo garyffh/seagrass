@@ -1,0 +1,92 @@
+<GridLayout *ngIf="showImage; else status">
+    <ns-store-banner *ngIf="showImage" [height]="110"></ns-store-banner>
+</GridLayout>
+
+
+<ng-template #status>
+
+    <ng-container
+            *ngIf="(storeStatusService.storeStatus.storeState.storeAvailable || storeStatusService.storeStatus.storeState.deliveryAvailable); else openingSoon">
+
+        <ng-container
+                *ngIf="(storeStatusService.storeStatus.storeState.storeOnline && (storeStatusService.storeStatus.storeState.manualStoreOnline || storeStatusService.storeStatus.storeState.manualDeliveryOnline  )); else offline">
+
+
+            <ng-container
+                    *ngIf="(storeStatusService.storeStatus.storeState.storeAvailable && storeStatusService.storeStatus.storeState.deliveryAvailable); then storeAndDelivery; else storeOrDelivery">
+            </ng-container>
+
+            <ng-template #storeAndDelivery>
+
+                <StackLayout>
+                    <ns-delivery-method [deliveryMethod]="storeStatusService.storeStatus.storeTimes">
+                    </ns-delivery-method>
+
+
+                    <ns-delivery-method [deliveryMethod]="storeStatusService.storeStatus.deliveryTimes">
+                    </ns-delivery-method>
+                </StackLayout>
+
+            </ng-template>
+
+            <ng-template #storeOrDelivery>
+
+                <ng-container
+                        *ngIf="(storeStatusService.storeStatus.storeState.storeAvailable); then store; else delivery">
+                </ng-container>
+
+                <ng-template #store>
+
+                    <ns-delivery-method [deliveryMethod]="storeStatusService.storeStatus.storeTimes">
+                    </ns-delivery-method>
+
+                </ng-template>
+
+
+                <ng-template #delivery>
+
+                    <ns-delivery-method deliveryMethod]="storeStatusService.storeStatus.deliveryTimes">
+                    </ns-delivery-method>
+
+                </ng-template>
+
+            </ng-template>
+
+        </ng-container>
+
+    </ng-container>
+
+    <ng-template #offline>
+
+        <GridLayout columns="auto, *" class="message-container">
+
+            <Label col="0" verticalAlignment="center" text="&#xe2c1;" class="mdi message-icon"></Label>
+
+            <GridLayout col="1" rows="auto, auto">
+                <Label row="0" class="title" text="OFFLINE"></Label>
+                <Label row="1" [textWrap]="true" [text]="businessService.business.offlineMessage"></Label>
+            </GridLayout>
+
+        </GridLayout>
+
+    </ng-template>
+
+    <ng-template #openingSoon>
+
+        <GridLayout columns="auto, *" class="message-container">
+
+            <Label col="0" verticalAlignment="center" text="&#xeb4e;" class="mdi message-icon"></Label>
+
+            <GridLayout col="1" rows="auto, auto">
+                <Label row="0" class="title" text="CLOSED"></Label>
+                <Label row="1" [textWrap]="true" [text]="businessService.business.openingSoonMessage"></Label>
+            </GridLayout>
+
+        </GridLayout>
+
+
+    </ng-template>
+
+</ng-template>
+
+

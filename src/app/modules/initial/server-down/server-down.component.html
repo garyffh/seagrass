@@ -1,0 +1,21 @@
+
+    <GridLayout rows="*, *">
+
+        <Image row="0" class="logo" src="~/config/logo.png"></Image>
+
+        <GridLayout row="1" rows="auto, auto">
+
+            <label row="0" class="title fail" text="Connection has failed."></label>
+
+            <Button row="1"
+                    [nsRouterLink]="['/initial']"
+                    text="Retry"
+                    pageTransition="fade"
+                    clearHistory="true"
+                    class="btn btn-primary">
+            </Button>
+        </GridLayout>
+
+    </GridLayout>
+
+

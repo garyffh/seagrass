@@ -1,0 +1,19 @@
+<ns-accordion [label]="'Extra Instructions'"
+              class="instructions"
+              (stateChange)="onAccordionTap($event)"
+              [open]="expanded">
+
+        <GridLayout rows="auto">
+
+            <TextView row="0"
+                      [(ngModel)]="trnClientCustomersItem.instructions"
+                      height="80"
+                      hint="for example: no salt, no onions"
+                      [editable]="true"
+                      class="text-muted">
+            </TextView>
+
+        </GridLayout>
+
+</ns-accordion>
+

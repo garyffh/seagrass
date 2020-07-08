@@ -1,0 +1,212 @@
+<GridLayout *ngIf="model === null else show">
+
+</GridLayout>
+
+<ng-template #show>
+
+    <StackLayout rows="auto, *" class="deliveries p-10">
+
+        <ns-card row="0">
+
+            <ng-container *ngIf="!model.available; then driverNotAvailable; else driverAvailable">
+            </ng-container>
+
+            <ng-template #driverNotAvailable>
+
+                <GridLayout row="0" rows="auto, auto, auto, auto">
+                    <Label row="0" horizontalAlignment="center"
+                           class="heading p-5"
+                           text="NOT AVAILABLE">
+                    </Label>
+
+                    <Label *ngIf="!utilityService.smallScreenWidth()"
+                           row="1" horizontalAlignment="center"
+                           [textWrap]="true"
+                           text="I am currently not available for deliveries.">
+                    </Label>
+
+                    <GridLayout *ngIf="utilityService.smallScreenWidth()"
+                                row="1" >
+                    </GridLayout>
+
+                    <StackLayout row="2" class="hr-light m-t-10"></StackLayout>
+
+                    <GridLayout row="3" columns="*, auto" class="p-10">
+                        <Label col="0"
+                               [textWrap]="true"
+                               verticalAlignment="center"
+                               text="LET'S GO! Make me available.">
+                        </Label>
+
+
+                        <Label col="1"
+                               [nsRouterLink]="['/driver/enable-deliveries']"
+                               verticalAlignment="center"
+                               textAlignment="center"
+                               horizontalAlignment="center"
+                               class="mdi action-button deliveries-icon"
+                               text="&#xe7f4;">
+                        </Label>
+
+                    </GridLayout>
+
+                </GridLayout>
+
+            </ng-template>
+
+            <ng-template #driverAvailable>
+
+                <GridLayout row="0" rows="auto, auto, auto, auto">
+                    <Label row="0" horizontalAlignment="center"
+                           class="heading p-5"
+                           text="AVAILABLE">
+                    </Label>
+
+                    <Label *ngIf="!utilityService.smallScreenWidth()"
+                            row="1" horizontalAlignment="center"
+                           [textWrap]="true"
+                           text="I am currently available for deliveries.">
+                    </Label>
+
+                    <GridLayout *ngIf="utilityService.smallScreenWidth()"
+                           row="1" >
+                    </GridLayout>
+
+                    <StackLayout row="2" class="hr-light m-t-10"></StackLayout>
+
+                    <GridLayout row="3" columns="*, auto" class="p-10">
+                        <Label col="0"
+                               [textWrap]="true"
+                               verticalAlignment="center"
+                               text="Make me NOT available.">
+                        </Label>
+
+                        <Label col="1"
+                               [nsRouterLink]="['/driver/disable-deliveries']"
+                               verticalAlignment="center"
+                               textAlignment="center"
+                               horizontalAlignment="center"
+                               class="mdi action-button deliveries-icon"
+                               text="&#xe7f6;">
+                        </Label>
+
+                    </GridLayout>
+
+                </GridLayout>
+
+            </ng-template>
+
+
+        </ns-card>
+
+        <ns-card row="1">
+
+            <ng-container *ngIf="utilityService.smallScreenWidth(); then smallScreen else standardScreen">
+            </ng-container>
+
+            <ng-template #smallScreen>
+
+                <GridLayout *ngIf="listItems.length > 0" rows="auto, *">
+
+                    <GridLayout row="0" columns="120, *, auto" class="table-header">
+                        <Label col="0" verticalAlignment="center" text="Pickup"></Label>
+<!--                        <Label col="1" verticalAlignment="center" text="Reference"></Label>-->
+                        <Label col="2" verticalAlignment="center" text="Status"></Label>
+                    </GridLayout>
+
+                    <RadListView row="1" [items]="listItems">
+
+                        <ng-template tkListItemTemplate let-item="item">
+                            <GridLayout columns="120, *, auto" class="table-row">
+
+                                <Label col="0"
+                                       verticalAlignment="center"
+                                       [text]="item.scheduledStoreTime | timeFormat">
+                                </Label>
+
+<!--                                <Label col="1" verticalAlignment="center" [text]="item.reference"></Label>-->
+
+                                <Label col="1" verticalAlignment="center"
+                                       [text]="item.storeStatus | driverOrderStoreStatus"></Label>
+
+                                <Label col="2"
+                                       [nsRouterLink]="['./delivery-detail', item.trnOrderId ]"
+                                       verticalAlignment="center"
+                                       textAlignment="center"
+                                       text="&#xe8b0;"
+                                       class="mdi action-button"
+                                       [ngClass]="{'small-icon' : utilityService.smallScreenWidth()}">
+                                </Label>
+
+                            </GridLayout>
+                        </ng-template>
+
+                    </RadListView>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="listItems.length === 0" rows="auto">
+                    <Label horizontalAlignment="center"
+                           class="m-20"
+                           text="NO PENDING DELIVERIES">
+                    </Label>
+                </GridLayout>
+
+            </ng-template>
+
+            <ng-template #standardScreen>
+
+                <GridLayout *ngIf="listItems.length > 0" rows="auto, *">
+
+                    <GridLayout row="0" columns="160, *, auto" class="table-header">
+                        <Label col="0" verticalAlignment="center" text="Pickup"></Label>
+<!--                        <Label col="1" verticalAlignment="center" text="Reference"></Label>-->
+                        <Label col="1" verticalAlignment="center" text="Status"></Label>
+                    </GridLayout>
+
+                    <RadListView row="1" [items]="listItems">
+
+                        <ng-template tkListItemTemplate let-item="item">
+                            <GridLayout columns="160, *, auto" class="table-row">
+
+                                <Label col="0"
+                                       verticalAlignment="center"
+                                       [text]="item.scheduledStoreTime | dayMonthTime">
+                                </Label>
+
+<!--                                <Label col="1" verticalAlignment="center" [text]="item.reference"></Label>-->
+
+                                <Label col="1" verticalAlignment="center"
+                                       [text]="item.storeStatus | driverOrderStoreStatus"></Label>
+
+                                <Label col="2"
+                                       [nsRouterLink]="['./delivery-detail', item.trnOrderId ]"
+                                       verticalAlignment="center"
+                                       textAlignment="center"
+                                       text="&#xe8b0;"
+                                       class="mdi action-button"
+                                       [ngClass]="{'small-icon' : utilityService.smallScreenWidth()}">
+                                </Label>
+
+                            </GridLayout>
+                        </ng-template>
+
+                    </RadListView>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="listItems.length === 0" rows="auto">
+                    <Label horizontalAlignment="center"
+                           class="m-20"
+                           text="NO PENDING DELIVERIES">
+                    </Label>
+                </GridLayout>
+
+            </ng-template>
+
+        </ns-card>
+
+    </StackLayout>
+
+</ng-template>
+

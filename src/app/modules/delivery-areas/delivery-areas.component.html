@@ -1,0 +1,57 @@
+<ns-action-bar></ns-action-bar>
+
+<GridLayout rows="auto, *, auto" [ngClass]="businessService.business.theme">
+
+    <GridLayout row="0">
+        <ns-error-panel></ns-error-panel>
+    </GridLayout>
+
+    <GridLayout row="1">
+
+        <GridLayout rows="auto, *">
+            <GridLayout row="0" >
+                <StackLayout>
+
+                    <ns-page-title title="DELIVERY AREA"></ns-page-title>
+
+                    <ActivityIndicator *ngIf="!loaded"
+                                       width="30%"
+                                       (tap)="{}"
+                                       opacity=".5"
+                                       [busy]="true">
+                    </ActivityIndicator>
+
+                    <Label *ngIf="errorLoading"
+                           [text]="failMessage"
+                           [textWrap]="true"
+                           textAlignment="center"
+                           horizontalAlignment="center"
+                           class="fail p-20">
+                    </Label>
+
+                </StackLayout>
+            </GridLayout>
+
+            <WebView #deliveryWebView
+                     row="1"
+                     height="100%"
+                     width="100%"
+                     horizontalAlignment="center"
+                     verticalAlignment="center"
+                     [src]="webViewSrc">
+            </WebView>
+        </GridLayout>
+
+    </GridLayout>
+
+    <GridLayout row="2" >
+        <ns-user-tab></ns-user-tab>
+    </GridLayout>
+
+</GridLayout>
+
+<ns-spinner></ns-spinner>
+
+
+
+

@@ -1,0 +1,8 @@
+{
+  "main": "main.js",
+  "android": {
+    "markingMode": "none",
+    "v8Flags": "--expose_gc",
+    "maxLogcatObjectSize": 5024
+  }
+}

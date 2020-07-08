@@ -1,0 +1,32 @@
+.dashboard {
+  font-size: 16;
+
+  .intro {
+    border-bottom-width: 1;
+  }
+
+  .desktop-icon {
+    font-size: 30;
+    padding: 5;
+  }
+}
+
+.card {
+  //min-height: 400;
+
+  Label {
+    margin: 15;
+  }
+
+  .line {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+}
+
+.test {
+
+    text-shadow: 4px 4px 4px #fb3f9a;
+
+}

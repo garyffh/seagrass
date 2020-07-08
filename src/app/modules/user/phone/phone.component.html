@@ -1,0 +1,186 @@
+
+    <ng-container [ngSwitch]="componentView">
+
+        <ng-template [ngSwitchCase]="ComponentPhoneView.default">
+
+            <GridLayout rows="auto, auto, * ">
+                <GridLayout row="0">
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ns-page-title title="CHANGE MOBILE NUMBER"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="2">
+                    <ScrollView>
+                        <StackLayout [formGroup]="phoneNumberForm"
+                                     (ngSubmit)="onPhoneNumberFormSubmit()"
+                                     autocomplete="off"
+                                     class="m-20">
+
+                            <StackLayout class="field">
+                                <TextField hint="Mobile number"
+                                           formControlName="mobile"
+                                           secure="false"
+                                           keyboardType="number"
+                                           returnKeyType="go"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="((!phoneNumberForm.get('mobile').valid) &&  phoneNumberForm.get('mobile').touched) && phoneNumberForm.get('mobile').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="mobile number is required">
+                                </Label>
+
+                            </StackLayout>
+
+                            <Button class="btn action-button"
+                                    text="Submit Mobile Number"
+                                    (tap)="onPhoneNumberFormSubmit()"
+                                    [isEnabled]="phoneNumberForm.valid">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="ComponentPhoneView.phoneFail">
+
+            <GridLayout rows="auto, auto, * ">
+                <GridLayout row="0" columns="*" class="action-section">
+
+                    <Button col="0"
+                            [nsRouterLink]="['../']"
+                            text="CANCEL">
+                    </Button>
+
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ns-page-title title="CHANGE MOBILE NUMBER"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="2">
+                    <ScrollView>
+                        <StackLayout class="m-20">
+
+                            <Label text="Mobile number update failed."
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="p-20">
+                            </Label>
+
+                            <Label [text]="failMessage"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="fail p-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Continue"
+                                    (tap)="onContinue()">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="ComponentPhoneView.phoneCode">
+
+            <GridLayout rows="auto, auto, * ">
+                <GridLayout row="0" columns="*" class="action-section">
+
+                    <Button col="0"
+                            [nsRouterLink]="['../']"
+                            text="CANCEL">
+                    </Button>
+
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ns-page-title title="CHANGE MOBILE NUMBER"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="2">
+                    <ScrollView>
+                        <StackLayout
+                                    (ngSubmit)="onPhoneCodeFormSubmit()"
+                                     autocomplete="off"
+                                     class="m-20">
+
+
+                            <Label class="m-t-10 m-b-10"
+                                   [textWrap]="true"
+                                   [text]="'To validate your new mobile phone, please enter the verification code sent to ' + newPhoneNumber + ' via sms.'">
+                            </Label>
+
+
+                            <StackLayout class="field">
+
+                                <ns-six-digit-entry #mobileCodeEntry
+                                                    [form]="mobileCodeForm">
+                                </ns-six-digit-entry>
+
+                            </StackLayout>
+
+                            <Button class="btn action-button"
+                                    text="Submit Validation"
+                                    (tap)="onPhoneCodeFormSubmit()"
+                                    [isEnabled]="mobileCodeForm.valid">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="ComponentPhoneView.phoneDone">
+
+            <GridLayout rows="auto, * ">
+
+                <GridLayout row="0">
+                    <ns-page-title title="CHANGE MOBILE NUMBER"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ScrollView>
+                        <StackLayout class="m-20">
+
+                            <Label text="Your phone number has been updated."
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="p-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Continue"
+                                    (tap)="onContinue()">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+
+    </ng-container>
+

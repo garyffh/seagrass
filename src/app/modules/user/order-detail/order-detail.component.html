@@ -1,0 +1,192 @@
+<GridLayout rows="auto, auto, auto, *" class="order-detail-page" [ngClass]="{'order-detail-page-sm': utilityService.smallScreenWidth(), 'order-detail-page-std': !utilityService.smallScreenWidth()}">
+
+    <GridLayout row="0">
+    </GridLayout>
+
+    <GridLayout row="1" *ngIf="model === null else show">
+
+        <ns-page-title title="ORDER"></ns-page-title>
+
+    </GridLayout>
+
+    <ng-template #show>
+
+        <GridLayout row="1" columns="*, *" class="summary-bar">
+            <Label col="0" horizontalAlignment="center" [text]="'ORDER ' + model.reference"></Label>
+            <Label col="1" horizontalAlignment="center"
+                   [textWrap]="true"
+                   [text]="model.deliveryMethodStatus | orderDeliveryMethodStatus"></Label>
+        </GridLayout>
+
+        <GridLayout [ngSwitch]="model.deliveryMethodType" row="2">
+
+            <GridLayout *ngSwitchCase="DeliveryMethodType.store" rows="auto, auto" class="order-detail">
+                <GridLayout row="0" columns="auto, *" class="line">
+                    <Label col="0"
+                           textAlignment="right"
+                           [text]="model.deliveryMethodAsap ? 'Pickup ASAP:' : 'Pickup:' "
+                           class="heading">
+                    </Label>
+                    <Label col="1"
+                           [textWrap]="true"
+                           [text]="utilityService.smallScreenWidth() ? (model.scheduledDeliveryMethodTime | timeFormat) : (model.scheduledDeliveryMethodTime | dateTimeFormat)">
+                    </Label>
+                </GridLayout>
+
+                <GridLayout row="1" columns="auto, *" class="line">
+                    <Label col="0"
+                           textAlignment="right"
+                           text="Ordered At:"
+                           class="heading">
+                    </Label>
+                    <Label col="1"
+                           [textWrap]="true"
+                           [text]="utilityService.smallScreenWidth() ? (model.orderDT | timeFormat) : model.orderDT | dateTimeFormat">
+                    </Label>
+                </GridLayout>
+            </GridLayout>
+
+            <GridLayout *ngSwitchCase="DeliveryMethodType.delivery" rows="auto, auto, auto, auto, auto"
+                        class="order-detail">
+                <GridLayout row="0" columns="auto, *" class="line">
+                    <Label col="0"
+                           textAlignment="right"
+                           [text]="model.deliveryMethodAsap ? 'Delivery ASAP:' : 'Delivery:' "
+                           class="heading">
+                    </Label>
+                    <Label col="1"
+                           [textWrap]="true"
+                           [text]="utilityService.smallScreenWidth() ? (model.scheduledDeliveryMethodTime | timeFormat) : model.scheduledDeliveryMethodTime | dateTimeFormat">
+                    </Label>
+                </GridLayout>
+
+                <GridLayout row="1" columns="auto, *" class="line">
+                    <Label col="0"
+                           textAlignment="right"
+                           text="Ordered At:"
+                           class="heading">
+                    </Label>
+                    <Label col="1"
+                           [textWrap]="true"
+                           [text]="utilityService.smallScreenWidth() ? (model.orderDT | timeFormat) : model.orderDT | dateTimeFormat">
+                    </Label>
+                </GridLayout>
+
+                <GridLayout *ngIf="model.driver"
+                            class="line"
+                            row="2"
+                            columns="auto, *">
+                    <Label col="0"
+                           textAlignment="right"
+                           text="Vehicle:"
+                           class="heading">
+                    </Label>
+                    <Label col="1"
+                           [textWrap]="true"
+                           [text]="model.driver.colour + ' ' + model.driver.make + ' ' + model.driver.model + ' ' + model.driver.plate">
+                    </Label>
+                </GridLayout>
+
+                <GridLayout *ngIf="!model.driver"
+                            row="2">
+                </GridLayout>
+
+                <StackLayout row="3" class="hr-light m-t-10"></StackLayout>
+
+                <GridLayout *ngIf="!utilityService.smallScreenWidth()" row="4"
+                            class="m-t-10 line"
+                            columns="auto, *">
+                    <Label col="0"
+                           textAlignment="right"
+                           text="To:"
+                           class="address-heading">
+                    </Label>
+
+                    <GridLayout col="1">
+                        <ns-address-view [address]="address"
+                                         [backgroundAccent]="false"
+                                         [displayFormat]="1">
+                        </ns-address-view>
+                    </GridLayout>
+
+                </GridLayout>
+
+            </GridLayout>
+
+            <GridLayout *ngSwitchCase="DeliveryMethodType.table" rows="auto, auto" class="order-detail">
+                <GridLayout row="0" columns="auto, *" class="line">
+                    <Label col="0"
+                           textAlignment="right"
+                           [text]="'Table Number:' "
+                           class="heading">
+                    </Label>
+                    <Label col="1"
+                           [textWrap]="true"
+                           [text]="model.orderNumber">
+                    </Label>
+                </GridLayout>
+
+                <GridLayout row="1" columns="auto, *" class="line">
+                    <Label col="0"
+                           textAlignment="right"
+                           text="Ordered At:"
+                           class="heading">
+                    </Label>
+                    <Label col="1"
+                           [textWrap]="true"
+                           [text]="utilityService.smallScreenWidth() ? (model.orderDT | timeFormat) : model.orderDT | dateTimeFormat">
+                    </Label>
+                </GridLayout>
+            </GridLayout>
+
+        </GridLayout>
+
+        <GridLayout row="3" rows="auto, *" class="table">
+
+            <StackLayout row="0" class="hr-light"></StackLayout>
+
+            <RadListView row="1" [items]="listItems" class="m-l-10 m-r-10">
+
+
+                <ng-template tkListItemTemplate let-item="item">
+                    <GridLayout columns="30, *, 80, 90" class="table-row">
+
+                        <Label col="0"
+                               [text]="item.itemTypeId === 3 ? item.qty : ''">
+                        </Label>
+
+                        <Label col="1"
+                               [ngClass]="{'condiment-description': item.itemTypeId === 10}"
+                               [text]="item.description">
+                        </Label>
+
+                        <Label col="2"
+                               horizontalAlignment="right"
+                               textAlignment="right"
+                               [text]="item.unitPrice | currency">
+                        </Label>
+
+                        <Label col="3"
+                               horizontalAlignment="right"
+                               textAlignment="right"
+                               [text]="item.total | currency">
+                        </Label>
+
+                    </GridLayout>
+                </ng-template>
+
+                <ng-template tkListViewFooter let-item="item">
+                    <Label class="footer p-t-5 p-b-5"
+                           textAlignment="right"
+                           [text]="'Order Total ' + (model.total | currency)">
+
+                    </Label>
+                </ng-template>
+
+            </RadListView>
+
+        </GridLayout>
+
+    </ng-template>
+</GridLayout>
+

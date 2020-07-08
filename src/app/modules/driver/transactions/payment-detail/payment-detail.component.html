@@ -1,0 +1,44 @@
+
+
+    <GridLayout rows="auto, auto, auto, *">
+
+        <GridLayout row="0" >
+        </GridLayout>
+
+        <GridLayout row="1" *ngIf="model === null else show">
+
+            <ns-page-title title="DRIVER PAYMENT"></ns-page-title>
+
+        </GridLayout>
+
+        <ng-template #show>
+
+            <GridLayout row="1" rows="auto, *">
+
+                <ns-page-title row="0" title="DRIVER PAYMENT"></ns-page-title>
+
+                <StackLayout row="1" class="p-10">
+
+                    <ns-list-item   heading="Reference"
+                                    [detail]="model.documentReference">
+                    </ns-list-item>
+
+                    <ns-list-item   heading="Date"
+                                    [detail]="model.documentDT | dateTimeFormat">
+                    </ns-list-item>
+                    <ns-list-item   heading="Total"
+                                    [detail]="model.total | currency">
+                    </ns-list-item>
+                    <ns-list-item   heading="Comment"
+                                    [detail]="model.comment">
+                    </ns-list-item>
+
+                </StackLayout>
+
+            </GridLayout>
+
+
+        </ng-template>
+
+    </GridLayout>
+

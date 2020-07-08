@@ -1,0 +1,219 @@
+<GridLayout *ngIf="!loaded" rows="*, auto">
+
+    <Label horizontalAlignment="center"
+           verticalAlignment="center"
+           class="loading-text"
+           text="LOADING OPTIONS">
+    </Label>
+
+</GridLayout>
+
+<GridLayout rows="auto, auto, *, auto" class="product-customise">
+
+    <ng-container
+            *ngIf="utilityService.smallScreenWidth(); then smallScreen; else standardScreen">
+    </ng-container>
+
+    <ng-template #smallScreen>
+
+        <GridLayout row="0" rows="auto, *" class="title p-l-10 p-r-10">
+
+            <GridLayout row="0" columns="auto, *" class="">
+
+
+                <ns-shopping-cart-widget
+                        col="0"
+                        [showMinOrder]="false"
+                        [showIcon]="false">
+                </ns-shopping-cart-widget>
+
+                <GridLayout col="1"
+                            (tap)="onDone()"
+                            verticalAlignment="center"
+                            columns="*, auto">
+
+                    <Label col="0"
+                           horizontalAlignment="right"
+                           verticalAlignment="center"
+                           text="Done"
+                           class="">
+                    </Label>
+
+                    <Label col="1"
+                           horizontalAlignment="right"
+                           verticalAlignment="center"
+                           text="&#xe877;"
+                           class="mdi icon p-l-10">
+                    </Label>
+
+                </GridLayout>
+
+            </GridLayout>
+
+            <GridLayout row="1" columns="*" class="">
+
+                <Label col="0"
+                       verticalAlignment="center"
+                       horizontalAlignment="center"
+                       [text]="trnClientCustomersItem.description">
+                </Label>
+
+            </GridLayout>
+
+        </GridLayout>
+
+    </ng-template>
+
+    <ng-template #standardScreen>
+
+        <GridLayout row="0" columns="*, auto" class="title p-l-10 p-r-10">
+
+
+            <Label col="0"
+                   verticalAlignment="center"
+                   horizontalAlignment="left"
+                   [text]="trnClientCustomersItem.description">
+            </Label>
+
+            <GridLayout col="1">
+                <ns-shopping-cart-widget
+                        [showMinOrder]="false"
+                        [showIcon]="false">
+                </ns-shopping-cart-widget>
+            </GridLayout>
+
+        </GridLayout>
+
+    </ng-template>
+
+    <GridLayout row="1" columns="auto, *, 80" class="product">
+
+        <StackLayout col="0" orientation="horizontal">
+
+            <Button text="&#xe15b;" class="mdi qty-change-icon" (tap)="decrement()">
+            </Button>
+
+            <Label [text]="trnClientCustomersItem.qty"
+                   verticalAlignment="center"
+                   horizontalAlignment="center"
+                   class="p-l-5 p-r-5">
+            </Label>
+
+            <Button text="&#xe145;" class="mdi qty-change-icon" (tap)="increment()">
+            </Button>
+
+        </StackLayout>
+
+        <Label col="1"
+               [text]="trnClientCustomersItem.price | currency"
+               verticalAlignment="center"
+               horizontalAlignment="right"
+               class="item-description">
+        </Label>
+
+        <Label col="2"
+               [text]="trnClientCustomersItem.total | currency"
+               verticalAlignment="center"
+               horizontalAlignment="right">
+        </Label>
+
+
+    </GridLayout>
+
+    <ScrollView row="2">
+        <GridLayout *ngIf="loaded" rows="*, auto" class="p-l-10 p-r-10">
+
+            <StackLayout row="0">
+
+                <ns-product-condiment-table *ngFor="let item of listItems; let i=index"
+                              [trnCondimentTable]="item">
+
+                    <ns-product-condiment-select (cartUpdate)="onCartUpdate()"
+                                                 [trnCondimentTable]="item">
+                    </ns-product-condiment-select>
+
+                </ns-product-condiment-table>
+
+            </StackLayout>
+
+            <!--            <RadListView row="0"-->
+<!--                         (itemTap)="onItemTap($event)"-->
+<!--                         [items]="listItems"-->
+<!--                         [itemTemplateSelector]="templateSelector">-->
+
+<!--                <ng-template tkListItemTemplate let-item="item">-->
+
+<!--                    <GridLayout rows="auto, auto" class="heading">-->
+<!--                        <GridLayout row="0" columns="*, 100, auto">-->
+<!--                            <Label col="0"-->
+<!--                                   class="ab-background-colour"-->
+<!--                                   verticalAlignment="center"-->
+<!--                                   [text]="item.name">-->
+<!--                            </Label>-->
+
+<!--                            <Label col="1"-->
+<!--                                   class="ab-background-colour"-->
+<!--                                   verticalAlignment="center"-->
+<!--                                   [text]="item.selectText">-->
+<!--                            </Label>-->
+<!--                            <Label col="2" verticalAlignment="center" text="&#xe313;"-->
+<!--                                   class="mdi heading-icon ab-background-colour"></Label>-->
+<!--                        </GridLayout>-->
+
+<!--                        <Label *ngIf="item.condensedTextSelected"-->
+<!--                               row="1"-->
+<!--                               verticalAlignment="center"-->
+<!--                               class="selected-text"-->
+<!--                               [text]="item.condensedTextSelected">-->
+<!--                        </Label>-->
+
+<!--                    </GridLayout>-->
+
+<!--                </ng-template>-->
+
+<!--                <ng-template tkTemplateKey="expanded" let-item="item">-->
+<!--                    <GridLayout rows="auto, *" class="">-->
+
+<!--                        <GridLayout row="0" columns="*, 100, auto" class="heading ab-background-colour">-->
+<!--                            <Label col="0"-->
+<!--                                   verticalAlignment="center"-->
+<!--                                   [text]="item.name">-->
+<!--                            </Label>-->
+
+<!--                            <Label col="1"-->
+<!--                                   verticalAlignment="center"-->
+<!--                                   [text]="item.selectText">-->
+<!--                            </Label>-->
+<!--                            <Label col="2" verticalAlignment="center" text="&#xe316;" class="mdi heading-icon"></Label>-->
+<!--                        </GridLayout>-->
+
+<!--                        <GridLayout row="1">-->
+<!--                            <ns-product-condiment-select (cartUpdate)="onCartUpdate()"-->
+<!--                                                         [trnCondimentTable]="item">-->
+<!--                            </ns-product-condiment-select>-->
+<!--                        </GridLayout>-->
+<!--                    </GridLayout>-->
+
+<!--                </ng-template>-->
+
+<!--            </RadListView>-->
+
+            <GridLayout row="1">
+                <ns-product-instructions [trnClientCustomersItem]="trnClientCustomersItem">
+                </ns-product-instructions>
+            </GridLayout>
+
+        </GridLayout>
+    </ScrollView>
+
+    <GridLayout *ngIf="!utilityService.smallScreenWidth()" row="3" columns="*, auto, *" class="action-section">
+        <Button col="1"
+                (tap)="onDone()"
+                text="DONE WITH OPTIONS">
+        </Button>
+    </GridLayout>
+
+    <GridLayout *ngIf="utilityService.smallScreenWidth()" row="3">
+    </GridLayout>
+
+</GridLayout>

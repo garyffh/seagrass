@@ -1,0 +1,43 @@
+
+    <GridLayout rows="auto, auto, * ">
+        <GridLayout row="0">
+        </GridLayout>
+
+        <GridLayout row="1">
+            <ns-page-title title="ADDRESS UPDATE"></ns-page-title>
+        </GridLayout>
+
+        <GridLayout row="2">
+
+            <ScrollView>
+                <StackLayout class="p-10">
+
+                    <ns-address-update *ngIf="dataLoaded"
+                                       fxFlex="100"
+                                       [displayFormat]="2"
+                                       [form]="addressForm"
+                                       skipButtonText="Skip Company Details"
+                                       [viewData]="addressModel">
+                    </ns-address-update>
+
+                    <Button *ngIf="showSubmitButton"
+                            text="Submit Address"
+                            class="btn action-button"
+                            [isEnabled]="addressForm.valid"
+                            (tap)="onAddressSubmit()">
+                    </Button>
+
+                    <Button *ngIf="showCancelButton"
+                            text="Cancel"
+                            class="btn action-button"
+                            (tap)="onCancel()">
+                    </Button>
+
+                </StackLayout>
+
+            </ScrollView>
+        </GridLayout>
+
+    </GridLayout>
+
+

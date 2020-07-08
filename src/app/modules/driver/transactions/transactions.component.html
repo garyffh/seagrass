@@ -1,0 +1,107 @@
+<GridLayout *ngIf="listItems === null else show">
+
+</GridLayout>
+
+<ng-template #show>
+
+    <GridLayout rows="auto, * ">
+
+        <GridLayout row="0">
+            <ns-page-title title="TRANSACTIONS"></ns-page-title>
+        </GridLayout>
+
+        <ng-container *ngIf="utilityService.smallScreenWidth(); then smallScreen else standardScreen">
+        </ng-container>
+
+        <ng-template #smallScreen>
+            <GridLayout row="1" rows="auto, *" class="transactions p-l-10 p-r-10">
+
+                <GridLayout row="0" columns="80, 80, *, 60" class="table-header">
+                    <Label col="0" verticalAlignment="center" text="Date"></Label>
+                    <Label col="1" verticalAlignment="center" textAlignment="right" text="Total"></Label>
+                    <Label col="2" verticalAlignment="center" textAlignment="right" text="Bal"></Label>
+                    <Label col="3" verticalAlignment="center" text=""></Label>
+                </GridLayout>
+
+                <RadListView row="1" [items]="listItems">
+
+                    <ng-template tkListItemTemplate let-item="item">
+                        <GridLayout columns="80, 80, *, 60" class="table-row">
+                            <Label col="0" verticalAlignment="center" [text]="item.documentDT | dayMonth"></Label>
+                            <Label col="1"
+                                   textAlignment="right"
+                                   verticalAlignment="center"
+                                   [text]="item.total | currency">
+                            </Label>
+                            <Label col="2"
+                                   textAlignment="right"
+                                   verticalAlignment="center"
+                                   [text]="item.closingBalance | currency">
+                            </Label>
+                            <Label col="3"
+                                   (tap)="onTransactionView(item)"
+                                   verticalAlignment="center"
+                                   textAlignment="center"
+                                   text="&#xe8b0;"
+                                   class="mdi action-button small-icon">
+                            </Label>
+                        </GridLayout>
+                    </ng-template>
+
+                </RadListView>
+
+            </GridLayout>
+        </ng-template>
+
+        <ng-template #standardScreen>
+
+            <GridLayout row="1" rows="auto, *" class="transactions p-l-10 p-r-10">
+
+                <GridLayout row="0" columns="70, *, 80, 100, 70" class="table-header">
+                    <Label col="0" verticalAlignment="center" text="Date"></Label>
+                    <Label col="1" verticalAlignment="center" horizontalAlignment="center" text=""></Label>
+                    <Label col="2" verticalAlignment="center" textAlignment="right" text="Total"></Label>
+                    <Label col="3" verticalAlignment="center" textAlignment="right" text="Bal"></Label>
+                    <Label col="4" verticalAlignment="center" text=""></Label>
+                </GridLayout>
+
+                <RadListView row="1" [items]="listItems">
+
+                    <ng-template tkListItemTemplate let-item="item">
+                        <GridLayout columns="70, *, 80, 100, 70" class="table-row">
+                            <Label col="0" verticalAlignment="center" [text]="item.documentDT | dayMonth"></Label>
+                            <Label col="1"
+                                   verticalAlignment="center"
+                                   horizontalAlignment="center"
+                                   [text]="item.documentType  | driverDocumentType"></Label>
+                            <Label col="2"
+                                   textAlignment="right"
+                                   verticalAlignment="center"
+                                   [text]="item.total | currency">
+                            </Label>
+                            <Label col="3"
+                                   textAlignment="right"
+                                   verticalAlignment="center"
+                                   [text]="item.closingBalance | currency">
+                            </Label>
+                            <Label col="4"
+                                   (tap)="onTransactionView(item)"
+                                   verticalAlignment="center"
+                                   textAlignment="center"
+                                   text="&#xe8b0;"
+                                   class="mdi action-button">
+                            </Label>
+                        </GridLayout>
+                    </ng-template>
+
+                </RadListView>
+
+            </GridLayout>
+
+        </ng-template>
+
+    </GridLayout>
+
+</ng-template>
+
+

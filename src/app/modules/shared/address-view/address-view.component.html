@@ -1,0 +1,187 @@
+<StackLayout *ngIf="!emptyModel" class="address-view"
+             [ngClass]="{'background-accent': backgroundAccent, 'small-address-view' : utilityService.smallScreenWidth()}">
+
+    <ng-container [ngSwitch]="displayFormat">
+
+        <ng-container *ngSwitchDefault>
+
+            <StackLayout *ngIf="hasAddressNote; else NoAddressNoteDefault">
+
+                <Label [text]="address.addressNote">
+                </Label>
+
+                <Label *ngIf="address.extended !== ''"
+                       [text]="address.extended">
+                </Label>
+
+                <Label [text]="address.street">
+                </Label>
+
+                <Label [text]="address.locality">
+                </Label>
+
+                <Label [text]="address.region + ' ' +address.postalCode">
+                </Label>
+
+            </StackLayout>
+
+            <ng-template #NoAddressNoteDefault>
+
+                <StackLayout>
+
+                    <Label *ngIf="address.extended !== ''"
+                           [text]="address.extended">
+                    </Label>
+
+                    <Label [text]="address.street">
+                    </Label>
+
+                    <Label [text]="address.locality">
+                    </Label>
+
+                    <Label [text]="address.region + ' ' +address.postalCode">
+                    </Label>
+
+                </StackLayout>
+
+            </ng-template>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="1">
+
+            <StackLayout *ngIf="address.addressNote else noAddressNote">
+
+                <Label [text]="address.addressNote">
+                </Label>
+
+                <Label [text]="address.extended + ' ' + address.street">
+                </Label>
+
+                <Label [text]="address.locality + ' ' + address.region + ' ' +address.postalCode">
+                </Label>
+
+            </StackLayout>
+
+            <ng-template #noAddressNote>
+
+                <StackLayout>
+
+                    <Label [text]="address.extended + ' ' + address.street">
+                    </Label>
+
+                    <Label [text]="address.locality + ' ' + address.region + ' ' +address.postalCode">
+                    </Label>
+
+                </StackLayout>
+
+            </ng-template>
+
+        </ng-container>
+
+        <ng-container *ngSwitchCase="2">
+
+            <StackLayout *ngIf="hasCompany">
+
+                <StackLayout *ngIf="hasAddressNote">
+
+                    <Label [text]="address.company">
+                    </Label>
+
+                    <Label [text]="address.companyNumber">
+                    </Label>
+
+                    <Label [text]="address.addressNote">
+                    </Label>
+
+                    <Label *ngIf="address.extended !== ''"
+                           [text]="address.extended">
+                    </Label>
+
+                    <Label [text]="address.street">
+                    </Label>
+
+                    <Label [text]="address.locality">
+                    </Label>
+
+                    <Label [text]="address.region + ' ' +address.postalCode">
+                    </Label>
+
+                </StackLayout>
+
+                <StackLayout *ngIf="!hasAddressNote">
+
+                    <Label [text]="address.company">
+                    </Label>
+
+                    <Label [text]="address.companyNumber">
+                    </Label>
+
+                    <Label *ngIf="address.extended !== ''"
+                           [text]="address.extended">
+                    </Label>
+
+                    <Label [text]="address.street">
+                    </Label>
+
+                    <Label [text]="address.locality">
+                    </Label>
+
+                    <Label [text]="address.region + ' ' +address.postalCode">
+                    </Label>
+
+
+                </StackLayout>
+
+
+            </StackLayout>
+
+            <StackLayout *ngIf="!hasCompany">
+
+                <StackLayout *ngIf="hasAddressNote">
+
+                    <Label [text]="address.addressNote">
+                    </Label>
+
+                    <Label *ngIf="address.extended !== ''"
+                           [text]="address.extended">
+                    </Label>
+
+                    <Label [text]="address.street">
+                    </Label>
+
+                    <Label [text]="address.locality">
+                    </Label>
+
+                    <Label [text]="address.region + ' ' +address.postalCode">
+                    </Label>
+
+                </StackLayout>
+
+                <StackLayout *ngIf="!hasAddressNote">
+
+                    <Label *ngIf="address.extended !== ''"
+                           [text]="address.extended">
+                    </Label>
+
+                    <Label [text]="address.street">
+                    </Label>
+
+                    <Label [text]="address.locality">
+                    </Label>
+
+                    <Label [text]="address.region + ' ' +address.postalCode">
+                    </Label>
+
+
+                </StackLayout>
+
+
+            </StackLayout>
+
+        </ng-container>
+
+
+    </ng-container>
+
+</StackLayout>

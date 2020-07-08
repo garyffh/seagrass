@@ -1,0 +1,87 @@
+<ns-action-bar ></ns-action-bar>
+
+<GridLayout rows="auto, auto, *, auto" [ngClass]="businessService.business.theme">
+
+    <GridLayout row="0"></GridLayout>
+
+    <GridLayout row="1">
+        <ns-error-panel></ns-error-panel>
+    </GridLayout>
+
+    <GridLayout row="2">
+        <router-outlet></router-outlet>
+    </GridLayout>
+
+    <GridLayout row="3">
+
+        <GridLayout class="nav-tab" >
+            <GridLayout columns="*, *, *"
+                        [ngClass]="{'small-screen' : utilityService.smallScreenWidth(), 'standard-screen' : !utilityService.smallScreenWidth()}" >
+
+
+
+                <GridLayout col="0"
+                            rows="auto, *"
+                            class="item"
+                            [ngClass]="{'active-tab' : appService.driverTabSelectedIndex === 0 }"
+                            (tap)="onSelectTab(0)">
+                    <Label row="0"
+                           #image4
+                           text="&#xe84f;"
+                           verticalAlignment="top"
+                           horizontalAlignment="center"
+                           class="mdi">
+                    </Label>
+                    <Label row="1"
+                           text="Transactions"
+                           verticalAlignment="bottom"
+                           horizontalAlignment="center" >
+                    </Label>
+                </GridLayout>
+
+                <GridLayout col="1"
+                            rows="auto, *"
+                            class="item"
+                            [ngClass]="{'active-tab' : appService.driverTabSelectedIndex === 1 }"
+                            (tap)="onSelectTab(1)">
+                    <Label row="0"
+                           #image3
+                           text="&#xe558;"
+                           verticalAlignment="top"
+                           horizontalAlignment="center"
+                           class="mdi">
+                    </Label>
+                    <Label row="1"
+                           text="Deliveries"
+                           verticalAlignment="bottom"
+                           horizontalAlignment="center" >
+                    </Label>
+                </GridLayout>
+
+                <GridLayout col="2"
+                            rows="auto, *"
+                            class="item"
+                            [ngClass]="{'active-tab' : appService.driverTabSelectedIndex === 2 }"
+                            (tap)="onSelectTab(2)">
+                    <Label row="0"
+                           #image5
+                           text="&#xe531;"
+                           verticalAlignment="top"
+                           horizontalAlignment="center"
+                           class="mdi">
+                    </Label>
+                    <Label row="1"
+                           text="Cars"
+                           verticalAlignment="bottom"
+                           horizontalAlignment="center">
+                    </Label>
+                </GridLayout>
+
+            </GridLayout>
+        </GridLayout>
+
+    </GridLayout>
+
+</GridLayout>
+
+<ns-spinner></ns-spinner>

@@ -1,0 +1,55 @@
+
+
+    <ng-container *ngIf="appService.data.cartTransaction.items.length == 0; then emptyCart; else cart">
+    </ng-container>
+
+
+    <ng-template #emptyCart>
+
+        <GridLayout rows="auto, auto, auto">
+
+            <GridLayout row="0" >
+            </GridLayout>
+
+            <GridLayout row="1">
+                <ns-page-title title="SHOPPING CART"></ns-page-title>
+            </GridLayout>
+
+            <GridLayout row="2">
+                <ns-shopping-cart-empty></ns-shopping-cart-empty>
+            </GridLayout>
+
+        </GridLayout>
+
+    </ng-template>
+
+    <ng-template #cart>
+
+        <GridLayout rows="*, auto">
+
+            <GridLayout row="0">
+                <ns-shopping-cart></ns-shopping-cart>
+            </GridLayout>
+
+            <GridLayout row="1" columns="*, 2*" rows="*" class="action-section">
+
+                <Button col="0"
+                        [textWrap]="true"
+                        (tap)="clearCart()"
+                        text="CLEAR CART">
+                </Button>
+                <Button col="1"
+                        [textWrap]="true"
+                        textAlignment="center"
+                        [nsRouterLink]="['/user/checkout']"
+                        [text]="authService.userIsAuthenicated ? 'PROCEED TO CHECKOUT' : 'SIGN IN AND PROCEED TO CHECKOUT'">
+                </Button>
+
+            </GridLayout>
+
+        </GridLayout>
+    </ng-template>
+
+
+
+

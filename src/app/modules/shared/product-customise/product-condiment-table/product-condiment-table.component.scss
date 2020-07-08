@@ -1,0 +1,39 @@
+.product-condiment-table-header{
+  align-items: center;
+  padding: 10;
+  border-bottom-width: 1;
+}
+
+.product-condiment-table-icon {
+  font-size: 30;
+  padding-right: 5;
+}
+
+.accordion-text {
+  font-size: 16;
+  font-weight: 400;
+}
+
+.left-icon {
+  font-size: 30;
+  padding-right: 5;
+}
+
+.arrow-icon {
+  width: 55;
+  transform: rotate(-90deg);
+}
+
+.accordion-closed  {
+
+  .arrow-icon {
+    transform: rotate(90deg);
+  }
+
+}
+
+.selected-text {
+  font-size: 16;
+  font-style: italic;
+}
+

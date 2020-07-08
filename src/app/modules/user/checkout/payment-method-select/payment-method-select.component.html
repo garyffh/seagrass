@@ -1,0 +1,106 @@
+<ns-card class="payment-method-select">
+
+    <GridLayout rows="auto, auto" class="payment-method-select">
+
+        <GridLayout row="0" rows="auto, auto" class="section p-t-5 p-b-5">
+
+            <GridLayout columns="auto, *, auto">
+
+                <Label *ngIf="showAddress && showMobile"
+                       col="0"
+                       text="4"
+                       verticalAlignment="center"
+                       class="numberCircle m-r-10">
+                </Label>
+
+                <Label *ngIf="(!showAddress && showMobile) || (showAddress && !showMobile )"
+                       col="0"
+                       text="3"
+                       verticalAlignment="center"
+                       class="numberCircle m-r-10">
+                </Label>
+
+                <Label *ngIf="(!showAddress && !showMobile)"
+                       col="0"
+                       text="2"
+                       verticalAlignment="center"
+                       class="numberCircle m-r-10">
+                </Label>
+
+
+                <Label col="1"
+                       verticalAlignment="center"
+                       text="Payment:">
+                </Label>
+
+                <Label *ngIf="componentView === PaymentMethodSelectComponentView.view && existingPaymentMethod"
+                       col="2"
+                       verticalAlignment="center"
+                       textAlignment="center"
+                       text="&#xe147;"
+                       class="mdi icon action-button"
+                       (tap)="onAddPaymentMethod()">
+                </Label>
+
+                <Label *ngIf="componentView === PaymentMethodSelectComponentView.add && existingPaymentMethod"
+                       col="2"
+                       verticalAlignment="center"
+                       textAlignment="center"
+                       text="&#xe5c9;"
+                       class="mdi icon action-button"
+                       (tap)="onCancelPaymentMethod()">
+                </Label>
+
+            </GridLayout>
+
+        </GridLayout>
+
+        <GridLayout row="1">
+
+            <ng-container [ngSwitch]="componentView">
+
+                <ng-template [ngSwitchCase]="PaymentMethodSelectComponentView.view">
+
+                    <ListPicker row="1"
+                                class="m-t-20"
+                                [items]="paymentMethods"
+                                [selectedIndex]="paymentSelectIndex"
+                                (selectedIndexChange)="paymentMethodIndexChanged($event)"
+                                [width]="260"
+                                [height]="130">
+                    </ListPicker>
+
+                </ng-template>
+
+
+                <ng-template [ngSwitchCase]="PaymentMethodSelectComponentView.add">
+
+                    <StackLayout>
+
+<!--                        <ns-ffh-stripe-card [form]="paymentMethodAddForm">-->
+<!--                        </ns-ffh-stripe-card>-->
+
+                            <ns-ffh-payment-card [ccForm]="paymentMethodAddForm"
+                                                    [cardForm]="true">
+                            </ns-ffh-payment-card>
+
+                        <Label *ngIf="showCardError"
+                               textAlignment="center"
+                               horizontalAlignment="center"
+                               [textWrap]="true"
+                               class="fail m-10"
+                               [text]="cardErrorMessage">
+                        </Label>
+
+                    </StackLayout>
+
+                </ng-template>
+
+            </ng-container>
+
+        </GridLayout>
+
+    </GridLayout>
+
+</ns-card>
+

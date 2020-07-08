@@ -1,0 +1,38 @@
+.delivery-method {
+
+  font-size: 16;
+
+  .row {
+    height: 50;
+    padding: 0 10;
+    border-bottom-width: 1;
+  }
+
+  .radio-icon {
+    width: 20;
+    height: 20;
+    border-radius: 10;
+  }
+
+  .end {
+    width: 35
+  }
+
+  .numberCircle {
+    border-width: 1.5;
+    border-radius: 100;
+    padding: 0 4;
+    width: 26;
+  }
+
+  .table-number-input {
+    width: 130;
+  }
+
+  .error {
+    Label {
+      color: red;
+    }
+  }
+}
+

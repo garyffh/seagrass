@@ -1,0 +1,131 @@
+
+    <GridLayout rows="auto, *">
+
+        <GridLayout row="0">
+            <ns-page-title title="SIGN IN"></ns-page-title>
+        </GridLayout>
+
+        <GridLayout row="1">
+            <ScrollView>
+                <GridLayout rows="auto, auto, auto, auto, auto" class="sign-in m-20">
+
+                    <GridLayout row="0">
+
+                        <StackLayout [formGroup]="signInForm"
+                                     (ngSubmit)="onSignIn()"
+                                     autocomplete="off">
+
+                            <StackLayout class="field">
+                                <TextField hint="Email"
+                                           formControlName="email"
+                                           secure="false"
+                                           keyboardType="email"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('email') && signInForm.get('email').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="email is required">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('email') && signInForm.get('email').hasError('invalidEmail')  ? 'visible' : 'collapse'"
+                                       text="invalid email address">
+                                </Label>
+
+                            </StackLayout>
+
+                            <StackLayout class="field">
+                                <TextField hint="Password"
+                                           formControlName="password"
+                                           secure="true"
+                                           returnKeyType="go"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('password') && signInForm.get('password').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="password is required">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('password') && signInForm.get('password').hasError('minlength')  ? 'visible' : 'collapse'"
+                                       text="password must have at least 8 characters">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('password') && signInForm.get('password').hasError('maxlength')  ? 'visible' : 'collapse'"
+                                       text="password must be less than 20 characters">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('password') && signInForm.get('password').hasError('numberRequired')  ? 'visible' : 'collapse'"
+                                       text="password requires at least one number">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('password') && signInForm.get('password').hasError('upperCaseRequired')  ? 'visible' : 'collapse'"
+                                       text="password requires at least one upper case letter">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('password') && signInForm.get('password').hasError('lowerCaseRequired')  ? 'visible' : 'collapse'"
+                                       text="password requires at least one lower case letter">
+                                </Label>
+
+                            </StackLayout>
+
+                            <Button class="btn action-button"
+                                    text="Sign In"
+                                    (tap)="onSignIn()"
+                                    [isEnabled]="signInForm.valid">
+                            </Button>
+
+                        </StackLayout>
+
+                    </GridLayout>
+
+                    <StackLayout row="1" class="hr-light"></StackLayout>
+
+                    <GridLayout row="2" columns="*, auto" class="m-t-20">
+                        <Label col="0"
+                               verticalAlignment="center"
+                               text="Forgot password">
+                        </Label>
+
+                        <Label col="1"
+                               [nsRouterLink]="['./forgot-password']"
+                               verticalAlignment="center"
+                               textAlignment="center"
+                               horizontalAlignment="center"
+                               class="mdi action-button icon"
+                               text="&#xe0da;">
+                        </Label>
+
+                    </GridLayout>
+
+                    <GridLayout *ngIf="businessService.business.newAccounts"
+                                row="3" columns="*, auto" class="m-t-20">
+                        <Label col="0"
+                               verticalAlignment="center"
+                               text="Register now">
+                        </Label>
+
+                        <Label col="1"
+                               [nsRouterLink]="['./sign-up']"
+                               verticalAlignment="center"
+                               textAlignment="center"
+                               horizontalAlignment="center"
+                               class="mdi action-button icon"
+                               text="&#xe7fe;">
+                        </Label>
+
+                    </GridLayout>
+
+                    <GridLayout *ngIf="!businessService.business.newAccounts"
+                                row="3">
+                    </GridLayout>
+
+                    <StackLayout row="4" class="hr-light m-t-20"></StackLayout>
+
+                </GridLayout>
+            </ScrollView>
+        </GridLayout>
+    </GridLayout>
+
+

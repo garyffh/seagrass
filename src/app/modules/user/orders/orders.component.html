@@ -1,0 +1,52 @@
+
+    <GridLayout rows="auto, auto, * ">
+
+        <GridLayout row="0" >
+        </GridLayout>
+
+        <GridLayout row="1">
+            <ns-page-title title="ORDERS"></ns-page-title>
+        </GridLayout>
+
+        <GridLayout row="2" class="orders p-l-10 p-r-10">
+
+            <GridLayout rows="auto, *">
+
+                <GridLayout row="0" columns="160, *" class="table-header">
+                    <Label col="0" verticalAlignment="center" text="Ordered"></Label>
+                    <Label col="1" verticalAlignment="center" text="Status"></Label>
+                </GridLayout>
+
+                <RadListView row="1" [items]="listItems">
+
+                    <ng-template tkListItemTemplate let-item="item">
+                        <GridLayout columns="160, *, auto" class="table-row">
+
+                            <Label col="0"
+                                   verticalAlignment="center"
+                                   [text]="item.orderDT | dayMonthTime">
+                            </Label>
+
+                            <Label col="1" verticalAlignment="center" [text]="item.deliveryMethodStatus | orderDeliveryMethodStatus"></Label>
+
+                            <Label col="2"
+                                   [nsRouterLink]="['../order-detail', item.trnOrderId ]"
+                                   verticalAlignment="center"
+                                   textAlignment="center"
+                                   text="&#xe8b0;"
+                                   class="mdi action-button"
+                                   [ngClass]="{'small-icon' : utilityService.smallScreenWidth()}">
+                            </Label>
+
+                        </GridLayout>
+                    </ng-template>
+
+                </RadListView>
+
+            </GridLayout>
+
+        </GridLayout>
+
+    </GridLayout>
+
+

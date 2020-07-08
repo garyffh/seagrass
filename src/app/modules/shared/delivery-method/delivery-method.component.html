@@ -1,0 +1,224 @@
+<GridLayout>
+
+    <ng-container *ngIf="deliveryMethod.type === 0; then store; else delivery">
+    </ng-container>
+
+
+    <ng-template #store>
+
+        <ng-container *ngIf="storeStatusService.storeStatus.storeState.manualStoreOnline; else noStore">
+
+            <ng-container [ngSwitch]="deliveryMethod.openStatus">
+
+                <ng-container *ngSwitchCase="DeliveryMethodOpenStatus.open">
+
+                    <ns-accordion [icon]="'&#xe32c;'"
+                                  [label]="'ORDER AHEAD'"
+                                  [open]="expanded">
+
+                        <GridLayout rows="auto, auto" class="message">
+                            <Label row="0" [textWrap]="true"
+                                   [text]="'Order ahead ' + deliveryMethod.displayTimes"></Label>
+                            <Label row="1" [textWrap]="true"
+                                   [text]="'Pickup your order in around ' + storeStatusService.storeStatus.storeState.storePrepTime +
+                                                        ' minutes or schedule it for pickup later.'"></Label>
+
+                        </GridLayout>
+
+                    </ns-accordion>
+
+                </ng-container>
+
+                <ng-container *ngSwitchCase="DeliveryMethodOpenStatus.schedule">
+
+                    <ns-accordion [icon]="'&#xe32c;'"
+                                  [label]="'ORDER AHEAD'"
+                                  [open]="expanded">
+
+                        <GridLayout rows="auto, auto"  class="message">
+                            <Label row="0" [textWrap]="true"
+                                   [text]="'Order ahead ' + deliveryMethod.displayTimes"></Label>
+                            <Label row="1" [textWrap]="true"
+                                   [text]="'Schedule your order for pickup later.'"></Label>
+
+                        </GridLayout>
+
+
+                    </ns-accordion>
+
+                </ng-container>
+
+                <ng-container *ngSwitchCase="DeliveryMethodOpenStatus.closed">
+
+                    <ns-accordion [icon]="'&#xe32c;'"
+                                  [label]="'ORDER AHEAD CLOSED'"
+                                  [open]="expanded">
+
+                        <GridLayout rows="auto"  class="message">
+                            <Label row="0" [textWrap]="true"
+                                   [text]="'Order ahead is closed. Check our store hours.'"></Label>
+
+                        </GridLayout>
+
+
+                    </ns-accordion>
+
+                </ng-container>
+
+            </ng-container>
+
+        </ng-container>
+
+        <ng-template #noStore>
+
+            <ns-accordion [icon]="'&#xe2c1;'"
+                          [label]="'OFFLINE'"
+                          [open]="expanded">
+
+                <GridLayout rows="auto"  class="message">
+                    <Label row="0" [textWrap]="true"
+                           [text]="'Pickup your order in around minutes or schedule it for pickup later.'"></Label>
+
+                </GridLayout>
+
+            </ns-accordion>
+
+        </ng-template>
+
+    </ng-template>
+
+    <ng-template #delivery>
+
+        <ng-container
+                *ngIf="storeStatusService.storeStatus.storeState.driverAvailable && storeStatusService.storeStatus.storeState.manualDeliveryOnline; else noDeliveries">
+
+            <ng-container [ngSwitch]="deliveryMethod.openStatus">
+
+                <ng-container *ngSwitchCase="DeliveryMethodOpenStatus.open">
+
+                    <ns-accordion [icon]="'&#xe558;'"
+                            [label]="businessService.business.usesDeliveryZones ? 'DELIVERY' : businessService.business.deliveryFee === 0 ? 'FREE DELIVERY' : 'DELIVERY ' + (businessService.business.deliveryFee | currency) "
+                            [open]="expanded">
+
+                        <GridLayout rows="auto, auto, auto, auto"  class="message">
+
+                            <Label *ngIf="businessService.business.minOrder !== 0" row="0" [textWrap]="true"
+                                   [text]="'Minimum order ' + (businessService.business.minOrder | currency)"></Label>
+
+                            <GridLayout *ngIf="businessService.business.minOrder === 0" row="0" >
+                            </GridLayout>
+
+                            <Label row="1" [textWrap]="true"
+                                   [text]="'Deliveries ' + deliveryMethod.displayTimes"></Label>
+
+                            <Label row="2" [textWrap]="true"
+                                   [text]="'Have your order delivered in around ' + (storeStatusService.storeStatus.storeState.storePrepTime + storeStatusService.storeStatus.storeState.driverDeliveryTime) +
+                                                                                ' minutes, or schedule it for delivery later. Check you are in our delivery area.'"></Label>
+
+                            <GridLayout row="3">
+                                <ns-delivery-area-tap>
+                                </ns-delivery-area-tap>
+                            </GridLayout>
+
+                        </GridLayout>
+
+                    </ns-accordion>
+
+                </ng-container>
+
+                <ng-container *ngSwitchCase="DeliveryMethodOpenStatus.schedule">
+
+                    <ns-accordion [icon]="'&#xe558;'"
+                            [label]="businessService.business.usesDeliveryZones ? 'DELIVERY' : businessService.business.deliveryFee === 0 ? 'FREE DELIVERY' : 'DELIVERY ' + (businessService.business.deliveryFee | currency) "
+                            [open]="expanded">
+
+                        <GridLayout rows="auto, auto, auto, auto"  class="message">
+
+                            <Label *ngIf="businessService.business.minOrder !== 0" row="0" [textWrap]="true"
+                                   [text]="'Minimum order ' + (businessService.business.minOrder | currency)"></Label>
+
+                            <GridLayout *ngIf="businessService.business.minOrder === 0" row="0" >
+                            </GridLayout>
+
+                            <Label row="1" [textWrap]="true"
+                                   [text]="'Deliveries ' + deliveryMethod.displayTimes"></Label>
+
+                            <Label row="2" [textWrap]="true"
+                                   [text]="'Schedule your order for delivery later. Check you are in our delivery area.'"></Label>
+
+                            <GridLayout row="3">
+                                <ns-delivery-area-tap>
+                                </ns-delivery-area-tap>
+                            </GridLayout>
+
+                        </GridLayout>
+
+
+                    </ns-accordion>
+
+                </ng-container>
+
+                <ng-container *ngSwitchCase="DeliveryMethodOpenStatus.closed">
+
+                    <ns-accordion [icon]="'&#xe558;'"
+                                  [label]="'DELIVERY CLOSED'"
+                                  [open]="expanded">
+
+                        <GridLayout rows="auto"  class="message">
+                            <Label row="0" [textWrap]="true"
+                                   [text]="'Deliveries are closed. Check our delivery hours'"></Label>
+
+                        </GridLayout>
+
+                    </ns-accordion>
+
+                </ng-container>
+
+            </ng-container>
+
+        </ng-container>
+
+        <ng-template #noDeliveries>
+
+            <ng-container
+                    *ngIf="!storeStatusService.storeStatus.storeState.driverAvailable; then noDrivers; else deliveryOffline">
+            </ng-container>
+
+            <ng-template #noDrivers>
+
+                <ns-accordion [icon]="'&#xe558;'"
+                              [label]="'DELIVERY OFFLINE'"
+                              [open]="expanded">
+
+                    <GridLayout rows="auto, auto"  class="message">
+                        <Label row="0" [textWrap]="true"
+                               [text]="businessService.business.driverNotAvailableMessage"></Label>
+
+                    </GridLayout>
+
+                </ns-accordion>
+
+            </ng-template>
+
+            <ng-template #deliveryOffline>
+
+                <ns-accordion [icon]="'&#xe558;'"
+                              [label]="'DELIVERY OFFLINE'"
+                              [open]="expanded">
+
+                    <GridLayout rows="auto, auto"  class="message">
+                        <Label row="0" [textWrap]="true"
+                               [text]="businessService.business.deliveryOfflineMessage"></Label>
+
+                    </GridLayout>
+
+                </ns-accordion>
+
+            </ng-template>
+
+
+        </ng-template>
+
+    </ng-template>
+
+</GridLayout>

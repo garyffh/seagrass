@@ -1,0 +1,22 @@
+<GridLayout rows="auto, auto, auto" class="dialog">
+
+    <GridLayout row="0" columns="*" dock="top" class="dialog-header">
+        <Label col="0" verticalAlignment="center" horizontalAlignment="center" [text]="title" ></Label>
+    </GridLayout>
+
+    <GridLayout row="1">
+        <ng-content ></ng-content>
+    </GridLayout>
+
+    <GridLayout row="2" columns="*, *" *ngIf="showButtons" class="">
+        <Button col="0" text="Cancel" (tap)="onCancel()" class="action-button"></Button>
+        <Button col="1" text={{confirmLabel}} (Tap)="onConfirm()" class="action-button"></Button>
+    </GridLayout>
+
+    <GridLayout row="2" columns="*" *ngIf="!showButtons" class="">
+        <Button col="0" text="&#xe876;" (Tap)="onClose()" class="mdi dialog-icon action-button"></Button>
+    </GridLayout>
+
+
+</GridLayout>
+

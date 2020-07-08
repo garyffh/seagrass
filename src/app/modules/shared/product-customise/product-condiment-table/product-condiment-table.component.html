@@ -1,0 +1,47 @@
+<StackLayout [ngClass]="{ 'accordion-closed': !open, 'accordion-open': open }" class="accordion">
+
+
+    <GridLayout rows="auto, auto"  (tap)="onTap()" class="product-condiment-table-header">
+
+        <GridLayout row="0" columns="*, auto">
+
+            <GridLayout col="0" verticalAlignment="center">
+
+                <GridLayout row="0" columns="*, 100">
+                    <Label col="0"
+                           verticalAlignment="center"
+                           [text]="trnCondimentTable.name">
+                    </Label>
+
+                    <Label col="1"
+                           verticalAlignment="center"
+                           [text]="trnCondimentTable.selectText">
+                    </Label>
+
+                </GridLayout>
+
+            </GridLayout>
+
+            <Label *ngIf="open" col="1" verticalAlignment="center" text="&#xe316;"
+                   class="mdi product-condiment-table-icon"></Label>
+            <Label *ngIf="!open" col="1" verticalAlignment="center" text="&#xe313;"
+                   class="mdi product-condiment-table-icon"></Label>
+
+        </GridLayout>
+
+        <Label *ngIf="trnCondimentTable.condensedTextSelected"
+               row="1"
+               verticalAlignment="center"
+               class="selected-text"
+               [text]="trnCondimentTable.condensedTextSelected">
+        </Label>
+
+    </GridLayout>
+
+    <StackLayout>
+
+        <ng-content *ngIf="open"></ng-content>
+
+    </StackLayout>
+
+</StackLayout>

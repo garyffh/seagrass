@@ -1,0 +1,143 @@
+<ScrollView>
+
+
+
+    <GridLayout rows="auto, auto, auto, auto, *" class="p-l-10 p-r-10">
+
+        <GridLayout row="0">
+            <ns-delivery-method-select [checkoutProcessing]="checkoutProcessing"
+                                       [checkoutError]="checkoutError"
+                                       (isValidStatus)="onDeliveryMethodSelectIsValidStatus($event)"
+                                       (updateBillingDeliveryMethod)="onUpdateBillingDeliveryMethod($event)">
+            </ns-delivery-method-select>
+        </GridLayout>
+
+        <GridLayout *ngIf="showAddress" row="1">
+            <ns-address-select (isValidStatus)="onAddressSelectIsValidStatus($event)"
+                               (updateAddress)="onUpdateAddress($event)"
+                               [billingDeliveryMethod]="billingDeliveryMethod"
+                               [addressModel]="addressModel"
+                               class="m-t-10">
+            </ns-address-select>
+        </GridLayout>
+
+        <GridLayout *ngIf="!showAddress" row="1">
+        </GridLayout>
+
+
+        <GridLayout *ngIf="showMobile" row="2">
+            <ns-mobile-select (isValidStatus)="onMobileSelectIsValidStatus($event)"
+                              (updateMobile)="onUpdateMobile($event)"
+                              [billingDeliveryMethod]="billingDeliveryMethod"
+                              [mobileModel]="mobileModel"
+                              class="m-t-10">
+            </ns-mobile-select>
+        </GridLayout>
+
+        <GridLayout *ngIf="!showMobile" row="2">
+        </GridLayout>
+
+        <GridLayout row="3">
+            <ns-payment-method-select [checkoutPaymentMethod]="checkoutPaymentMethod"
+                                      [showAddress]="showAddress"
+                                      [showMobile]="showMobile"
+                                      [paymentMethodAddForm]="paymentMethodAddForm"
+                                      [stripeErrorMessage]="stripeErrorMessage"
+                                      (updateCheckoutPaymentMethod)="onUpdateCheckoutPaymentMethod($event)"
+                                      (updateBillingPaymentMethod)="onUpdateBillingPaymentMethod($event)"
+                                      (isValidStatus)="onPaymentMethodIsValidStatus($event)"
+                                      class="m-t-10">
+            </ns-payment-method-select>
+        </GridLayout>
+
+
+        <GridLayout row="4" rows="*" class="checkout-select">
+
+            <ns-card row="0">
+
+                <GridLayout rows="auto, *">
+
+                    <GridLayout row="0" rows="auto" class="section p-t-5 p-b-5">
+
+                        <GridLayout row="0" columns="auto, *, auto">
+
+                            <GridLayout col="0" columns="auto" class="p-t-5">
+                                <Label *ngIf="showAddress && showMobile"
+                                       col="0"
+                                       text="5"
+                                       verticalAlignment="top"
+                                       class="numberCircle m-r-10">
+                                </Label>
+
+                                <Label *ngIf="(!showAddress && showMobile) || (showAddress && !showMobile )"
+                                       col="0"
+                                       text="4"
+                                       verticalAlignment="top"
+                                       class="numberCircle m-r-10">
+                                </Label>
+
+                                <Label *ngIf="(!showAddress && !showMobile)"
+                                       col="0"
+                                       text="3"
+                                       verticalAlignment="top"
+                                       class="numberCircle m-r-10">
+                                </Label>
+
+                            </GridLayout>
+
+                            <Label col="1"
+                                   class="p-t-5"
+                                   verticalAlignment="top"
+                                   [text]="utilityService.smallScreenWidth() ? 'Order: ' : 'Place Order: '">
+                            </Label>
+
+
+                            <GridLayout col="2" verticalAlignment="top" horizontalAlignment="right">
+
+                                <StackLayout orientation="vertical" class="action-buttons">
+
+                                    <Button class="payment-button btn action-button"
+                                            [isEnabled]="canPlaceOrder && !checkoutProcessing"
+                                            horizontalAlignment="right"
+                                            verticalAlignment="top"
+                                            (tap)="onPlaceOrder( { redeemCurrency: 0, redeemPoints: 0 })"
+                                            [text]="'Card ' +  (this.appService.data.cartTransaction.total | currency)">
+                                    </Button>
+
+
+                                    <Button *ngIf="orderRedeemCurrency !== 0"
+                                            class="payment-button btn action-button m-t-10"
+                                            [ngClass]="{'small-redeem-button': utilityService.smallScreenWidth()}"
+                                            [isEnabled]="canPlaceOrder && !checkoutProcessing"
+                                            horizontalAlignment="right"
+                                            verticalAlignment="top"
+                                            (tap)="onPlaceOrder( { redeemCurrency: orderRedeemCurrency, redeemPoints: orderRedeemPoints })"
+                                            [text]="orderCardAmount === 0 ?
+                                            'Redeem ' + (orderRedeemCurrency | currency) : 'Redeem ' + (orderRedeemCurrency | currency) + '\nCard ' +  (orderCardAmount | currency)">
+                                    </Button>
+
+                                </StackLayout>
+
+                            </GridLayout>
+
+                        </GridLayout>
+
+                    </GridLayout>
+
+                    <GridLayout row="1" rows="auto" >
+
+                        <ns-shopping-cart [customiseEnabled]="false"
+                                          [showImage]="false">
+                        </ns-shopping-cart>
+
+                    </GridLayout>
+
+                </GridLayout>
+
+            </ns-card>
+
+        </GridLayout>
+
+    </GridLayout>
+
+</ScrollView>

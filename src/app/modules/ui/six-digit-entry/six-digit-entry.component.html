@@ -1,0 +1,85 @@
+<GridLayout columns="*, auto, *">
+
+    <GridLayout col="0"></GridLayout>
+
+    <StackLayout
+            col="1"
+            autocomplete="off"
+            orientation="horizontal"
+            [formGroup]="form"
+            class="six-digit-entry">
+
+        <TextField id="digit1"
+                   #digit1
+                   textAlignment="center"
+                   formControlName="digit1"
+                   keyboardType="number"
+                   secure="false"
+                   returnKeyType="next"
+                   autocorrect="false"
+                   class="digit -rounded">
+        </TextField>
+        <TextField id="digit2"
+                   #digit2
+                   textAlignment="center"
+                   formControlName="digit2"
+                   keyboardType="number"
+                   secure="false"
+                   returnKeyType="next"
+                   autocorrect="false"
+                   class="digit -rounded">
+        </TextField>
+        <TextField id="digit3"
+                   #digit3
+                   textAlignment="center"
+                   formControlName="digit3"
+                   keyboardType="number"
+                   secure="false"
+                   returnKeyType="next"
+                   autocorrect="false"
+                   class="digit -rounded">
+        </TextField>
+
+        <Label text="&#xe15b;"
+               class="mdi separator"
+               horizontalAlignment="center"
+               verticalAlignment="top">
+        </Label>
+
+        <TextField id="digit4"
+                   #digit4
+                   textAlignment="center"
+                   formControlName="digit4"
+                   keyboardType="number"
+                   secure="false"
+                   returnKeyType="next"
+                   autocorrect="false"
+                   class="digit -rounded">
+        </TextField>
+        <TextField id="digit5"
+                   #digit5
+                   textAlignment="center"
+                   formControlName="digit5"
+                   keyboardType="number"
+                   secure="false"
+                   returnKeyType="next"
+                   autocorrect="false"
+                   class="digit -rounded">
+        </TextField>
+        <TextField id="digit6"
+                   #digit6
+                   textAlignment="center"
+                   formControlName="digit6"
+                   keyboardType="number"
+                   secure="false"
+                   returnKeyType="go"
+                   autocorrect="false"
+                   class="digit -rounded">
+        </TextField>
+
+
+    </StackLayout>
+
+    <GridLayout col="2"></GridLayout>
+
+</GridLayout>

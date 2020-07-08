@@ -1,0 +1,386 @@
+
+TextField {
+  placeholder-color: #808080;
+}
+
+.address-select {
+
+
+}
+
+.action-buttons {
+
+  Button {
+    background-color: var(--light-accent);
+    color: var(--light-primary);
+  }
+
+}
+
+.action-button {
+  background-color: var(--light-accent);
+  color: var(--light-primary);
+}
+
+StackLayout {
+  .action-button {
+    background-color: var(--light-accent);
+    color: var(--light-primary);
+  }
+}
+
+.action-bar-menu {
+
+  background-color: var(--light-background);
+  .ns-dark & {
+    background-color: var(--dark-background);
+  }
+
+  .menu-background {
+    background-color: var(--light-background);
+    border-color: var(--light-primary);
+    padding: 10;
+    border-width: 3;
+
+    Button {
+      background-color: var(--light-accent);
+      color: var(--light-primary);
+
+    }
+
+  }
+
+}
+
+.nav-tab {
+
+  background-color: var(--dark-background);
+  color: var(--dark-primary);
+
+  .ns-dark & {
+    background-color: var(--light-background);
+    color: var(--light-primary);
+  }
+
+  .active-tab {
+    background-color: #f57c00
+  }
+
+}
+
+.card {
+  background-color: var(--light-background);
+  color: var(--light-primary);
+
+}
+
+.card-form {
+
+  .error-label {
+    text-align: center;
+    Label {
+      color: red;
+    }
+  }
+
+  .ns-dark & {
+
+    .error-label {
+      Label {
+        color: red;
+      }
+
+    }
+
+    TextField {
+      color: var(--light-primary);
+      border-color: var(--light-primary);
+    }
+
+    Label {
+      color: var(--light-primary);
+    }
+
+
+    RadAutoCompleteTextView {
+      placeholder-color: #808080;
+      color: var(--light-primary);
+      background: var(--light-background);
+      border-color: var(--light-primary);
+    }
+
+    RadAutoCompleteTextView:focus {
+      placeholder-color: #808080;
+      color: var(--light-primary);
+      background: var(--light-background);
+      border-color: var(--light-primary);
+    }
+
+    RadAutoCompleteTextView SuggestionView {
+      color: var(--light-primary);
+      background: var(--light-background);
+      border-color: var(--light-primary);
+    }
+
+    RadAutoCompleteTextView SuggestionView Label {
+      color: var(--light-primary);
+      background: var(--light-background);
+      border-color: var(--light-primary);
+    }
+
+  }
+
+}
+
+
+ActivityIndicator {
+  color: var(--light-complementary);
+}
+
+
+.action-bar {
+  background-color: var(--light-complementary);
+  color: var(--light-complementary-color);
+}
+
+.ab-background-colour {
+  color: var(--light-complementary);
+}
+
+.ab-icon {
+  color: var(--light-complementary-color);
+}
+
+.store-banner {
+  background-color: var(--light-complementary);
+}
+
+.action-section {
+  border-bottom-color: #e0e0e0;
+  background-color: #efeeef;
+
+  Button {
+    background-color: var(--light-accent);
+    color: var(--light-primary);
+  }
+}
+
+.summary-bar {
+
+  background-color: var(--dark-background);
+  color: var(--dark-primary);
+
+  .ns-dark & {
+    background-color: var(--light-background);
+    color: var(--light-primary);
+  }
+
+  .count {
+    border-color: var(--dark-primary);
+
+    .ns-dark & {
+      border-color: var(--light-primary);
+    }
+
+  }
+
+  .shopping-cart-widget-right-icon {
+    color: var(--light-accent);
+  }
+}
+
+
+
+.table-header {
+  border-bottom-color: var(--light-background-alt-5);
+  background-color: var(--light-background-alt-10);
+
+  .ns-dark & {
+    border-bottom-color: var(--dark-background-alt-5);
+    background-color: var(--dark-background-alt-10);
+
+  }
+
+}
+
+.table-row {
+  border-bottom-color: var(--light-background-alt-5);
+  .ns-dark & {
+    border-bottom-color: var(--dark-background-alt-5);
+  }
+
+}
+
+.accordion-header {
+  color: var(--light-primary);
+  background-color: var(--light-background);
+  border-bottom-color:var(--light-complementary);
+
+  .ns-dark & {
+    color: var(--dark-primary);
+    background-color: var(--dark-background);
+  }
+}
+
+.special-accordion-header{
+  background-color: var(--light-accent);
+  color: var(--light-primary);
+
+  border-bottom-color:var(--light-complementary);
+
+}
+
+.special-accordion-text {
+  color: var(--light-primary);
+}
+
+.accordion-text {
+  color: var(--light-primary);
+
+  .ns-dark & {
+    color: var(--dark-primary);
+  }
+}
+
+
+.accordion-open  {
+
+  .accordion-header {
+    background-color: var(--light-background-accent);
+
+    .ns-dark & {
+      background-color: var(--dark-background-accent);
+
+    }
+
+  }
+
+  .special-accordion-header{
+    background-color: var(--light-accent);
+
+  }
+
+}
+
+.dialog {
+  color: var(--light-complementary);
+
+  .dialog-header {
+    border-bottom-color:var(--light-complementary);
+    background-color: #efeeef;
+  }
+
+}
+
+.loading-text {
+  font-size: 20;
+}
+
+.selected-radio {
+  background-color: var(--light-complementary);
+  color: var(--light-complementary);
+}
+
+.unselected-radio {
+
+  background-color: var(--light-background-alt-10);
+
+  .ns-dark & {
+    background-color: var(--dark-background-alt-10);
+  }
+
+}
+
+.selected-row {
+  background-color: var(--light-background-alt-5);
+
+  .ns-dark & {
+    background-color: var(--dark-background-alt-5);
+
+  }
+
+}
+
+.validation {
+  color: #a94442;
+  background-color: #ffffff;
+}
+
+
+.section {
+  border-bottom-color: #e0e0e0;
+  background-color: #efeeef;
+  border-bottom-width: 1;
+
+
+  .selected-radio {
+    background-color: var(--light-complementary);
+    color: var(--light-complementary);
+  }
+
+  .unselected-radio {
+    background-color: var(--light-background);
+  }
+
+}
+
+
+
+.product-item {
+
+  color: var(--light-primary);
+  background-color: var(--light-background);
+  border-bottom-color: var(--light-accent-light);
+
+  .ns-dark & {
+    color: var(--dark-primary);
+    background-color: var(--dark-background);
+    border-bottom-color: var(--dark-accent-light);
+  }
+
+}
+
+.product-customise {
+
+  .title {
+    color: var(--dark-primary);
+    background-color: var(--dark-background);
+    border-bottom-color: var(--dark-accent-light);
+
+    .ns-dark & {
+      color: var(--light-primary);
+      background-color: var(--light-background);
+      border-bottom-color: var(--light-accent-light);
+    }
+  }
+
+}
+
+.instructions {
+  TextView {
+    color: var(--light-primary);
+
+    .ns-dark & {
+      color: var(--dark-primary);
+    }
+  }
+}
+
+
+.fail {
+  color: red;
+}
+
+.offline {
+  color: red;
+}
+
+.error-panel {
+  border-color: red;
+  background-color: #ffe3e1;
+  color: black;
+
+}
+
+
+

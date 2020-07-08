@@ -1,0 +1,515 @@
+{
+  "project_info": {
+    "project_number": "210978008969",
+    "firebase_url": "https://ffh-store.firebaseio.com",
+    "project_id": "ffh-store",
+    "storage_bucket": "ffh-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:3dc3c9ca431abce466fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.aces"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:77c6420b2d111c4166fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.blueysSmokehouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:712242496935a63f66fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.brewHaven"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:42c54b0a01b3430f66fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.cafeOz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:8000074a4a3a849566fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.caterez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:e3a601eb1a4fc8a766fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.dailyFresh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:a4752bd19813dce066fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.gloriaJeansBrokenHill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:bc52d49872acfa0c66fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.gloriaJeansWaggaWagga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:03702be433eb4aff66fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.grillhouseBidwill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:eaffece7466620a766fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.hubcafe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:667f4a011f5061dc66fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.nellz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:b077c4380ab0e3c066fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.queensParkPizza"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:607ce32931625cfa66fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.seagrass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210978008969:android:049a989e7a282d6666fb58",
+        "android_client_info": {
+          "package_name": "au.com.freeflowhub.yilmazGrill"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMm2KG0MfTKVViHCwreqkwWtodJzDkabQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210978008969-ddr8tc4m0lnrfm7es45s8up78tpmbomk.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "210978008969-2enl0cq6valha53cdbdfcn70565aro08.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "au.com.freeflowhub.dailyFresh"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,51 @@
+<GridLayout [class.dialogOpen]="appService.actionBarMenuOpen">
+
+    <GridLayout class="app-content">
+        <router-outlet></router-outlet>
+    </GridLayout>
+
+
+    <AbsoluteLayout class="dialog-wrapper">
+
+        <GridLayout  class="action-bar-menu" >
+            <GridLayout columns="*" rows="auto, auto, auto" class="menu-background">
+
+                <StackLayout col="0"
+                             row="0"
+                             *ngIf="showDriverMenu"
+                             orientation="vertical">
+                    <Button *ngIf="displayMenu !== DisplayMenu.driver" [text]="'Driver'" (tap)="onNavigateDriver()">
+                    </Button>
+                    <Button *ngIf="displayMenu === DisplayMenu.driver" [text]="'My Account'" (tap)="onNavigateUser()">
+                    </Button>
+
+                    <StackLayout class="hr-light"></StackLayout>
+
+                </StackLayout>
+
+                <StackLayout col="0"
+                             row="0"
+                             *ngIf="!showDriverMenu"
+                             orientation="vertical">
+                </StackLayout>
+
+                <StackLayout col="0"
+                             row="1"
+                             orientation="vertical">
+                    <Button [text]="authenticationService.userIsAuthenicated ? 'Sign Out' : 'Sign In'" (tap)="onSignIn()">
+                    </Button>
+                </StackLayout>
+
+                <StackLayout col="0"
+                             row="2"
+                             orientation="vertical">
+                    <Button  text="Cancel" (tap)="onCancel()">
+                    </Button>
+                </StackLayout>
+
+            </GridLayout>
+        </GridLayout>
+
+    </AbsoluteLayout>
+
+</GridLayout>

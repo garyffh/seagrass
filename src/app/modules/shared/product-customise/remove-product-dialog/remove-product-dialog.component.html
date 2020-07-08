@@ -1,0 +1,26 @@
+<GridLayout>
+
+    <ns-dialog title="Remove From Cart"
+               [confirmLabel]="'Confirm'"
+               [showButtons]="true"
+               (close)="onClose($event)">
+
+        <StackLayout class="message">
+            <Label [textWrap]="true"
+                   horizontalAlignment="center"
+                   textAlignment="center"
+                   [text]="'Confirm removing'">
+            </Label>
+            <Label [textWrap]="true"
+                   horizontalAlignment="center"
+                   textAlignment="center"
+                   class="product m-t-10"
+                   [text]="model.name">
+            </Label>
+
+        </StackLayout>
+
+    </ns-dialog>
+
+</GridLayout>
+

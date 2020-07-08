@@ -1,0 +1,105 @@
+
+    <ng-container [ngSwitch]="componentView">
+
+
+        <ng-template [ngSwitchCase]="CheckoutComponentView.loading">
+
+            <GridLayout rows="auto">
+
+                <GridLayout row="0">
+                    <ns-page-title title="CHECKOUT"></ns-page-title>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="CheckoutComponentView.select">
+
+            <GridLayout rows="auto, *">
+
+                <GridLayout row="0">
+                    <ns-page-title title="CHECKOUT"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="1">
+
+                    <ns-checkout-select (updateCheckoutPaymentMethod)="onUpdateCheckoutPaymentMethod($event)"
+                                        (updateBillingDeliveryMethod)="onUpdateBillingDeliveryMethod($event)"
+                                        (updateAddress)="onUpdateAddress($event)"
+                                        (updateMobile)="onUpdateMobile($event)"
+                                        (updateBillingPaymentMethod)="onUpdateBillingPaymentMethod($event)"
+                                        (placeOrder)="onPlaceOrder($event)"
+                                        [checkoutError]="checkoutError"
+                                        [checkoutProcessing]="checkoutProcessing"
+                                        [checkoutPaymentMethod]="checkoutPaymentMethod"
+                                        [checkoutCustomerAccount]="checkoutCustomerAccount"
+                                        [paymentMethodAddForm]="paymentMethodAddForm"
+                                        [stripeErrorMessage]="stripeErrorMessage"
+                                        [addressModel]="addressModel"
+                                        [mobileModel]="mobileModel">
+                    </ns-checkout-select>
+
+                </GridLayout>
+
+            </GridLayout>
+
+
+        </ng-template>
+
+
+        <ng-template [ngSwitchCase]="CheckoutComponentView.error">
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="CheckoutComponentView.cartEmpty">
+
+            <GridLayout rows="auto, auto, auto">
+
+                <GridLayout row="0" >
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ns-page-title title="CHECKOUT"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="2">
+                    <ns-shopping-cart-empty></ns-shopping-cart-empty>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="CheckoutComponentView.statusNotOpen">
+
+
+            <GridLayout rows="auto, auto">
+
+                <GridLayout row="0">
+                    <ns-page-title title="CHECKOUT"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="1" class="p-l-10 p-r-10 not-open">
+                    <ScrollView>
+
+                        <ns-section [label]="notOpenStatusMessage.title">
+
+                            <Label [text]="notOpenStatusMessage.detail"
+                                   [textWrap]="true"
+                                   textAlignment="center"
+                                   horizontalAlignment="center"
+                                   class="m-t-20">
+                            </Label>
+
+                        </ns-section>
+
+                    </ScrollView>
+                </GridLayout>
+            </GridLayout>
+
+        </ng-template>
+
+    </ng-container>
+
+

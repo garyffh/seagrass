@@ -1,0 +1,105 @@
+<GridLayout [ngSwitch]="componentView" class="phone-update">
+    <ng-template [ngSwitchCase]="ComponentPhoneUpdateView.default">
+
+
+            <StackLayout [formGroup]="phoneNumberForm">
+
+                <Label [text]="hasMobile ? 'Enter your new mobile number.' : 'Enter your mobile number.'">
+                </Label>
+
+                <StackLayout class="field m-t-20">
+
+                    <TextField hint="Mobile number"
+                               formControlName="mobile"
+                               secure="false"
+                               keyboardType="number"
+                               returnKeyType="go"
+                               autocorrect="false"
+                               class="input input-border">
+                    </TextField>
+                    <Label class="validation p-l-10"
+                           [visibility]="((!phoneNumberForm.get('mobile').valid) &&  phoneNumberForm.get('mobile').touched) && phoneNumberForm.get('mobile').hasError('required')  ? 'visible' : 'collapse'"
+                           text="mobile number is required">
+                    </Label>
+
+                </StackLayout>
+
+                <Button class="btn action-button"
+                        [text]="hasMobile ? 'Request Mobile Update' : 'Request Mobile Verification'"
+                        (tap)="onPhoneVerifySubmit()"
+                        [isEnabled]="phoneNumberForm.valid">
+                </Button>
+
+            </StackLayout>
+
+
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="ComponentPhoneUpdateView.phoneCode">
+
+
+            <StackLayout>
+
+                <Label class="m-t-10"
+                       [textWrap]="true"
+                       [text]="'To validate your new mobile phone, please enter the verification code sent to ' + newPhoneNumber + ' via sms.'">
+                </Label>
+
+                <StackLayout class="field">
+
+                    <ns-six-digit-entry #mobileCodeEntry
+                                        [form]="mobileCodeForm">
+                    </ns-six-digit-entry>
+
+
+<!--                    <TextField hint="Code"-->
+<!--                               formControlName="code"-->
+<!--                               secure="false"-->
+<!--                               keyboardType="number"-->
+<!--                               returnKeyType="go"-->
+<!--                               autocorrect="false"-->
+<!--                               class="input input-border m-t-10">-->
+<!--                    </TextField>-->
+<!--                    <Label class="validation p-l-10"-->
+<!--                           [visibility]="((!phoneCodeForm.get('code').valid) &&  phoneCodeForm.get('code').touched) && phoneCodeForm.get('code').hasError('required')  ? 'visible' : 'collapse'"-->
+<!--                           text="code is required">-->
+<!--                    </Label>-->
+                </StackLayout>
+
+                <Button class="btn action-button"
+                        [text]="hasMobile ? 'Update Mobile Number' : 'Submit Mobile Number'"
+                        (tap)="onPhoneUpdateSubmit()"
+                        [isEnabled]="mobileCodeForm.valid">
+                </Button>
+
+            </StackLayout>
+
+
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="ComponentPhoneUpdateView.fail">
+
+        <StackLayout class="m-20">
+
+            <Label text="Mobile number update failed."
+                   [textWrap]="true"
+                   horizontalAlignment="center"
+                   class="p-20">
+            </Label>
+
+            <Label [text]="failMessage"
+                   [textWrap]="true"
+                   horizontalAlignment="center"
+                   class="fail p-20">
+            </Label>
+
+            <Button class="btn action-button"
+                    text="Continue"
+                    (tap)="onContinue()">
+            </Button>
+
+        </StackLayout>
+
+    </ng-template>
+
+</GridLayout>

@@ -1,0 +1,225 @@
+<GridLayout *ngIf="model === null else show">
+
+</GridLayout>
+
+<ng-template #show>
+
+    <GridLayout rows="auto, *" class="dashboard p-10">
+
+        <GridLayout row="0" rows="auto, auto" class="m-t-10 p-b-20 intro">
+
+            <Label row="0" [text]="'Hello ' + authenticationService.user?.firstName + ','"></Label>
+            <Label row="1" *ngIf="model?.points" [text]="'You have ' + model.points + ' loyalty points!'"></Label>
+
+        </GridLayout>
+
+        <ScrollView row="1">
+
+            <GridLayout rows="auto, auto, auto, auto" class="">
+
+                <GridLayout row="0" [ngSwitch]="model.numberOfOrders">
+
+                    <GridLayout *ngSwitchDefault row="0" rows="*" class="card">
+                        <ns-card row="0">
+                            <StackLayout>
+                                <ns-section label="Orders" icon="&#xe8cc;" (iconTap)="onOrdersTap()"></ns-section>
+
+                                <Label col="0"
+                                       textAlignment="center"
+                                       [text]="authenticationService.user?.firstName + ', you have ' + model.numberOfOrders + ' orders.'">
+                                </Label>
+
+                            </StackLayout>
+
+                        </ns-card>
+                    </GridLayout>
+
+                    <GridLayout *ngSwitchCase="1" row="0" rows="*" class="card">
+                        <ns-card row="0">
+                            <StackLayout>
+
+                                <ns-section label="Order" icon="&#xe8cc;" (iconTap)="onOrderTap()"></ns-section>
+
+                                <Label horizontalAlignment="center"
+                                       [text]="'Order Time: ' +  (model.order.orderDT | dateTimeFormat)"></Label>
+
+                                <ng-container
+                                        *ngIf="model.order.deliveryMethodType === DeliveryMethodType.store then pickup; else delivery">
+                                </ng-container>
+
+                                <ng-template #pickup>
+                                    <Label horizontalAlignment="center"
+                                           [text]="'Pickup: ' +  (model.order.scheduledDeliveryMethodTime | dateTimeFormat)"></Label>
+                                </ng-template>
+
+                                <ng-template #delivery>
+                                    <Label horizontalAlignment="center"
+                                           [text]="'Delivery: ' +  (model.order.scheduledDeliveryMethodTime | dateTimeFormat)"></Label>
+                                </ng-template>
+
+                                <Label horizontalAlignment="center"
+                                       [text]="'Status: ' +  (model.order.deliveryMethodStatus | orderDeliveryMethodStatus)"></Label>
+
+                            </StackLayout>
+                        </ns-card>
+                    </GridLayout>
+
+                    <GridLayout *ngSwitchCase="0" row="0" rows="*" class="card">
+                        <ns-card row="0">
+                            <StackLayout>
+                                <ns-section label="Shopping Cart"
+                                            [icon]="appService.data.cartTransaction.items.length === 0 ? '&#xe854;' : '&#xe8cc;'"
+                                            (iconTap)="onShoppingCartTap()">
+                                </ns-section>
+
+                                <ng-container
+                                        *ngIf="appService.data.cartTransaction.items.length === 0 then empty; else shoppingCart">
+                                </ng-container>
+
+                                <ng-template #empty>
+                                    <ns-shopping-cart-empty>
+                                    </ns-shopping-cart-empty>
+                                </ng-template>
+
+                                <ng-template #shoppingCart>
+                                    <StackLayout>
+                                        <Label horizontalAlignment="center"
+                                               [text]="'Cart total: ' +  (appService.data.cartTransaction.totalWithoutDelivery | currency) "></Label>
+                                        <Label horizontalAlignment="center"
+                                               [text]="'Number of items: ' +  (appService.data.cartTransaction.items.length) " class="line m-b-10"></Label>
+                                    </StackLayout>
+                                </ng-template>
+
+                            </StackLayout>
+                        </ns-card>
+                    </GridLayout>
+
+                </GridLayout>
+
+                <GridLayout row="1" rows="*" class="m-t-20 card">
+                    <ns-card row="0">
+                        <StackLayout>
+                            <ns-section label="Notifications" ></ns-section>
+
+                            <GridLayout columns="*, auto">
+                                <Label col="0"
+                                       verticalAlignment="center"
+                                       text="Special Offers">
+                                </Label>
+                                <Switch col="1"
+                                        verticalAlignment="center"
+                                        textAlignment="center"
+                                        horizontalAlignment="center"
+                                        [checked]="model.specialDeals"
+                                        (checkedChange)="onSpecialDealsChange($event)">
+                                </Switch>
+
+                            </GridLayout>
+
+                        </StackLayout>
+                    </ns-card>
+                </GridLayout>
+
+                <GridLayout row="2" rows="*" class="m-t-20 card">
+                    <ns-card row="0">
+                        <StackLayout>
+                            <ns-section label="Account" icon="&#xe889;" (iconTap)="onAccountTap()"></ns-section>
+
+                            <Label class="test" [text]="authenticationService.user?.firstName + ' ' + authenticationService.user?.lastName"></Label>
+                            <Label [text]="authenticationService.user?.email" class="line"></Label>
+
+                            <StackLayout class="hr-light"></StackLayout>
+
+                            <GridLayout columns="*, auto">
+                                <Label col="0"
+                                       verticalAlignment="center"
+                                       [text]="model.phone ? 'Mob: ' + model.phone : ''"></Label>
+                                <Label col="1"
+                                       [nsRouterLink]="['/user/phone']"
+                                       verticalAlignment="center"
+                                       textAlignment="center"
+                                       horizontalAlignment="center"
+                                       class="mdi action-button desktop-icon"
+                                       text="&#xe8c5;">
+                                </Label>
+                            </GridLayout>
+
+                            <StackLayout class="hr-light"></StackLayout>
+
+                            <GridLayout columns="*, auto">
+                                <Label col="0"
+                                       verticalAlignment="center"
+                                       text="Payment Cards"></Label>
+                                <Label col="1"
+                                       [nsRouterLink]="['/user/payment-methods']"
+                                       verticalAlignment="center"
+                                       textAlignment="center"
+                                       horizontalAlignment="center"
+                                       class="mdi action-button desktop-icon"
+                                       text="&#xe870;">
+                                </Label>
+                            </GridLayout>
+
+                            <StackLayout class="hr-light m-t-10"></StackLayout>
+
+                            <GridLayout columns="*, auto">
+                                <Label col="0"
+                                       verticalAlignment="center"
+                                       text="Change password.">
+                                </Label>
+
+                                <Label col="1"
+                                       [nsRouterLink]="['/user/password']"
+                                       verticalAlignment="center"
+                                       textAlignment="center"
+                                       horizontalAlignment="center"
+                                       class="mdi action-button desktop-icon"
+                                       text="&#xe0da;">
+                                </Label>
+
+                            </GridLayout>
+
+
+                        </StackLayout>
+                    </ns-card>
+                </GridLayout>
+
+                <GridLayout row="3" rows="*" class="m-t-20 card">
+                    <ns-card row="0">
+                        <StackLayout>
+                            <ns-section label="Address" icon="&#xe0c8;" (iconTap)="onAddressTap()"></ns-section>
+                            <StackLayout *ngIf="model.address !== null">
+
+                                <StackLayout class="m-t-20 m-b-20">
+                                    <Label *ngIf="model.address.company" [text]="model.address.company"
+                                           class="line"></Label>
+                                    <Label *ngIf="model.address.companyNumber" [text]="model.address.companyNumber"
+                                           class="line"></Label>
+                                    <Label *ngIf="model.address.addressNote" [text]="model.address.addressNote"
+                                           class="line"></Label>
+                                    <Label *ngIf="model.address.extended" [text]="model.address.extended"
+                                           class="line"></Label>
+                                    <Label [text]="model.address.street" class="line"></Label>
+                                    <Label [text]="model.address.locality" class="line"></Label>
+                                    <Label *ngIf="model.address.region"
+                                           [text]="model.address.region + ' ' + model.address.postalCode"
+                                           class="line"></Label>
+                                    <Label [text]="model.address.country" class="line"></Label>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+                    </ns-card>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ScrollView>
+
+    </GridLayout>
+
+</ng-template>
+
+

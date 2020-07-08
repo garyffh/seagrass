@@ -1,0 +1,573 @@
+<ng-container
+        *ngIf="checkoutDeliveryMethod.storeTimes.length > 0 || checkoutDeliveryMethod.deliveryTimes.length > 0 ; then open; else closed">
+</ng-container>
+
+<ng-template #open>
+
+    <ns-card class="delivery-method">
+
+        <GridLayout rows="auto, auto">
+
+            <GridLayout row="0" rows="auto, auto" class="section p-t-10 p-b-10">
+
+                <ng-container
+                        *ngIf="checkoutDeliveryMethod.deliveryTimes.length > 0 && checkoutDeliveryMethod.storeTimes.length > 0">
+
+                    <ng-container
+                            *ngIf="(checkoutDeliveryMethod.storeStatus === DeliveryMethodOpenStatus.open && businessService.business.tableService); then table else noTable">
+                    </ng-container>
+
+                    <ng-template #table>
+
+                        <ng-container
+                                *ngIf="utilitiesService.smallScreenWidth(); then tableSmallScreen else tableStandardScreen">
+                        </ng-container>
+
+                        <ng-template #tableSmallScreen>
+
+                            <GridLayout row="0" rows="auto, auto">
+
+                                <GridLayout row="0"
+                                            columns="auto, *, *">
+
+                                    <Label col="0"
+                                           text="1"
+                                           class="numberCircle m-r-10">
+                                    </Label>
+
+                                    <GridLayout col="1"
+                                                (tap)="onDeliverySelect()"
+                                                columns="auto, auto"
+                                                verticalAlignment="center"
+                                                horizontalAlignment="left"
+                                                class="">
+
+                                        <StackLayout col="0"
+                                                     [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.delivery ? 'selected-radio' : 'unselected-radio')"
+                                                     verticalAlignment="center">
+                                        </StackLayout>
+                                        <Label col="1" text="Delivery" verticalAlignment="center"
+                                               class="m-l-10"></Label>
+
+                                    </GridLayout>
+
+                                    <GridLayout col="2"
+                                                (tap)="onPickupSelect()"
+                                                columns="auto, auto"
+                                                verticalAlignment="center"
+                                                horizontalAlignment="left"
+                                                class="">
+
+                                        <StackLayout col="0"
+                                                     [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.store ? 'selected-radio' : 'unselected-radio')"
+                                                     verticalAlignment="center">
+                                        </StackLayout>
+                                        <Label col="1" text="Pickup" verticalAlignment="center" class="m-l-10"></Label>
+
+                                    </GridLayout>
+
+                                </GridLayout>
+
+                                <GridLayout row="1"
+                                            columns="auto, *">
+
+                                    <Label col="0"
+                                           class="end">
+                                    </Label>
+
+                                    <GridLayout col="1"
+                                                (tap)="onAtTableSelect()"
+                                                columns="auto, auto"
+                                                verticalAlignment="center"
+                                                horizontalAlignment="left"
+                                                class="">
+
+                                        <StackLayout col="0"
+                                                     [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.table ? 'selected-radio' : 'unselected-radio')"
+                                                     verticalAlignment="center">
+                                        </StackLayout>
+                                        <Label col="1" text="Table" verticalAlignment="center" class="m-l-10"></Label>
+
+                                    </GridLayout>
+
+
+                                </GridLayout>
+
+                            </GridLayout>
+
+                        </ng-template>
+
+                        <ng-template #tableStandardScreen>
+
+                            <GridLayout row="0"
+                                        columns="auto, *, *, *">
+
+                                <Label col="0"
+                                       text="1"
+                                       class="numberCircle m-r-10">
+                                </Label>
+
+                                <GridLayout col="1"
+                                            (tap)="onDeliverySelect()"
+                                            columns="auto, auto"
+                                            verticalAlignment="center"
+                                            horizontalAlignment="center"
+                                            class="">
+
+                                    <StackLayout col="0"
+                                                 [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.delivery ? 'selected-radio' : 'unselected-radio')"
+                                                 verticalAlignment="center">
+                                    </StackLayout>
+                                    <Label col="1" text="Delivery" verticalAlignment="center" class="m-l-10"></Label>
+
+                                </GridLayout>
+
+                                <GridLayout col="2"
+                                            (tap)="onPickupSelect()"
+                                            columns="auto, auto"
+                                            verticalAlignment="center"
+                                            horizontalAlignment="center"
+                                            class="">
+
+                                    <StackLayout col="0"
+                                                 [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.store ? 'selected-radio' : 'unselected-radio')"
+                                                 verticalAlignment="center">
+                                    </StackLayout>
+                                    <Label col="1" text="Pickup" verticalAlignment="center" class="m-l-10"></Label>
+
+                                </GridLayout>
+
+                                <GridLayout col="3"
+                                            (tap)="onAtTableSelect()"
+                                            columns="auto, auto"
+                                            verticalAlignment="center"
+                                            horizontalAlignment="center"
+                                            class="">
+
+                                    <StackLayout col="0"
+                                                 [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.table ? 'selected-radio' : 'unselected-radio')"
+                                                 verticalAlignment="center">
+                                    </StackLayout>
+                                    <Label col="1" text="Table" verticalAlignment="center" class="m-l-10"></Label>
+
+                                </GridLayout>
+
+
+                            </GridLayout>
+
+                        </ng-template>
+
+                    </ng-template>
+
+                    <ng-template #noTable>
+
+                        <GridLayout row="0"
+                                    columns="auto, *, *, auto">
+
+                            <Label col="0"
+                                   text="1"
+                                   class="numberCircle m-r-10">
+                            </Label>
+
+                            <GridLayout col="1"
+                                        (tap)="onDeliverySelect()"
+                                        columns="auto, auto"
+                                        verticalAlignment="center"
+                                        horizontalAlignment="center"
+                                        class="">
+
+                                <StackLayout col="0"
+                                             [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.delivery ? 'selected-radio' : 'unselected-radio')"
+                                             verticalAlignment="center">
+                                </StackLayout>
+                                <Label col="1" text="Delivery" verticalAlignment="center" class="m-l-10"></Label>
+
+                            </GridLayout>
+
+                            <GridLayout col="2"
+                                        (tap)="onPickupSelect()"
+                                        columns="auto, auto"
+                                        verticalAlignment="center"
+                                        horizontalAlignment="center"
+                                        class="">
+
+                                <StackLayout col="0"
+                                             [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.store ? 'selected-radio' : 'unselected-radio')"
+                                             verticalAlignment="center">
+                                </StackLayout>
+                                <Label col="1" text="Pickup" verticalAlignment="center" class="m-l-10"></Label>
+
+                            </GridLayout>
+
+                            <Label col="3"
+                                   class="end">
+                            </Label>
+
+                        </GridLayout>
+
+                    </ng-template>
+
+
+                </ng-container>
+
+                <GridLayout
+                        *ngIf="checkoutDeliveryMethod.deliveryTimes.length > 0 && checkoutDeliveryMethod.storeTimes.length <= 0"
+                        row="0"
+                        columns="auto, *, auto">
+
+                    <Label col="0"
+                           text="1"
+                           class="numberCircle m-r-10">
+                    </Label>
+
+                    <GridLayout col="1"
+                                columns="auto, auto"
+                                verticalAlignment="center"
+                                horizontalAlignment="center"
+                                class="">
+
+                        <StackLayout col="0"
+                                     [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.delivery ? 'selected-radio' : 'unselected-radio')"
+                                     verticalAlignment="center">
+                        </StackLayout>
+
+                        <Label col="1" text="Delivery" verticalAlignment="center" class="m-l-10"></Label>
+
+                    </GridLayout>
+
+                    <Label col="2"
+                           class="end">
+                    </Label>
+
+                </GridLayout>
+
+                <ng-container
+                        *ngIf="checkoutDeliveryMethod.deliveryTimes.length <= 0 && checkoutDeliveryMethod.storeTimes.length > 0">
+
+                    <GridLayout
+                            *ngIf="(checkoutDeliveryMethod.storeStatus === DeliveryMethodOpenStatus.open && businessService.business.tableService); else noTable"
+                            row="0"
+                            columns="auto, *, *, auto">
+
+                        <Label col="0"
+                               text="1"
+                               class="numberCircle m-r-10">
+                        </Label>
+
+                        <GridLayout col="1"
+                                    (tap)="onPickupSelect()"
+                                    columns="auto, auto"
+                                    verticalAlignment="center"
+                                    horizontalAlignment="center"
+                                    class="">
+
+                            <StackLayout col="0"
+                                         [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.store ? 'selected-radio' : 'unselected-radio')"
+                                         verticalAlignment="center">
+                            </StackLayout>
+
+                            <Label col="1" text="Pickup" verticalAlignment="center" class="m-l-10"></Label>
+                        </GridLayout>
+
+                        <GridLayout col="2"
+                                    (tap)="onAtTableSelect()"
+                                    columns="auto, auto"
+                                    verticalAlignment="center"
+                                    horizontalAlignment="center"
+                                    class="">
+
+                            <StackLayout col="0"
+                                         [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.table ? 'selected-radio' : 'unselected-radio')"
+                                         verticalAlignment="center">
+                            </StackLayout>
+
+                            <Label col="1" text="Table" verticalAlignment="center" class="m-l-10"></Label>
+                        </GridLayout>
+
+                        <Label col="3"
+                               class="end">
+                        </Label>
+
+                    </GridLayout>
+
+                    <ng-template #noTable>
+
+                        <GridLayout row="0"
+                                    columns="auto, *, auto">
+
+                            <Label col="0"
+                                   text="1"
+                                   class="numberCircle m-r-10">
+                            </Label>
+
+                            <GridLayout col="1"
+                                        (tap)="onPickupSelect()"
+                                        columns="auto, auto"
+                                        verticalAlignment="center"
+                                        horizontalAlignment="center"
+                                        class="">
+
+                                <StackLayout col="0"
+                                             [class]="'radio-icon ' + (form.get('selectedType').value === DeliveryMethodType.store ? 'selected-radio' : 'unselected-radio')"
+                                             verticalAlignment="center">
+                                </StackLayout>
+
+                                <Label col="1" text="Pickup" verticalAlignment="center" class="m-l-10"></Label>
+                            </GridLayout>
+
+                            <Label col="2"
+                                   class="end">
+                            </Label>
+
+                        </GridLayout>
+
+                    </ng-template>
+
+                </ng-container>
+
+            </GridLayout>
+
+            <GridLayout row="1" rows="auto" class="p-20">
+
+                <ng-container [ngSwitch]="form.get('selectedType').value">
+
+                    <ng-template [ngSwitchCase]="DeliveryMethodType.delivery">
+
+                        <GridLayout row="0" rows="auto, auto">
+
+                            <ng-container
+                                    *ngIf="form.hasError('minOrderError'); then deliveryError; else deliveryNoError ">
+                            </ng-container>
+
+                            <ng-template #deliveryError>
+
+                                <GridLayout row="0" rows="auto, auto" class="error">
+                                    <Label row="0"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="center"
+                                           textAlignment="center"
+                                           [textWrap]="true"
+                                           [text]="'Minimum delivery ' + (businessService.business.minOrder | currency) + ','">
+                                    </Label>
+
+                                    <Label row="1"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="center"
+                                           textAlignment="center"
+                                           [textWrap]="true"
+                                           [text]="'add ' + ((businessService.business.minOrder - appService.data.cartTransaction.totalWithoutDelivery) | currency) + ' to the order.'">
+                                    </Label>
+
+                                </GridLayout>
+
+                            </ng-template>
+
+                            <ng-template #deliveryNoError>
+
+
+                                <ng-container
+                                        *ngIf="form.get('deliveryTime').value === 'ASAP'; then deliveryAsap; else deliverySchedule ">
+                                </ng-container>
+
+
+                                <ng-template #deliveryAsap>
+
+                                    <Label row="0"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="center"
+                                           textAlignment="center"
+                                           [textWrap]="true"
+                                           [text]="'Delivery ASAP in around ' +
+                                    (storeStatusService.storeStatus.storeState.storePrepTime + storeStatusService.storeStatus.storeState.driverDeliveryTime) +
+                                ' minutes.'">
+                                    </Label>
+
+                                </ng-template>
+
+                                <ng-template #deliverySchedule>
+
+                                    <ng-container
+                                            *ngIf="form.get('deliveryTime').value; then deliveryValue; else deliverySelect">
+                                    </ng-container>
+
+                                    <ng-template #deliveryValue>
+
+                                        <Label row="0"
+                                               verticalAlignment="center"
+                                               horizontalAlignment="center"
+                                               textAlignment="center"
+                                               [textWrap]="true"
+                                               [text]="'Delivery at around ' + form.get('deliveryTime').value.format('ddd h:mma')">
+                                        </Label>
+
+                                    </ng-template>
+
+                                    <ng-template #deliverySelect>
+
+                                        <Label row="0"
+                                               verticalAlignment="center"
+                                               horizontalAlignment="center"
+                                               textAlignment="center"
+                                               text="Select delivery time.">
+                                        </Label>
+
+                                    </ng-template>
+
+                                </ng-template>
+
+
+                                <ListPicker row="1"
+                                            class="m-t-20"
+                                            [items]="deliveryTimes"
+                                            (selectedIndexChange)="deliveryIndexChanged($event)"
+                                            [width]="200"
+                                            [height]="130">
+                                </ListPicker>
+
+                            </ng-template>
+
+                        </GridLayout>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="DeliveryMethodType.store">
+
+                        <GridLayout rows="auto, auto">
+
+                            <ng-container
+                                    *ngIf="form.get('storeTime').value === 'ASAP'; then storeAsap; else storeSchedule ">
+                            </ng-container>
+
+                            <ng-template #storeAsap>
+
+                                <Label row="0"
+                                       verticalAlignment="center"
+                                       horizontalAlignment="center"
+                                       textAlignment="center"
+                                       [textWrap]="true"
+                                       [text]="'Pickup ASAP (' + storeStatusService.storeStatus.storeState.storePrepTime + ' minutes).'">
+                                </Label>
+
+                            </ng-template>
+
+                            <ng-template #storeSchedule>
+
+                                <ng-container
+                                        *ngIf="form.get('storeTime').value; then storeValue; else storeSelect">
+                                </ng-container>
+
+                                <ng-template #storeValue>
+
+                                    <Label row="0"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="center"
+                                           textAlignment="center"
+                                           [textWrap]="true"
+                                           [text]="'Pickup at ' + form.get('storeTime').value.format('ddd h:mma')">
+                                    </Label>
+
+                                </ng-template>
+
+                                <ng-template #storeSelect>
+
+                                    <Label row="0"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="center"
+                                           textAlignment="center"
+                                           text="Select pickup time.">
+                                    </Label>
+
+                                </ng-template>
+
+                            </ng-template>
+
+                            <ListPicker row="1"
+                                        class="m-t-20"
+                                        [items]="storeTimes"
+                                        (selectedIndexChange)="storeIndexChanged($event)"
+                                        [width]="200"
+                                        [height]="130">
+                            </ListPicker>
+
+                        </GridLayout>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="DeliveryMethodType.table">
+
+                        <GridLayout rows="auto">
+
+                            <StackLayout [formGroup]="form">
+
+                                <Label textAlignment="center"
+                                       [text]="'Enter your table number'">
+                                </Label>
+
+                                <StackLayout class="field m-t-10">
+                                    <TextField hint="Table #"
+                                               textAlignment="center"
+                                               formControlName="tableNumber"
+                                               secure="false"
+                                               keyboardType="number"
+                                               returnKeyType="go"
+                                               autocorrect="false"
+                                               class="input input-border table-number-input">
+                                    </TextField>
+                                    <Label class="validation p-l-10"
+                                           textAlignment="center"
+                                           [visibility]="((form.get('tableNumber').touched && (!form.get('tableNumber').value)) && tableNumberRequired ) ? 'visible' : 'collapse'"
+                                           text="table number is required">
+                                    </Label>
+
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </GridLayout>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="null">
+
+                        <Label row="0"
+                               verticalAlignment="center"
+                               horizontalAlignment="center"
+                               textAlignment="center"
+                               [text]="(checkoutDeliveryMethod.storeStatus === DeliveryMethodOpenStatus.open) && businessService.business.tableService ? 'Delivery, pickup or table.' : 'Select delivery or pickup.'">
+                        </Label>
+
+                    </ng-template>
+
+                </ng-container>
+
+            </GridLayout>
+
+        </GridLayout>
+
+    </ns-card>
+
+</ng-template>
+
+<ng-template #closed>
+
+    <ns-card>
+
+        <StackLayout>
+            <GridLayout row="0" rows="auto, auto" class="section p-t-10 p-b-10">
+                <Label [text]="notOpenStatusMessage.title"
+                       horizontalAlignment="center"
+                       class="message p-20">
+                </Label>
+            </GridLayout>
+
+            <Label [text]="notOpenStatusMessage.detail"
+                   horizontalAlignment="center"
+                   [textWrap]="true"
+                   class="message p-20">
+            </Label>
+
+        </StackLayout>
+
+    </ns-card>
+
+</ng-template>

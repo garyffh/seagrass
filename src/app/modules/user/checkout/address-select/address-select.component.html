@@ -1,0 +1,108 @@
+<ns-card class="address-select">
+
+    <GridLayout rows="auto, auto">
+
+        <GridLayout row="0" rows="auto, auto" class="section p-t-5 p-b-5">
+
+            <GridLayout columns="auto, *, auto">
+
+                <Label col="0"
+                       text="2"
+                       verticalAlignment="center"
+                       class="numberCircle m-r-10">
+                </Label>
+
+                <Label col="1"
+                       verticalAlignment="center"
+                       text="Address:">
+                </Label>
+
+                <Label *ngIf="componentView === AddressSelectComponentView.view"
+                       col="2"
+                       verticalAlignment="center"
+                       textAlignment="center"
+                       text="&#xe3c9;"
+                       class="mdi icon action-button"
+                       (tap)="onChangeAddress()">
+                </Label>
+
+                <Label *ngIf="componentView === AddressSelectComponentView.change"
+                       col="2"
+                       textAlignment="center"
+                       verticalAlignment="center"
+                       text="&#xe5c9;"
+                       class="mdi icon action-button"
+                       (tap)="onCancelAddressChange()">
+                </Label>
+
+                <Label *ngIf="componentView === AddressSelectComponentView.add"
+                       col="2"
+                       textAlignment="center"
+                       verticalAlignment="center"
+                       text="*REQUIRED"
+                       class="address-required">
+                </Label>
+
+            </GridLayout>
+
+        </GridLayout>
+
+        <GridLayout row="1" rows="auto" class="m-t-10 p-10">
+
+            <StackLayout row="0" orientation="vertical">
+
+                <ng-container [ngSwitch]="componentView">
+
+                    <ng-template [ngSwitchCase]="AddressSelectComponentView.view">
+
+                        <Label *ngIf="!validAddressDistance && isDelivery"
+                               [textWrap]="true"
+                               textAlignment="center"
+                               text="SORRY, THIS ADDRESS IS NOT IN OUR DELIVERY AREA!"
+                               class="m-t-10 fail">
+                        </Label>
+
+                        <ns-address-view class="m-t-10"
+                                         [backgroundAccent]="false"
+                                         [displayFormat]="0"
+                                         [address]="addressModel"
+                                         [showCompany]="false">
+                        </ns-address-view>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="AddressSelectComponentView.change">
+
+                        <ns-address-update [displayFormat]="0"
+                                           [cardForm]="true"
+                                           [showCompany]="false"
+                                           [showMap]="false"
+                                           (selectValidAddress)="onSelectValidAddress($event)"
+                                           skipButtonText="Skip Instructions"
+                                           [form]="changeAddressForm">
+                        </ns-address-update>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="AddressSelectComponentView.add">
+
+                        <ns-address-update [displayFormat]="0"
+                                           [cardForm]="true"
+                                           [showCompany]="false"
+                                           [showMap]="false"
+                                           (selectValidAddress)="onSelectValidAddress($event)"
+                                           skipButtonText="Skip Instructions"
+                                           [form]="changeAddressForm">
+                        </ns-address-update>
+
+                    </ng-template>
+
+                </ng-container>
+
+            </StackLayout>
+
+        </GridLayout>
+
+    </GridLayout>
+
+</ns-card>

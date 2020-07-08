@@ -1,0 +1,15 @@
+<StackLayout>
+
+    <ns-accordion *ngFor="let category of businessService.business.storeCategories; let i=index"
+                  [label]="category.name"
+                  [open]="appService.productsOpenedIndex===i"
+                  (stateChange)="onOpenCategory($event ? i : -1)">
+
+        <ns-product-category [openedIndex]="appService.productsOpenedIndex"
+                             [index]="i"
+                             [sysCategoryId]=category.sysStoreCategoryId>
+        </ns-product-category>
+
+    </ns-accordion>
+
+</StackLayout>

@@ -1,0 +1,285 @@
+
+    <GridLayout rows="auto, auto, *">
+
+        <GridLayout row="0">
+        </GridLayout>
+
+        <GridLayout row="1">
+            <ns-page-title title="REGISTER"></ns-page-title>
+        </GridLayout>
+
+        <GridLayout row="2" class="sign-up">
+            <ScrollView>
+                <ng-container [ngSwitch]="componentView">
+
+                    <ng-template [ngSwitchCase]="ComponentSignUpView.default">
+
+                        <StackLayout [formGroup]="registerForm"
+                                     (ngSubmit)="onRegisterFormSubmit()"
+                                     autocomplete="off"
+                                     class="m-20">
+
+                            <StackLayout class="field">
+                                <TextField hint="First Name"
+                                           formControlName="firstName"
+                                           secure="false"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('firstName') && registerForm.get('firstName').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="first name is required">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('firstName') && registerForm.get('firstName').hasError('minlength')  ? 'visible' : 'collapse'"
+                                       text="first name isn't long enough, minimum of 3 characters">
+                                </Label>
+
+                            </StackLayout>
+
+
+                            <StackLayout class="field">
+                                <TextField hint="Last Name"
+                                           formControlName="lastName"
+                                           secure="false"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('lastName') && registerForm.get('lastName').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="last name is required">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('lastName') && registerForm.get('lastName').hasError('minlength')  ? 'visible' : 'collapse'"
+                                       text="last name isn't long enough, minimum of 3 characters">
+                                </Label>
+
+                            </StackLayout>
+
+
+                            <StackLayout class="field">
+                                <TextField hint="Email"
+                                           formControlName="email"
+                                           secure="false"
+                                           keyboardType="email"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('email') && registerForm.get('email').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="email is required">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('email') && registerForm.get('email').hasError('invalidEmail')  ? 'visible' : 'collapse'"
+                                       text="invalid email address">
+                                </Label>
+
+                            </StackLayout>
+
+
+                            <StackLayout class="field">
+                                <TextField hint="Mobile number"
+                                           formControlName="mobile"
+                                           secure="false"
+                                           keyboardType="number"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('mobile') && registerForm.get('mobile').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="mobile number is required">
+                                </Label>
+
+                            </StackLayout>
+
+
+                            <StackLayout class="field">
+                                <TextField hint="Password"
+                                           formControlName="password"
+                                           secure="true"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('password') && registerForm.get('password').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="password is required">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('password') && registerForm.get('password').hasError('minlength')  ? 'visible' : 'collapse'"
+                                       text="password must have at least 8 characters">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('password') && registerForm.get('password').hasError('maxlength')  ? 'visible' : 'collapse'"
+                                       text="password must be less than 20 characters">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('password') && registerForm.get('password').hasError('numberRequired')  ? 'visible' : 'collapse'"
+                                       text="password requires at least one number">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('password') && registerForm.get('password').hasError('upperCaseRequired')  ? 'visible' : 'collapse'"
+                                       text="password requires at least one upper case letter">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('password') && registerForm.get('password').hasError('lowerCaseRequired')  ? 'visible' : 'collapse'"
+                                       text="password requires at least one lower case letter">
+                                </Label>
+
+                            </StackLayout>
+
+                            <StackLayout class="field">
+                                <TextField hint="Confirm Password"
+                                           formControlName="confirmPassword"
+                                           secure="true"
+                                           returnKeyType="done"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('confirmPassword') && registerForm.get('confirmPassword').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="password confirmation is required">
+                                </Label>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showRegisterValidationError('confirmPassword') && registerForm.get('confirmPassword').hasError('mismatchedPasswords')  ? 'visible' : 'collapse'"
+                                       text="passwords do not match">
+                                </Label>
+
+                            </StackLayout>
+
+                            <Button class="btn action-button"
+                                    text="Register"
+                                    (tap)="onRegisterFormSubmit()"
+                                    [isEnabled]="registerForm.valid">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="ComponentSignUpView.registerConfirm">
+
+
+                        <StackLayout (ngSubmit)="onVerificationFormSubmit()"
+                                     autocomplete="off"
+                                     class="m-20">
+
+                            <Label class="m-t-10"
+                                   [textWrap]="true"
+                                   textAlignment="center"
+                                   [text]="'To validate your mobile number, please enter the verification code sent to your mobile via sms.'">
+                            </Label>
+
+
+                            <StackLayout class="field">
+
+                                <Label class="code-title"
+                                       [textWrap]="true"
+                                       textAlignment="center"
+                                       text="SMS CODE">
+                                </Label>
+
+                                <ns-six-digit-entry #mobileCodeEntry
+                                                    (isValidStatus)="onMobileCodeComplete(emailCodeEntry, $event)"
+                                                    [form]="mobileCodeForm">
+                                </ns-six-digit-entry>
+
+                            </StackLayout>
+
+                            <StackLayout class="hr-light m-t-10 m-b-10"></StackLayout>
+
+                            <Label class="m-t-10"
+                                   [textWrap]="true"
+                                   textAlignment="center"
+                                   [text]="'To validate your email address, please enter the verification code sent to your email.'">
+                            </Label>
+
+                            <StackLayout class="field">
+
+                                <Label class="code-title"
+                                       [textWrap]="true"
+                                       textAlignment="center"
+                                       text="EMAIL CODE">
+                                </Label>
+
+                                <ns-six-digit-entry #emailCodeEntry
+                                                    (isValidStatus)="onEmailCodeComplete(mobileCodeEntry, $event)"
+                                                    [form]="emailCodeForm">
+                                </ns-six-digit-entry>
+
+                            </StackLayout>
+
+                            <Button class="btn action-button"
+                                    text="Submit Validation"
+                                    (tap)="onVerificationFormSubmit()"
+                                    [isEnabled]="mobileCodeForm.valid && emailCodeForm.valid">
+                            </Button>
+
+                        </StackLayout>
+
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="ComponentSignUpView.registerFail">
+
+                        <StackLayout class="m-20">
+
+                            <Label text="Registration Failed"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="p-20">
+                            </Label>
+
+                            <Label [text]="failMessage"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="fail p-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Continue"
+                                    (tap)="onContinue()">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="ComponentSignUpView.registerDone">
+
+                        <StackLayout class="m-20">
+
+                            <Label [text]="signInFailMessage"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="fail p-20">
+                            </Label>
+
+                            <Label text="Registration Success"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="p-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Continue"
+                                    (tap)="onContinue()">
+                            </Button>
+
+                        </StackLayout>
+
+
+                    </ng-template>
+
+                </ng-container>
+
+            </ScrollView>
+        </GridLayout>
+
+    </GridLayout>
+
+

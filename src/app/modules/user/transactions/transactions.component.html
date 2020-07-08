@@ -1,0 +1,134 @@
+<GridLayout *ngIf="listItems === null else show">
+
+</GridLayout>
+
+<ng-template #show>
+
+    <GridLayout rows="auto, auto, * ">
+
+        <GridLayout row="0">
+            <ns-page-title title="HISTORY"></ns-page-title>
+        </GridLayout>
+
+        <GridLayout row="1"
+                    (tap)="showPaymentFilterApplied = !showPaymentFilterApplied"
+                    columns="*, auto, auto, *"
+                    class="p-10 show-payment">
+
+            <Label col="0"
+                   horizontalAlignment="right"
+                   verticalAlignment="center"
+                   [text]="showPaymentFilterApplied ? '&#xe834;' : '&#xe835;'"
+                   class="mdi icon action-button">
+            </Label>
+
+            <Label col="1"
+                   horizontalAlignment="left"
+                   verticalAlignment="center"
+                   text="Show Payments">
+            </Label>
+
+        </GridLayout>
+
+        <ng-container *ngIf="utilityService.smallScreenWidth(); then smallScreen else standardScreen">
+        </ng-container>
+
+        <ng-template #smallScreen>
+            <GridLayout row="2" rows="auto, *" class="transactions-sm p-l-10 p-r-10">
+
+                <GridLayout row="0" columns="70, *, 80, 75, 60" class="table-header">
+                    <Label col="0" verticalAlignment="center" text="Date"></Label>
+                    <Label col="1" verticalAlignment="center" horizontalAlignment="center" text=""></Label>
+                    <Label col="2" verticalAlignment="center" textAlignment="right" text="Total"></Label>
+                    <Label col="3" verticalAlignment="center" textAlignment="right" text="Points"></Label>
+                    <Label col="4" verticalAlignment="center" text=""></Label>
+                </GridLayout>
+
+                <RadListView row="1" [items]="listItems">
+
+                    <ng-template tkListItemTemplate let-item="item">
+                        <GridLayout columns="70, *, 80, 75, 60" class="table-row">
+                            <Label col="0" verticalAlignment="center" [text]="item.documentDT | dayMonth"></Label>
+                            <Label col="1"
+                                   verticalAlignment="center"
+                                   horizontalAlignment="center"
+                                   [text]="item.documentType  | userDocumentType">
+                            </Label>
+                            <Label col="2"
+                                   textAlignment="right"
+                                   verticalAlignment="center"
+                                   [text]="(item.documentType === 2 ? item.paid : item.total) | currency">
+                            </Label>
+                            <Label col="3"
+                                   textAlignment="right"
+                                   verticalAlignment="center"
+                                   [text]="item.points - item.redeemPoints">
+                            </Label>
+                            <Label col="4"
+                                   (tap)="onTransactionView(item)"
+                                   verticalAlignment="center"
+                                   horizontalAlignment="center"
+                                   textAlignment="center"
+                                   text="&#xe8b0;"
+                                   class="mdi action-button icon">
+                            </Label>
+                        </GridLayout>
+                    </ng-template>
+
+                </RadListView>
+
+            </GridLayout>
+        </ng-template>
+
+        <ng-template #standardScreen>
+            <GridLayout row="2" rows="auto, *" class="transactions p-l-10 p-r-10">
+
+                <GridLayout row="0" columns="150, *, 80, 75, 70" class="table-header">
+                    <Label col="0" verticalAlignment="center" text="Date"></Label>
+                    <Label col="1" verticalAlignment="center" horizontalAlignment="center" text=""></Label>
+                    <Label col="2" verticalAlignment="center" textAlignment="right" text="Total"></Label>
+                    <Label col="3" verticalAlignment="center" textAlignment="right" text="Points"></Label>
+                    <Label col="4" verticalAlignment="center" text=""></Label>
+                </GridLayout>
+
+                <RadListView row="1" [items]="listItems">
+
+                    <ng-template tkListItemTemplate let-item="item">
+                        <GridLayout columns="150, *, 80, 75, 70" class="table-row">
+                            <Label col="0" verticalAlignment="center" [text]="item.documentDT | dayMonthTime"></Label>
+                            <Label col="1"
+                                   verticalAlignment="center"
+                                   horizontalAlignment="center"
+                                   [text]="item.documentType  | userDocumentType">
+                            </Label>
+                            <Label col="2"
+                                   textAlignment="right"
+                                   verticalAlignment="center"
+                                   [text]="(item.documentType === 2 ? item.paid : item.total) | currency">
+                            </Label>
+                            <Label col="3"
+                                   textAlignment="right"
+                                   verticalAlignment="center"
+                                   [text]="item.points - item.redeemPoints">
+                            </Label>
+                            <Label col="4"
+                                   (tap)="onTransactionView(item)"
+                                   verticalAlignment="center"
+                                   horizontalAlignment="center"
+                                   textAlignment="center"
+                                   text="&#xe8b0;"
+                                   class="mdi action-button">
+                            </Label>
+                        </GridLayout>
+                    </ng-template>
+
+                </RadListView>
+
+            </GridLayout>
+        </ng-template>
+
+    </GridLayout>
+
+</ng-template>
+
+

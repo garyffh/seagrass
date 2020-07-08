@@ -1,0 +1,173 @@
+<GridLayout *ngIf="model === null else show">
+</GridLayout>
+
+<ng-template #show>
+
+    <GridLayout rows="*, auto">
+
+        <ScrollView row="0">
+
+            <GridLayout rows="auto, auto, auto, auto, auto, *"
+                        columns="*"
+                        (swipe)="onSwipe($event)">
+
+                <ng-container *ngIf="utilityService.smallScreenWidth(); then smallScreen else standardScreen">
+                </ng-container>
+
+                <ng-template #smallScreen>
+                    <GridLayout row="0" columns="auto, *" class="add-to-cart-sm title p-l-10 p-r-10">
+
+                        <ns-shopping-cart-widget col="0"
+                                                 [showMinOrder]="false"
+                                                 [showIcon]="false">
+                        </ns-shopping-cart-widget>
+
+
+                        <GridLayout col="1"
+                                    (tap)="customise()"
+                                    verticalAlignment="center"
+                                    columns="*, auto">
+
+                            <Label col="0"
+                                   horizontalAlignment="right"
+                                   verticalAlignment="center"
+                                   text="Add To Cart"
+                                   class="">
+                            </Label>
+
+                            <Label col="1"
+                                   horizontalAlignment="right"
+                                   verticalAlignment="center"
+                                   text="&#xe146;"
+                                   class="mdi icon p-l-10">
+                            </Label>
+
+                        </GridLayout>
+
+                    </GridLayout>
+                </ng-template>
+
+                <ng-template #standardScreen>
+                    <ns-shopping-cart-widget row="0" [showIcon]="false">
+                    </ns-shopping-cart-widget>
+                </ng-template>
+
+                <GridLayout #view *ngIf="model.hasImage" row="1" columns="auto, *, auto" rows="auto, *">
+
+                    <Image col="0"
+                           colSpan="3"
+                           row="0"
+                           rowSpan="2"
+                           [src]="model.imgSource"
+                           stretch="aspectFill"
+                           class="">
+                    </Image>
+
+                    <Label col="0"
+                           row="0"
+                           (tap)="onPrevious()"
+                           text="&#xe5c4;"
+                           verticalAlignment="top"
+                           class="mdi nav-icon m-t-20 m-l-10 p-5">
+                    </Label>
+
+                    <Label col="2"
+                           row="0"
+                           (tap)="onNext()"
+                           text="&#xe5c8;"
+                           verticalAlignment="top"
+                           class="mdi nav-icon m-t-20 m-r-10 p-5">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="!model.hasImage" row="1" columns="auto, *, auto" rows="auto, *">
+
+                    <Label col="0"
+                           row="0"
+                           (tap)="onPrevious()"
+                           text="&#xe5c4;"
+                           verticalAlignment="top"
+                           class="mdi nav-icon m-t-20 m-l-10 p-5">
+                    </Label>
+
+                    <Label col="2"
+                           row="0"
+                           (tap)="onNext()"
+                           text="&#xe5c8;"
+                           verticalAlignment="top"
+                           class="mdi nav-icon m-t-20 m-r-10 p-5">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout row="2" class="item-description p-t-10">
+                    <Label col="0"
+                           [text]="model.name"
+                           horizontalAlignment="center"
+                           class="second-title">
+                    </Label>
+                </GridLayout>
+
+                <GridLayout row="3" class="item-description p-10">
+                    <Label col="0"
+                           [text]="model.description"
+                           [textWrap]="true"
+                           horizontalAlignment="left">
+                    </Label>
+                </GridLayout>
+
+                <GridLayout *ngIf="model.isOnSpecial" row="4">
+
+                    <GridLayout rows="auto, auto">
+                        <Label row="0"
+                               [text]="'ON SPECIAL - NORMALLY ' +  (model.regularPrice | currency)"
+                               horizontalAlignment="center"
+                               verticalAlignment="center"
+                               class="second-title special m-r-10">
+                        </Label>
+
+                        <Label row="1"
+                               [text]="model.price | currency"
+                               horizontalAlignment="center"
+                               verticalAlignment="center"
+                               class="second-title m-r-10">
+                        </Label>
+                    </GridLayout>
+
+                </GridLayout>
+
+
+                <GridLayout *ngIf="!model.isOnSpecial" row="4">
+
+                    <Label col="0"
+                           [text]="model.price | currency"
+                           horizontalAlignment="center"
+                           verticalAlignment="center"
+                           class="second-title m-r-10">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout row="5">
+                </GridLayout>
+
+            </GridLayout>
+
+        </ScrollView>
+
+        <GridLayout *ngIf="!utilityService.smallScreenWidth()" row="1" columns="*, auto, *" class="action-section">
+            <Button col="1"
+                    text="ADD TO CART"
+                    (tap)="customise()">
+            </Button>
+        </GridLayout>
+
+        <GridLayout *ngIf="utilityService.smallScreenWidth()" row="1">
+        </GridLayout>
+
+    </GridLayout>
+
+</ng-template>
+
+

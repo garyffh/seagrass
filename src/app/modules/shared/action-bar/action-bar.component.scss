@@ -1,0 +1,41 @@
+
+
+.menu-icon {
+  font-size: 25;
+  color: white;
+  vertical-align: center;
+  padding-left: 10;
+}
+
+.menu-title {
+  text-align: center;
+  vertical-align: center;
+  font-size: 20;
+  color: white;
+}
+
+.main-menu {
+
+  z-index: 1000;
+
+  margin-top: 2;
+  justify-content: flex-end;
+  align-items: flex-start;
+  font-size: 18;
+  font-weight: 500;
+
+  .menu-background {
+    padding: 10;
+  }
+
+  Button {
+    margin: 0;
+    text-align: center;
+    padding-top: 20;
+    padding-right: 30;
+    padding-left: 30;
+    padding-bottom: 20;
+  }
+
+}
+

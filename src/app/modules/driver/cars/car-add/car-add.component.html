@@ -1,0 +1,172 @@
+
+
+    <ng-container [ngSwitch]="componentView">
+
+        <ng-template [ngSwitchCase]="ComponentCarAddView.default">
+
+            <GridLayout rows="auto, auto, * ">
+                <GridLayout row="0" >
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ns-page-title title="ADD CAR"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="2">
+                    <ScrollView>
+                        <StackLayout [formGroup]="form"
+                                     (ngSubmit)="onSubmit()"
+                                     autocomplete="off"
+                                     class="m-20">
+
+                            <StackLayout class="field">
+                                <TextField hint="Number Plate"
+                                           formControlName="plate"
+                                           secure="false"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('plate') && form.get('plate').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="number plate is required">
+                                </Label>
+                            </StackLayout>
+
+                            <StackLayout class="field">
+                                <TextField hint="Make"
+                                           formControlName="make"
+                                           secure="false"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('make') && form.get('make').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="car make is required">
+                                </Label>
+                            </StackLayout>
+
+                            <StackLayout class="field">
+                                <TextField hint="Model"
+                                           formControlName="model"
+                                           secure="false"
+                                           returnKeyType="next"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('model') && form.get('model').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="car model is required">
+                                </Label>
+                            </StackLayout>
+
+                            <StackLayout class="field">
+                                <TextField hint="Colour"
+                                           formControlName="colour"
+                                           secure="false"
+                                           returnKeyType="go"
+                                           autocorrect="false"
+                                           class="input input-border">
+                                </TextField>
+                                <Label class="validation p-l-10"
+                                       [visibility]="showValidationError('colour') && form.get('colour').hasError('required')  ? 'visible' : 'collapse'"
+                                       text="car colour is required">
+                                </Label>
+                            </StackLayout>
+
+                            <Button class="btn action-button m-t-10"
+                                    [isEnabled]="form.valid"
+                                    text="Submit"
+                                    (tap)="onSubmit()">
+                            </Button>
+
+                        </StackLayout>
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="ComponentCarAddView.fail">
+
+            <GridLayout rows="auto, auto, * ">
+                <GridLayout row="0" columns="*" class="action-section">
+
+                    <Button col="0"
+                            (tap)="onCancel()"
+                            text="CANCEL">
+                    </Button>
+
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ns-page-title title="ADD CAR"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="2">
+                    <ScrollView>
+                        <StackLayout class="m-20">
+
+                            <Label text="Adding the car failed."
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="p-20">
+                            </Label>
+
+                            <Label [text]="failMessage"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="fail p-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Continue"
+                                    (tap)="onContinue()">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="ComponentCarAddView.done">
+
+            <GridLayout rows="auto, * ">
+
+                <GridLayout row="0">
+                    <ns-page-title title="ADD CAR"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ScrollView>
+                        <StackLayout class="m-20">
+
+                            <Label text="Your car has been added."
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="p-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Continue"
+                                    (tap)="onContinue()">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+    </ng-container>
+
+

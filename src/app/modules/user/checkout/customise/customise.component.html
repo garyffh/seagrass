@@ -1,0 +1,16 @@
+
+    <GridLayout rows="auto, *">
+
+        <GridLayout row="0" columns="*" class="action-section">
+            <Button col="0" (tap)="back()" text="BACK TO CHECKOUT">
+            </Button>
+        </GridLayout>
+
+        <GridLayout row="1" >
+            <ns-product-customise [trnClientCustomersItem]="trnClientCustomerData">
+            </ns-product-customise>
+        </GridLayout>
+
+    </GridLayout>
+
+

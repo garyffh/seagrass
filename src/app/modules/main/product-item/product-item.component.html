@@ -1,0 +1,27 @@
+<GridLayout rows="auto, auto" class="product-item">
+
+    <GridLayout row="0" columns="*, 120" class="product-heading">
+        <Label col="0" [text]="model.name" verticalAlignment="center" textWrap="true"></Label>
+
+
+        <GridLayout col="1" columns="*, 45" verticalAlignment="center" (tap)="customise()">
+            <Label col="0" [text]="model.price | currency" verticalAlignment="center" textAlignment="right"></Label>
+            <Label col="1" text="&#xe146;" verticalAlignment="center" class="mdi add-icon"></Label>
+        </GridLayout>
+
+    </GridLayout>
+
+    <GridLayout row="1" columns="*, 45" class="product-details">
+        <Label col="0" textWrap="true" [text]="model.description"></Label>
+
+        <Label col="1"
+               text="&#xe8ff;"
+               verticalAlignment="top"
+               (tap)="viewImage()"
+               class="mdi add-icon">
+        </Label>
+
+    </GridLayout>
+
+</GridLayout>
+

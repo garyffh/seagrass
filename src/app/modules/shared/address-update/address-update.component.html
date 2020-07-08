@@ -1,0 +1,106 @@
+<StackLayout *ngIf="formLoaded"
+             autocomplete="off"
+             [ngClass]="{'card-form': cardForm}"
+             [formGroup]="form">
+
+    <StackLayout [ngSwitch]="componentView">
+
+        <ng-template [ngSwitchCase]="AddressUpdateView.address">
+
+            <StackLayout class="nt-label m-t-10 address-search">
+                <Label text="ADDRESS SEARCH" ></Label>
+                <RadAutoCompleteTextView    #addressAutocomplete
+
+                                         class="-rounded m-t-20"
+                                         displayMode="Plain"
+                                         hint="start typing your address"
+                                         noResultsText="No address found"
+                                         (didAutoComplete)="onDidAutoComplete($event)"
+                                         completionMode="Suggest">
+                    <SuggestionView tkAutoCompleteSuggestionView suggestionViewHeight="300">
+                        <ng-template tkSuggestionItemTemplate let-item="item">
+                            <StackLayout orientation="vertical" padding="10">
+                                <Label [text]="item.displayText"></Label>
+                            </StackLayout>
+                        </ng-template>
+                    </SuggestionView>
+                </RadAutoCompleteTextView>
+            </StackLayout>
+
+        </ng-template>
+
+
+        <ng-template [ngSwitchCase]="AddressUpdateView.addtionalFields">
+
+            <StackLayout *ngIf="showCompany" class="nt-input nt-label">
+                <Label text="COMPANY"></Label>
+                <TextField formControlName="company"
+                           secure="false"
+                           returnKeyType="next"
+                           autocorrect="false"
+                           class="-rounded input input-border">
+                </TextField>
+            </StackLayout>
+
+            <StackLayout *ngIf="showCompany" class="nt-input nt-label">
+                <Label text="ABN"></Label>
+                <TextField formControlName="companyNumber"
+                           secure="false"
+                           returnKeyType="next"
+                           autocorrect="false"
+                           class="-rounded input input-border">
+                </TextField>
+            </StackLayout>
+
+            <StackLayout class="nt-input nt-label">
+                <Label text="DELIVERY INSTRUCTIONS"></Label>
+                <TextField hint="e.g. deliver to gate"
+                           formControlName="addressNote"
+                           secure="false"
+                           returnKeyType="go"
+                           autocorrect="false"
+                           class="-rounded input input-border">
+                </TextField>
+            </StackLayout>
+
+            <Button class="btn action-button"
+                    (tap)="onAdditionalFieldsButtonClick()"
+                    [text]="additionalFieldsButtonText">
+            </Button>
+
+        </ng-template>
+
+
+    </StackLayout>
+
+    <StackLayout class="p-10 m-t-10">
+
+
+        <ns-address-view [showCompany]="showCompany"
+                         [address]="viewData"
+                         [displayFormat]="displayFormat">
+        </ns-address-view>
+
+
+        <!--            <div *ngIf="mapCoordinate && showMap" fxFlex="50">-->
+
+        <!--                <agm-map-->
+        <!--                        class="w-100"-->
+        <!--                        [zoom]="14"-->
+        <!--                        [latitude]="mapCoordinate.lat"-->
+        <!--                        [longitude]="mapCoordinate.lng">-->
+
+        <!--                    <agm-marker [latitude]="mapCoordinate.lat" [longitude]="mapCoordinate.lng" [label]="mapCoordinate.label">-->
+        <!--                    </agm-marker>-->
+
+
+        <!--                </agm-map>-->
+
+        <!--            </div>-->
+
+    </StackLayout>
+
+
+</StackLayout>
+
+

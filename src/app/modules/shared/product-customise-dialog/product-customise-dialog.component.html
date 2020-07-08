@@ -1,0 +1,14 @@
+<GridLayout>
+
+    <ns-dialog [title]="trnClientCustomerData.description"
+               [confirmLabel]="'Add to order'"
+               [showButtons]="false"
+               (close)="onClose($event)">
+
+        <ns-product-customise [trnClientCustomersItem]="trnClientCustomerData">
+        </ns-product-customise>
+
+    </ns-dialog>
+
+</GridLayout>
+

@@ -1,0 +1,10 @@
+<ns-special-accordion   *ngIf="specials.length !== 0"
+                (stateChange)="onStateChange($event)"
+                [open]="appService.specialsOpen">
+
+    <ns-product-item *ngFor="let product of specials" [model]="product"></ns-product-item>
+
+</ns-special-accordion>
+
+
+

@@ -1,0 +1,39 @@
+.card-display {
+  font-size: 18;
+  padding-bottom: 10;
+}
+
+.display-card-type {
+  padding-right: 5;
+}
+
+.display-card-number {
+  padding-left: 5;
+}
+
+.expiry-break {
+  padding-top: 15;
+}
+
+.month-input {
+ width: 100;
+  text-align: center;
+}
+
+.year-input {
+  width: 100;
+  text-align: center;
+}
+
+.cvc-input {
+  width: 120;
+  text-align: center;
+}
+
+.error-label {
+  text-align: center;
+  Label {
+    color: red;
+  }
+}
+

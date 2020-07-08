@@ -1,0 +1,103 @@
+<GridLayout class="nav-tab" >
+    <GridLayout columns="*, *, *, *, *"
+                [ngClass]="{'small-screen' : utilityService.smallScreenWidth(), 'standard-screen' : !utilityService.smallScreenWidth()}" >
+
+        <GridLayout col="0"
+                    rows="auto, *"
+                    class="item"
+                    [ngClass]="{'active-tab' : appService.userTabSelectedIndex === 0 }"
+                    (tap)="onSelectTab(0)">
+            <Label row="0"
+                   #image1
+                   text="&#xe8f7;"
+                   horizontalAlignment="center"
+                   verticalAlignment="top"
+                   class="mdi" >
+            </Label>
+            <Label row="1"
+                   [text]="utilityService.smallScreenWidth() ? 'Card' : 'Membership'"
+                   verticalAlignment="bottom"
+                   horizontalAlignment="center">
+            </Label>
+        </GridLayout>
+
+        <GridLayout col="1"
+                    rows="auto, *"
+                    class="item"
+                    [ngClass]="{'active-tab' : appService.userTabSelectedIndex === 1 }"
+                    class="item"
+                    (tap)="onSelectTab(1)">
+            <Label row="0"
+                   #image2
+                   text="&#xe871;"
+                   verticalAlignment="top"
+                   horizontalAlignment="center"
+                   class="mdi">
+            </Label>
+            <Label row="1"
+                   text="Dashboard"
+                   verticalAlignment="bottom"
+                   horizontalAlignment="center" >
+            </Label>
+        </GridLayout>
+
+
+        <GridLayout col="2"
+                    rows="auto, *"
+                    class="item"
+                    [ngClass]="{'active-tab' : appService.userTabSelectedIndex === 2 }"
+                    (tap)="onSelectTab(2)">
+            <Label row="0"
+                   #image3
+                   text="&#xe854;"
+                   verticalAlignment="top"
+                   horizontalAlignment="center"
+                   class="mdi">
+            </Label>
+            <Label row="1"
+                   text="Order"
+                   verticalAlignment="bottom"
+                   horizontalAlignment="center" >
+            </Label>
+        </GridLayout>
+
+        <GridLayout col="3"
+                    rows="auto, *"
+                    class="item"
+                    [ngClass]="{'active-tab' : appService.userTabSelectedIndex === 3 }"
+                    (tap)="onSelectTab(3)">
+            <Label row="0"
+                   #image4
+                   text="&#xe8cc;"
+                   verticalAlignment="top"
+                   horizontalAlignment="center"
+                   class="mdi">
+            </Label>
+            <Label row="1"
+                   text="Cart"
+                   verticalAlignment="bottom"
+                   horizontalAlignment="center" >
+            </Label>
+        </GridLayout>
+
+        <GridLayout col="4"
+                    rows="auto, *"
+                    class="item"
+                    [ngClass]="{'active-tab' : appService.userTabSelectedIndex === 4 }"
+                    (tap)="onSelectTab(4)">
+            <Label row="0"
+                   #image5
+                   text="&#xe192;"
+                   verticalAlignment="top"
+                   horizontalAlignment="center"
+                   class="mdi">
+            </Label>
+            <Label row="1"
+                   text="Hours"
+                   verticalAlignment="bottom"
+                   horizontalAlignment="center">
+            </Label>
+        </GridLayout>
+
+    </GridLayout>
+</GridLayout>

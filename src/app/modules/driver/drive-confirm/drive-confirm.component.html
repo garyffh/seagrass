@@ -1,0 +1,45 @@
+
+
+    <GridLayout rows="auto, auto, * " class="disable-deliveries">
+
+        <GridLayout row="0" >
+        </GridLayout>
+
+        <GridLayout row="1" *ngIf="model === null else show">
+
+            <ns-page-title title="CONFIRM PICKUP"></ns-page-title>
+
+        </GridLayout>
+
+        <ng-template #show>
+
+            <GridLayout row="1">
+                <ns-page-title title="CONFIRM PICKUP"></ns-page-title>
+            </GridLayout>
+
+            <StackLayout row="2">
+
+                <Label class="heading m-t-20"
+                       textAlignment="center"
+                       [textWrap]="true"
+                       [text]="'Confirm picking up order'">
+                </Label>
+
+                <Label class="heading"
+                       textAlignment="center"
+                       [textWrap]="true"
+                       [text]="model.reference + ' for ' + model.firstName + ' ' + model.lastName">
+                </Label>
+
+                <Button text="Order Picked Up"
+                        (tap)="onSubmit()"
+                        class="btn action-button m-t-30">
+                </Button>
+
+            </StackLayout>
+
+        </ng-template>
+
+    </GridLayout>
+
+

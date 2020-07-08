@@ -1,0 +1,121 @@
+<ns-card>
+        <StackLayout autocomplete="off"
+                     class="card-form"
+                     [formGroup]="form">
+
+            <StackLayout class="field">
+                <ns-section label="Card Holder Name" [centerHeading]="true">
+                    <TextField textAlignment="center"
+                               formControlName="name"
+                               secure="false"
+                               returnKeyType="next"
+                               autocorrect="false"
+                               class="input input-border">
+                    </TextField>
+                </ns-section>
+            </StackLayout>
+
+
+            <StackLayout class="field m-t-10">
+                <ns-section label="Card Number" [centerHeading]="true">
+                    <TextField textAlignment="center"
+                               formControlName="cardNumber"
+                               keyboardType="number"
+                               secure="false"
+                               returnKeyType="next"
+                               autocorrect="false"
+                               class="input input-border">
+                    </TextField>
+                </ns-section>
+            </StackLayout>
+
+
+            <StackLayout class="field m-t-10">
+
+                <GridLayout columns="*, *">
+
+                    <GridLayout col="0" class="p-r-5">
+                        <ns-section label="MM" [centerHeading]="true">
+                            <ListPicker [items]="months"
+                                        [width]="100"
+                                        [height]="130"
+                                        (selectedIndexChange)="onMonthSelect($event)">
+                            </ListPicker>
+                        </ns-section>
+                    </GridLayout>
+
+                    <GridLayout col="1" class="p-l-5">
+                        <ns-section label="YY" [centerHeading]="true">
+                            <ListPicker [items]="years"
+                                        [width]="100"
+                                        [height]="130"
+                                        (selectedIndexChange)="onYearSelect($event)">
+                            </ListPicker>
+                        </ns-section>
+                    </GridLayout>
+
+                </GridLayout>
+
+            </StackLayout>
+
+            <StackLayout col="1" class="field m-t-10">
+                <ns-section label="CVC" [centerHeading]="true">
+                    <TextField textAlignment="center"
+                               maxLength="4"
+                               formControlName="cardCVC"
+                               keyboardType="number"
+                               secure="false"
+                               returnKeyType="go"
+                               autocorrect="false"
+                               class="input input-border">
+                    </TextField>
+                </ns-section>
+
+            </StackLayout>
+
+
+        </StackLayout>
+
+
+            <StackLayout autocomplete="off"
+                         class="card-form"
+                         [formGroup]="form">
+
+                <StackLayout class="field">
+                    <ns-section label="Card Holder Name" [centerHeading]="true">
+                        <TextField textAlignment="center"
+                                   formControlName="name"
+                                   secure="false"
+                                   returnKeyType="next"
+                                   autocorrect="false"
+                                   class="input input-border">
+                        </TextField>
+                    </ns-section>
+                </StackLayout>
+
+
+                <StackLayout class="field">
+                    <ns-section label="Card Details" [centerHeading]="true">
+                    </ns-section>
+                </StackLayout>
+
+            </StackLayout>
+
+    <StackLayout>
+
+        <TextField textAlignment="center"
+                   secure="false"
+                   returnKeyType="next"
+                   autocorrect="false"
+                   class="input input-border">
+        </TextField>
+
+        <CreditCardView
+                            #cardView>
+        </CreditCardView>
+
+    </StackLayout>
+
+
+</ns-card>
+

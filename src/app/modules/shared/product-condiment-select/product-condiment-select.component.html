@@ -1,0 +1,27 @@
+<GridLayout *ngIf="!loaded" rows="*, auto">
+
+    <Label horizontalAlignment="center"
+           verticalAlignment="center"
+           class="loading-text"
+           text="LOADING">
+    </Label>
+
+</GridLayout>
+
+
+<StackLayout *ngIf="loaded" class="product-condiment-select">
+    <GridLayout *ngFor="let item of trnCondimentTable.items"
+                [class]="(item.selected ? 'row selected-row' : 'row')"
+                columns="auto, *, 80"
+                (tap)="onChangeSelection(item)">
+        <StackLayout col="0"
+                     [class]="'radio-icon ' + (item.selected ? 'selected-radio' : 'unselected-radio')"
+                     verticalAlignment="center">
+        </StackLayout>
+        <Label col="1" [text]="item.description" verticalAlignment="center"></Label>
+        <Label col="2" *ngIf="item.price !== 0" [text]="item.price | currency" verticalAlignment="center"
+               class="text-right"></Label>
+    </GridLayout>
+
+</StackLayout>
+

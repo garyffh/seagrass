@@ -1,0 +1,216 @@
+<GridLayout *ngIf="model === null else show">
+
+    <ns-page-title title="CREDIT"></ns-page-title>
+
+</GridLayout>
+
+<ng-template #show>
+
+
+    <GridLayout rows="auto, auto, *">
+
+        <GridLayout row="0" rows="auto" columns="*" class="summary-bar">
+            <Label row="0" col="0" horizontalAlignment="center"
+                   [text]="'CREDIT ' + model.documentReference">
+            </Label>
+        </GridLayout>
+
+        <GridLayout row="1">
+
+            <ng-container *ngIf="utilityService.smallScreenWidth(); then smallScreenH else standardScreenH">
+            </ng-container>
+
+            <ng-template #smallScreenH>
+
+                <ns-card>
+                    <StackLayout row="1" class="p-10">
+
+                        <ns-list-item heading="Date"
+                                      [detail]="model.documentDT | dayMonthTime">
+                        </ns-list-item>
+
+                        <ns-list-item heading="Reason"
+                                      [detail]="model.reasonId | creditReason">
+                        </ns-list-item>
+
+                        <ns-list-item heading="Points"
+                                      [detail]="model.productPoints + model.spendPoints - model.redeemPoints">
+                        </ns-list-item>
+
+                        <ns-list-item heading="Total"
+                                      [detail]="model.total | currency">
+                        </ns-list-item>
+
+
+                    </StackLayout>
+
+                </ns-card>
+
+            </ng-template>
+
+            <ng-template #standardScreenH>
+
+                <ns-card>
+                    <StackLayout row="1" class="p-10">
+
+                        <ns-list-item heading="Date"
+                                      [detail]="model.documentDT | dateTimeFormat">
+                        </ns-list-item>
+
+                        <ns-list-item heading="Reason"
+                                      [detail]="model.reasonId | creditReason">
+                        </ns-list-item>
+
+                        <ns-list-item heading="Points"
+                                      [detail]="model.productPoints + model.spendPoints - model.redeemPoints">
+                        </ns-list-item>
+
+                        <ns-list-item heading="Total"
+                                      [detail]="model.total | currency">
+                        </ns-list-item>
+
+                        <ns-list-item heading="Total Ex"
+                                      [detail]="model.totalEx | currency">
+                        </ns-list-item>
+
+                        <ns-list-item heading="Tax"
+                                      [detail]="model.taxAmount | currency">
+                        </ns-list-item>
+
+                    </StackLayout>
+
+                </ns-card>
+
+            </ng-template>
+
+
+        </GridLayout>
+
+        <GridLayout row="2">
+
+            <ng-container *ngIf="utilityService.smallScreenWidth(); then smallScreen else standardScreen">
+            </ng-container>
+
+            <ng-template #smallScreen>
+                <RadListView row="1" [items]="listItems" class="m-10">
+
+                    <ng-template tkListItemTemplate let-item="item">
+                        <GridLayout rows="auto, auto" class="table-row">
+
+
+                            <GridLayout row="0" columns="30, *">
+
+                                <Label col="0"
+                                       [text]="item.quantity">
+                                </Label>
+
+                                <Label col="1"
+                                       [ngClass]="{'condiment-description': item.itemTypeId === 10}"
+                                       [text]="item.name">
+                                </Label>
+
+                            </GridLayout>
+
+                            <GridLayout row="1" columns="*, *, *">
+
+                                <Label col="0"
+                                       horizontalAlignment="right"
+                                       textAlignment="right"
+                                       [text]="item.total | currency">
+                                </Label>
+
+                                <Label col="1"
+                                       horizontalAlignment="right"
+                                       textAlignment="right"
+                                       [text]="item.spendPoints">
+                                </Label>
+
+                                <Label col="2"
+                                       horizontalAlignment="right"
+                                       textAlignment="right"
+                                       [text]="item.productPoints">
+                                </Label>
+
+                            </GridLayout>
+
+                        </GridLayout>
+
+                    </ng-template>
+
+                    <ng-template tkListViewHeader let-item="item">
+
+                        <GridLayout columns="*, *, *" class="table-header">
+                            <Label col="0" verticalAlignment="center" textAlignment="right"
+                                   text="Total"></Label>
+                            <Label col="1" verticalAlignment="center" textAlignment="right"
+                                   text="Spend"></Label>
+                            <Label col="2" verticalAlignment="center" textAlignment="right" text="Item"></Label>
+                        </GridLayout>
+
+                    </ng-template>
+
+                </RadListView>
+            </ng-template>
+
+            <ng-template #standardScreen>
+                <RadListView row="1" [items]="listItems" class="m-10">
+
+                    <ng-template tkListItemTemplate let-item="item">
+                        <GridLayout columns="30, *, 80, 80, 80" class="table-row">
+
+                            <Label col="0"
+                                   [text]="item.quantity">
+                            </Label>
+
+                            <Label col="1"
+                                   [ngClass]="{'condiment-description': item.itemTypeId === 10}"
+                                   [text]="item.name">
+                            </Label>
+
+
+                            <Label col="2"
+                                   horizontalAlignment="right"
+                                   textAlignment="right"
+                                   [text]="item.total | currency">
+                            </Label>
+
+                            <Label col="3"
+                                   horizontalAlignment="right"
+                                   textAlignment="right"
+                                   [text]="item.spendPoints">
+                            </Label>
+
+                            <Label col="4"
+                                   horizontalAlignment="right"
+                                   textAlignment="right"
+                                   [text]="item.productPoints">
+                            </Label>
+
+                        </GridLayout>
+
+                    </ng-template>
+
+                    <ng-template tkListViewHeader let-item="item">
+
+                        <GridLayout columns="30, *, 80, 80, 80" class="table-header">
+                            <Label col="0" verticalAlignment="center" text=""></Label>
+                            <Label col="1" verticalAlignment="center" text="Product"></Label>
+                            <Label col="2" verticalAlignment="center" textAlignment="right"
+                                   text="Total"></Label>
+                            <Label col="3" verticalAlignment="center" textAlignment="right"
+                                   text="Spend"></Label>
+                            <Label col="4" verticalAlignment="center" textAlignment="right" text="Item"></Label>
+                        </GridLayout>
+
+                    </ng-template>
+
+                </RadListView>
+            </ng-template>
+
+        </GridLayout>
+
+    </GridLayout>
+
+</ng-template>
+
+

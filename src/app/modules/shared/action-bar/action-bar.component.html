@@ -1,0 +1,14 @@
+<ActionBar title="" class="action-bar">
+    <NavigationButton *ngIf="navBtnVisible" android.systemIcon="ic_menu_back" (tap)="onBack()"></NavigationButton>
+
+    <StackLayout col="0" orientation="horizontal" horizontalAlignment="center">
+        <Label [text]="businessService.business.businessName" textAlignment="center" class="menu-title"></Label>
+    </StackLayout>
+
+    <ActionItem ios.position="right"
+                (tap)="onMenuToggle()">
+        <Label text="&#xf142;" class="fa menu-icon p-r-20"></Label>
+    </ActionItem>
+
+</ActionBar>
+

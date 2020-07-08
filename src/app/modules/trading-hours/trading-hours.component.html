@@ -1,0 +1,165 @@
+<ns-action-bar></ns-action-bar>
+
+<GridLayout rows="auto, *, auto" [ngClass]="businessService.business.theme">
+
+    <GridLayout row="0">
+        <ns-error-panel></ns-error-panel>
+    </GridLayout>
+
+    <GridLayout row="1">
+
+        <ScrollView>
+
+            <GridLayout rows="auto, auto, auto">
+
+                <ng-container *ngIf="!hasDelivery">
+
+                    <GridLayout row="0" class="p-10">
+                        <ns-card>
+                            <ns-section label="Store Hours">
+                                <StackLayout class="p-20">
+                                    <ng-container *ngFor="let day of storeDays">
+
+                                        <Label [text]="day.day"
+                                               horizontalAlignment="center"
+                                               class="day p-t-5">
+                                        </Label>
+
+                                        <Label *ngIf="day.closed" text="Closed" class="day">
+                                        </Label>
+
+                                        <StackLayout>
+                                            <ng-container *ngIf="!day.closed">
+
+                                                <Label *ngFor="let interval of day.intervals"
+                                                       class="time"
+                                                       horizontalAlignment="center"
+                                                       [text]="(interval.fromTime | date: 'shortTime') + ' to ' + (interval.toTime | date: 'shortTime')">
+                                                </Label>
+
+                                            </ng-container>
+                                        </StackLayout>
+
+                                    </ng-container>
+                                </StackLayout>
+                            </ns-section>
+                        </ns-card>
+                    </GridLayout>
+
+                    <GridLayout row="1">
+                    </GridLayout>
+
+                </ng-container>
+
+
+                <ng-container *ngIf="hasDelivery">
+
+                    <GridLayout row="0" class="p-10">
+                        <ns-card>
+                            <ns-section label="Store Hours">
+                                <StackLayout class="p-20">
+                                    <ng-container *ngFor="let day of storeDays">
+
+                                        <Label [text]="day.day"
+                                               horizontalAlignment="center"
+                                               class="day p-t-5">
+                                        </Label>
+
+                                        <Label *ngIf="day.closed" text="Closed" class="day">
+                                        </Label>
+
+                                        <StackLayout>
+                                            <ng-container *ngIf="!day.closed">
+
+                                                <Label *ngFor="let interval of day.intervals"
+                                                       class="time"
+                                                       horizontalAlignment="center"
+                                                       [text]="(interval.fromTime | date: 'shortTime') + ' to ' + (interval.toTime | date: 'shortTime')">
+                                                </Label>
+
+                                            </ng-container>
+                                        </StackLayout>
+
+                                    </ng-container>
+                                </StackLayout>
+                            </ns-section>
+                        </ns-card>
+                    </GridLayout>
+
+                    <GridLayout row="1" class="p-10">
+                        <ns-card>
+                            <ns-section label="Delivery Hours" icon="&#xe0c8;" (iconTap)="onDeliveryTap()">
+                                <StackLayout class="p-20">
+                                    <ng-container *ngFor="let day of deliveryDays">
+
+                                        <Label [text]="day.day"
+                                               horizontalAlignment="center"
+                                               class="day p-t-5">
+                                        </Label>
+
+                                        <Label *ngIf="day.closed" text="Closed" class="day p-t-5">
+                                        </Label>
+
+                                        <StackLayout>
+                                            <ng-container *ngIf="!day.closed">
+
+                                                <Label *ngFor="let interval of day.intervals"
+                                                       class="time"
+                                                       horizontalAlignment="center"
+                                                       [text]="(interval.fromTime | date: 'shortTime') + ' to ' + (interval.toTime | date: 'shortTime')">
+                                                </Label>
+
+                                            </ng-container>
+                                        </StackLayout>
+
+                                    </ng-container>
+                                </StackLayout>
+                            </ns-section>
+                        </ns-card>
+                    </GridLayout>
+
+                </ng-container>
+
+                <GridLayout *ngIf="hasTradingExceptions" row="2" class="p-10">
+                    <ns-card>
+                        <ns-section label="Additional Trading">
+                            <StackLayout class="p-20">
+                                <ng-container *ngFor="let tradingException of tradingExceptions">
+
+                                    <Label [text]="tradingException | timeExceptionHeading"
+                                           [textWrap]="true"
+                                           textAlignment="center"
+                                           horizontalAlignment="center"
+                                           class="day p-5">
+                                    </Label>
+
+                                    <Label class="time"
+                                           horizontalAlignment="center"
+                                           [text]="tradingException | timeException">
+                                    </Label>
+
+                                </ng-container>
+                            </StackLayout>
+                        </ns-section>
+                    </ns-card>
+                </GridLayout>
+
+                <GridLayout *ngIf="!hasTradingExceptions" row="2">
+                </GridLayout>
+
+            </GridLayout>
+
+        </ScrollView>
+
+    </GridLayout>
+
+    <GridLayout row="2" >
+        <ns-user-tab></ns-user-tab>
+    </GridLayout>
+
+</GridLayout>
+
+<ns-spinner></ns-spinner>
+
+
+

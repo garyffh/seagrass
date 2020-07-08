@@ -1,0 +1,21 @@
+<GridLayout columns="*, auto" class="summary-bar">
+    <Label *ngIf="!showMinOrder; else minOrder" col="0"></Label>
+
+    <ng-template #minOrder>
+        <Label *ngIf="businessService.business.minOrder !== 0 && storeStatusService.storeStatus.storeState.deliveryAvailable" col="0" class="m-l-10" verticalAlignment="center"
+               [text]="(utilityService.smallScreenWidth() ? '' : 'Min Delivery ' + (businessService.business.minOrder | currency)) "></Label>
+        <Label *ngIf="!(businessService.business.minOrder !== 0 && storeStatusService.storeStatus.storeState.deliveryAvailable)" col="0" class="m-l-10" verticalAlignment="center"
+               text=""></Label>
+    </ng-template>
+
+    <GridLayout col="1" columns="auto, auto, auto, auto" (tap)="goCheckout()">
+        <Label col="0" verticalAlignment="center" text="&#xe8cc;" class="mdi"></Label>
+        <Label col="1" class="m-l-5" verticalAlignment="center"
+               [text]="appService.data.cartTransaction.totalWithoutDelivery | currency"></Label>
+        <Label col="2" class="count m-l-5" verticalAlignment="center"
+               [text]="appService.data.cartTransaction.items.length"></Label>
+        <Label *ngIf="showIcon" col="3" class="mdi m-r-15 m-l-5 shopping-cart-widget-right-icon"
+               verticalAlignment="center" text="&#xe315;"></Label>
+        <Label *ngIf="!showIcon" col="3" class="m-r-15 m-l-5"></Label>
+    </GridLayout>
+</GridLayout>

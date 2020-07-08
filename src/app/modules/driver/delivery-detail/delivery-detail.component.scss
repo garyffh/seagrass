@@ -1,0 +1,52 @@
+.delivery-detail {
+  font-size: 16;
+  padding: 5;
+
+  .icon {
+    margin: 10;
+    font-size: 45;
+  }
+
+
+  .line {
+    padding-top: 5;
+    padding-bottom: 5;
+  }
+
+  .heading {
+    font-weight: 500;
+    padding-right: 10;
+  }
+
+  .address-heading {
+    font-weight: 500;
+    width: 50;
+    padding-right: 10;
+  }
+
+
+
+}
+
+.small-delivery-detail {
+
+  .heading {
+    Label {
+      font-size: 14;
+    }
+
+  }
+
+  .icon {
+    font-size: 30;
+  }
+}
+
+.table {
+  font-size: 16;
+}
+
+.footer {
+  font-weight: 500;
+  border-bottom-width: 1;
+}

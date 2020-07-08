@@ -1,0 +1,24 @@
+<ns-action-bar></ns-action-bar>
+
+<GridLayout rows="auto, auto, *, auto" [ngClass]="businessService.business.theme">
+
+    <GridLayout row="0">
+    </GridLayout>
+
+    <GridLayout row="1">
+        <ns-error-panel></ns-error-panel>
+    </GridLayout>
+
+    <GridLayout row="2">
+        <router-outlet></router-outlet>
+    </GridLayout>
+
+    <GridLayout row="3" >
+        <ns-user-tab></ns-user-tab>
+    </GridLayout>
+
+</GridLayout>
+
+<ns-spinner></ns-spinner>
+
+

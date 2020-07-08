@@ -1,0 +1,17 @@
+<GridLayout *ngIf="storeBannerService.bannerExists else loading"
+            class="store-banner"
+            [style.height]="height">
+    <Image #view verticalAlignment="center" [src]="storeBannerService.storeBannerImage.imgSource"
+           stretch="aspectFill"></Image>
+</GridLayout>
+
+<ng-template #loading>
+    <GridLayout columns="*" [style.height]="height">
+
+        <ActivityIndicator (tap)="{}"
+                           opacity="1"
+                           [busy]="true">
+        </ActivityIndicator>
+
+    </GridLayout>
+</ng-template>

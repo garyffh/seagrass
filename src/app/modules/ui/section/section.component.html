@@ -1,0 +1,15 @@
+<StackLayout orientation="vertical">
+    <GridLayout columns="*, auto" class="section"  [ngClass]="{'no-icon': icon === '' }" >
+        <Label *ngIf="!centerHeading" col="0" [text]="label" verticalAlignment="center"></Label>
+        <Label *ngIf="centerHeading" col="0" [text]="label" verticalAlignment="center" horizontalAlignment="center"></Label>
+        <Label col="1"
+               [text]="icon"
+               verticalAlignment="center"
+               horizontalAlignment="center"
+               textAlignment="center"
+               (tap)="onIconTap()"
+               [ngClass]="{'mdi icon action-button': icon !== '' }">
+        </Label>
+    </GridLayout>
+    <ng-content></ng-content>
+</StackLayout>

@@ -1,0 +1,46 @@
+.special-accordion-header{
+  align-items: center;
+  padding: 10;
+  border-bottom-width: 1;
+}
+
+.accordion-icon {
+  font-size: 30;
+  padding-right: 5;
+}
+
+.special-accordion-text {
+  font-size: 16;
+  font-weight: 400;
+}
+
+
+.left-icon {
+  font-size: 30;
+  padding-right: 5;
+}
+
+.left-special-icon {
+  font-size: 24;
+  padding-right: 15;
+}
+
+.right-special-icon {
+  font-size: 24;
+  padding-left: 15;
+}
+
+.arrow-icon {
+  width: 55;
+  transform: rotate(-90deg);
+}
+
+.accordion-closed  {
+
+  .arrow-icon {
+    transform: rotate(90deg);
+  }
+
+}
+
+

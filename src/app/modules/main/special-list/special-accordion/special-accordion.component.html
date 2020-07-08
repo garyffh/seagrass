@@ -1,0 +1,17 @@
+<StackLayout [ngClass]="{ 'accordion-closed': !open, 'accordion-open': open }" class="accordion">
+
+    <GridLayout columns="auto, *, auto " (tap)="onTap()" class="special-accordion-header">
+
+        <Label col="0" text="Specials" horizontalAlignment="center" verticalAlignment="center" class="special-accordion-text text-muted"></Label>
+
+        <Label col="1" text="" verticalAlignment="center" ></Label>
+
+        <Label *ngIf="open" col="2" verticalAlignment="center" text="&#xe316;" class="mdi accordion-icon"></Label>
+        <Label *ngIf="!open" col="2" verticalAlignment="center" text="&#xe313;" class="mdi accordion-icon"></Label>
+    </GridLayout>
+
+    <StackLayout>
+        <ng-content *ngIf="open"></ng-content>
+    </StackLayout>
+
+</StackLayout>

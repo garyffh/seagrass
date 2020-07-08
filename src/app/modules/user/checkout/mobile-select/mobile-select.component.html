@@ -1,0 +1,81 @@
+<ns-card class="mobile-select card-form">
+
+    <GridLayout rows="auto, auto">
+
+        <GridLayout row="0" rows="auto, auto" class="section p-t-5 p-b-5">
+
+            <GridLayout columns="auto, *, auto">
+
+                <Label col="0"
+                       text="3"
+                       verticalAlignment="center"
+                       class="numberCircle m-r-10">
+                </Label>
+
+                <Label col="1"
+                       verticalAlignment="center"
+                       text="Mobile:">
+                </Label>
+
+                <Label *ngIf="componentView === MobileSelectComponentView.view"
+                        col="2"
+                        verticalAlignment="center"
+                       textAlignment="center"
+                       text="&#xe3c9;"
+                        class="mdi icon action-button"
+                        (tap)="onChangeMobile()">
+                </Label>
+
+                <Label *ngIf="componentView === MobileSelectComponentView.change"
+                        col="2"
+                        verticalAlignment="center"
+                       textAlignment="center"
+                       text="&#xe5c9;"
+                        class="mdi icon action-button"
+                        (tap)="onCancelMobileChange()">
+                </Label>
+
+            </GridLayout>
+
+        </GridLayout>
+
+        <GridLayout row="1" rows="auto" class="m-t-10 p-10">
+
+            <StackLayout row="0" orientation="vertical">
+
+                <ng-container [ngSwitch]="componentView">
+
+                    <ng-template [ngSwitchCase]="MobileSelectComponentView.view">
+
+                        <Label [text]="'Mobile: ' + mobileModel.phoneNumber">
+                        </Label>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="MobileSelectComponentView.change">
+
+                        <ns-phone-update [hasMobile]="true"
+                                          (exit)="onPhoneUpdateExit($event)">
+                        </ns-phone-update>
+
+                    </ng-template>
+
+                    <ng-template [ngSwitchCase]="MobileSelectComponentView.add">
+
+                        <ns-phone-update [hasMobile]="false"
+                                          (exit)="onPhoneUpdateExit($event)">
+                        </ns-phone-update>
+
+                    </ng-template>
+
+                </ng-container>
+
+            </StackLayout>
+
+        </GridLayout>
+
+
+
+    </GridLayout>
+
+</ns-card>

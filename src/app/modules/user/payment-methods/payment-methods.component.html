@@ -1,0 +1,71 @@
+
+    <GridLayout rows="auto, auto, * ">
+
+        <GridLayout row="0">
+            <ns-page-title title="CREDIT CARDS"></ns-page-title>
+        </GridLayout>
+
+        <GridLayout row="1" columns="*, auto" class="add-payment-method p-10">
+            <Label col="0"
+                   verticalAlignment="center"
+                   text="Add a credit card"></Label>
+            <Label col="1"
+                   [nsRouterLink]="['../payment-method-add']"
+                   clearHistory="true"
+                   verticalAlignment="center"
+                   textAlignment="center"
+                   horizontalAlignment="center"
+                   class="mdi action-button"
+                   text="&#xe147;">
+            </Label>
+        </GridLayout>
+
+        <GridLayout row="2" class="payment-methods p-l-10 p-r-10">
+
+            <GridLayout rows="auto, *">
+
+                <GridLayout row="0" columns="*, 80, 140" class="table-header">
+                    <Label col="0" verticalAlignment="center" text="Card"></Label>
+                    <Label col="1" verticalAlignment="center" textAlignment="center" [text]="utilityService.smallScreenWidth() ? 'Def' : 'Default'"></Label>
+                    <Label col="2" verticalAlignment="center" text=""></Label>
+                </GridLayout>
+
+                <RadListView row="1" [items]="listItems">
+
+                <ng-template tkListItemTemplate let-item="item">
+                    <GridLayout columns="*, 80, 140" class="table-row">
+                        <Label col="0" verticalAlignment="center" [text]="item.name.slice(14)"></Label>
+                        <Label col="1" verticalAlignment="center" textAlignment="center" [text]="item.defaultMethod ? '&#xe86c;' : '&#xe5cd;'" class="mdi icon"></Label>
+
+                        <GridLayout col="2" columns="*, *" verticalAlignment="center">
+                            <Label col="0"
+                                   [nsRouterLink]="['../payment-method-default', item.userPaymentMethodId ]"
+                                   verticalAlignment="center"
+                                   textAlignment="center"
+                                   text="&#xe838;"
+                                   class="mdi action-button"
+                                   [ngClass]="{'small-icon' : utilityService.smallScreenWidth()}">
+                            </Label>
+                            <Label col="1"
+                                   [nsRouterLink]="['../payment-method-delete', item.userPaymentMethodId ]"
+                                   verticalAlignment="center"
+                                   textAlignment="center"
+                                   text="&#xe872;"
+                                   class="mdi action-button"
+                                   [ngClass]="{'small-icon' : utilityService.smallScreenWidth()}">
+                            </Label>
+                        </GridLayout>
+
+                    </GridLayout>
+                </ng-template>
+
+                    <!--                <ng-template tkListViewHeader let-item="item">-->
+                    <!--                </ng-template>-->
+
+            </RadListView>
+            </GridLayout>
+
+        </GridLayout>
+
+    </GridLayout>
+

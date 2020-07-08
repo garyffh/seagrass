@@ -1,0 +1,128 @@
+
+
+    <ng-container [ngSwitch]="componentView">
+
+        <ng-template [ngSwitchCase]="ComponentCarDeleteView.default">
+
+            <GridLayout rows="auto, auto, * ">
+                <GridLayout row="0" >
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ns-page-title title="REMOVE CAR"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="2">
+                    <ScrollView>
+
+                        <StackLayout class="m-20">
+
+                            <Label [text]="'Confirm removing'"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="">
+                            </Label>
+
+                            <Label [text]="model?.model + ' ' + model?.plate"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="m-b-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Submit"
+                                    (tap)="onSubmit()">
+                            </Button>
+
+                        </StackLayout>
+
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="ComponentCarDeleteView.fail">
+
+            <GridLayout rows="auto, auto, * ">
+                <GridLayout row="0" columns="*" class="action-section">
+
+                    <Button col="0"
+                            (tap)="onCancel()"
+                            text="CANCEL">
+                    </Button>
+
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ns-page-title title="REMOVE CAR"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="2">
+                    <ScrollView>
+
+                        <StackLayout class="m-20">
+
+                            <Label text="Removing the car has failed."
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="p-20">
+                            </Label>
+
+                            <Label [text]="failMessage"
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="fail p-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Continue"
+                                    (tap)="onContinue()">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+        <ng-template [ngSwitchCase]="ComponentCarDeleteView.done">
+
+            <GridLayout rows="auto, * ">
+
+                <GridLayout row="0">
+                    <ns-page-title title="REMOVE CAR"></ns-page-title>
+                </GridLayout>
+
+                <GridLayout row="1">
+                    <ScrollView>
+                        <StackLayout class="m-20">
+
+                            <Label text="The car has been removed."
+                                   [textWrap]="true"
+                                   horizontalAlignment="center"
+                                   class="p-20">
+                            </Label>
+
+                            <Button class="btn action-button m-t-20"
+                                    text="Continue"
+                                    (tap)="onContinue()">
+                            </Button>
+
+                        </StackLayout>
+
+                    </ScrollView>
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+    </ng-container>
+

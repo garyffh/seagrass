@@ -1,0 +1,38 @@
+<GridLayout *ngIf="showPanel"
+            columns="*, auto"
+            class="error-panel p-10">
+
+    <ng-container
+            *ngIf="!(model.lastError.title === null || model.lastError.title === undefined) then title; else noTitle">
+    </ng-container>
+
+    <ng-template #title>
+        <Label col="0" [text]="model.lastError.title"></Label>
+    </ng-template>
+
+    <ng-template #noTitle>
+        <label col="0" [text]="model.lastError.message"></label>
+    </ng-template>
+
+    <GridLayout col="1" columns="auto, auto">
+
+        <Label col="0"
+               verticalAlignment="center"
+               class="mdi action-button icon m-r-5"
+               text="&#xe8d2;"
+               (tap)="onShowError()">
+        </Label>
+
+        <Label col="1"
+               verticalAlignment="center"
+               class="mdi action-button icon m-l-5"
+               text="&#xe14c;"
+                (tap)="onDismiss()">
+        </Label>
+
+    </GridLayout>
+
+</GridLayout>
+
+
+

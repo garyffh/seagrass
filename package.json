@@ -1,0 +1,69 @@
+{
+  "nativescript": {
+    "id": "au.com.freeflowhub.seagrass",
+    "tns-android": {
+      "version": "6.5.0"
+    },
+    "tns-ios": {
+      "version": "6.5.1"
+    }
+  },
+  "description": "seagrass",
+  "license": "SEE LICENSE IN <your-license-filename>",
+  "repository": "<fill-your-repository-here>",
+  "scripts": {
+    "lint": "tslint \"src/**/*.ts\"",
+    "generate-icons": "tns resources generate icons src/config/logo.png",
+    "generate-splashes": "tns resources generate splashes src/config/logo.png",
+    "build-local": "tns build android --env.local",
+    "run-local": "tns run android --env.local",
+    "release-local": "tns build android --env.local  --release --key-store-path android.keystore --key-store-password WLATXDX9LP9GDTY5 --key-store-alias hubCafe --key-store-alias-password WLATXDX9LP9GDTY5",
+    "publish-cloud": "tns publish android --release --key-store-path android.keystore --key-store-password WLATXDX9LP9GDTY5 --key-store-alias hubCafe --key-store-alias-password WLATXDX9LP9GDTY5",
+    "publish-iOS": "tns publish ios"
+  },
+  "dependencies": {
+    "@angular/animations": "8.2.14",
+    "@angular/common": "8.2.14",
+    "@angular/compiler": "8.2.14",
+    "@angular/core": "8.2.14",
+    "@angular/forms": "8.2.14",
+    "@angular/platform-browser": "8.2.14",
+    "@angular/platform-browser-dynamic": "8.2.14",
+    "@angular/router": "8.2.14",
+    "@nativescript/theme": "~2.3.2",
+    "@nstudio/nativescript-cardview": "^1.0.0",
+    "@proplugins/nativescript-themes": "file:vendor\\@proplugins\\proplugins-nativescript-themes-2.2.0.tgz",
+    "@proplugins/nativescript-zxing": "file:vendor\\@proplugins\\proplugins-nativescript-zxing-1.7.0.tgz",
+    "ajv": "^6.10.2",
+    "moment": "^2.24.0",
+    "nativescript-angular": "^8.21.0",
+    "nativescript-audio": "^5.0.5",
+    "nativescript-directions": "^1.3.1",
+    "nativescript-local-notifications": "^4.2.0",
+    "nativescript-plugin-firebase": "^10.5.0",
+    "nativescript-stripe": "^6.2.1",
+    "nativescript-toasty": "^2.0.1",
+    "nativescript-ui-autocomplete": "6.0.0",
+    "nativescript-ui-listview": "8.0.1",
+    "reflect-metadata": "~0.1.13",
+    "rxjs": "~6.4.0",
+    "tns-core-modules": "^6.4.2",
+    "zone.js": "0.9.1"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "8.2.14",
+    "@ngtools/webpack": "8.3.20",
+    "codelyzer": "~5.2.1",
+    "del": "^5.1.0",
+    "gulp": "^3.9.1",
+    "nativescript-dev-webpack": "^1.5.1",
+    "nativescript-remote-builds": "^1.1.1",
+    "node-sass": "^4.13.0",
+    "run-sequence": "^2.2.1",
+    "tslint": "~5.20.1",
+    "typescript": "3.5.3"
+  },
+  "gitHead": "803cec054c44c99eaa59cdc267993e6346f6cb3a",
+  "readme": "NativeScript Application",
+  "author": "Gary Haywood"
+}

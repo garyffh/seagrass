@@ -1,0 +1,60 @@
+
+
+    <GridLayout *ngIf="model === null else show">
+    </GridLayout>
+
+    <ng-template #show>
+
+        <GridLayout rows="auto, auto, * " class="enable-deliveries">
+            <GridLayout row="0">
+            </GridLayout>
+
+            <GridLayout row="1">
+                <ns-page-title title="ENABLE DELIVERIES"></ns-page-title>
+            </GridLayout>
+
+            <StackLayout formGroup]="form"
+                         row="2"
+                         class="p-10">
+
+                <GridLayout columns="auto, auto" rows="auto"
+                            (tap)="form.get('ackConditions').setValue(!form.get('ackConditions').value)"
+                            horizontalAlignment="center">
+                    <Label col="0"
+                           row="0"
+                           verticalAlignment="center"
+                           [text]="form.get('ackConditions').value ? '&#xe834;' : '&#xe835;'"
+                           class="mdi icon action-button">
+                    </Label>
+                    <Label col="1"
+                           row="0"
+                           verticalAlignment="center"
+                           text="I accept the Driver Agreement"
+                           class="heading p-l-5">
+                    </Label>
+
+                </GridLayout>
+
+                <Label text="My Vechile"
+                       horizontalAlignment="center"
+                       class="heading m-t-10">
+                </Label>
+
+                <Label horizontalAlignment="center"
+                       [text]="model.make + ' ' + model.model + ' ' + model.plate + ' ' + model.colour">
+                </Label>
+
+                <Button text="Enable Deliveries"
+                        [isEnabled]="form.valid"
+                        (tap)="onSubmit()"
+                        class="btn action-button m-t-20">
+                </Button>
+
+                <WebView [src]="model.conditions">
+                </WebView>
+
+            </StackLayout>
+        </GridLayout>
+
+    </ng-template>
+

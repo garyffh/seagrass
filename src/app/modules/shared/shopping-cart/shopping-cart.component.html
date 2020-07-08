@@ -1,0 +1,363 @@
+<GridLayout rows="auto, *">
+
+    <GridLayout row="0" columns="auto, *, auto" class="summary-bar">
+        <Label col="0" *ngIf="customiseEnabled" class="m-l-10" [text]="'[tap item for options]'"></Label>
+        <Label col="0" *ngIf="!customiseEnabled" class="m-l-10" text=""></Label>
+        <Label col="1" horizontalAlignment="right"
+               [text]="((utilityService.smallScreenWidth() && customiseEnabled) ? '' : 'Total')"></Label>
+        <Label col="2" class="m-l-10 m-r-15" horizontalAlignment="right"
+               [text]="appService.data.cartTransaction.total | currency"></Label>
+    </GridLayout>
+
+    <ScrollView row="1" class="page">
+
+        <ng-container *ngIf="utilityService.smallScreenWidth(); then smallScreen; else standardScreen">
+        </ng-container>
+
+        <ng-template #smallScreen>
+
+            <GridLayout rows="auto, auto, auto, auto">
+
+                <StackLayout row="0">
+
+                    <GridLayout *ngFor="let item of appService.data.cartTransaction.cartDisplayItems"
+                                 (tap)="customise(item)">
+
+                        <ng-container *ngIf="!item.isInstructions">
+
+                            <ng-container *ngIf="!item.isCondiment">
+
+                                <GridLayout columns="30, *, 80" class="cart-line top-line">
+
+                                    <Label col="0" [text]="item.qty" verticalAlignment="center"
+                                           horizontalAlignment="center"></Label>
+
+
+                                    <Label col="1"
+                                           [text]="item.description"
+                                           textWrap="true"
+                                           verticalAlignment="center"
+                                           class="item-description">
+                                    </Label>
+
+                                    <Label col="2"
+                                           [text]="item.total | currency"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="right"></Label>
+
+                                </GridLayout>
+
+                            </ng-container>
+
+                            <ng-container *ngIf="item.isCondiment">
+
+                                <GridLayout columns="30, *, 80" class="cart-line">
+
+                                    <Label col="0" text="">
+                                    </Label>
+
+                                    <Label col="1"
+                                           [text]="item.description"
+                                           textWrap="true"
+                                           verticalAlignment="center"
+                                           class="condiment-description">
+                                    </Label>
+
+                                    <Label *ngIf="item.total !== 0"
+                                           col="2"
+                                           [text]="item.total | currency"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="right">
+                                    </Label>
+
+                                    <Label *ngIf="item.total === 0"
+                                           col="2"
+                                           [text]="">
+                                    </Label>
+
+                                </GridLayout>
+
+                            </ng-container>
+
+                        </ng-container>
+
+                        <ng-container *ngIf="item.isInstructions">
+
+                            <GridLayout columns="30, *, 80" class="cart-line">
+
+                                <Label col="0" text="">
+                                </Label>
+
+                                <Label col="1"
+                                       [text]="item.description"
+                                       (tap)="customise(item)"
+                                       textWrap="true"
+                                       verticalAlignment="center"
+                                       class="item-description">
+                                </Label>
+
+                                <Label col="2" [text]=""></Label>
+
+                            </GridLayout>
+
+                        </ng-container>
+
+                    </GridLayout>
+
+                </StackLayout>
+
+                <GridLayout *ngIf="appService.data.cartTransaction.promotion" row="1" columns="30, *, 80"
+                            class="cart-line top-line">
+
+                    <Label col="0" text=""
+                           verticalAlignment="center"
+                           horizontalAlignment="center">
+                    </Label>
+
+                    <Label col="1"
+                           text="PROMOTION"
+                           textWrap="true"
+                           verticalAlignment="center"
+                           class="item-description">
+                    </Label>
+
+                    <Label col="2"
+                           [text]="appService.data.cartTransaction.promotionAmount  | currency"
+                           verticalAlignment="center"
+                           horizontalAlignment="right">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="!appService.data.cartTransaction.promotion" row="1" >
+                </GridLayout>
+
+                <GridLayout *ngIf="appService.data.cartTransaction.deliveryFee" row="2" columns="30, *, 80"
+                            class="cart-line top-line">
+
+                    <Label col="0" text=""
+                           verticalAlignment="center"
+                           horizontalAlignment="center">
+                    </Label>
+
+                    <Label col="1"
+                           text="DELIVERY"
+                           textWrap="true"
+                           verticalAlignment="center"
+                           class="item-description">
+                    </Label>
+
+                    <Label col="2"
+                           [text]="appService.data.cartTransaction.deliveryFeeAmount  | currency"
+                           verticalAlignment="center"
+                           horizontalAlignment="right">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="!appService.data.cartTransaction.deliveryFee" row="2" >
+                </GridLayout>
+
+                <GridLayout *ngIf="appService.data.cartTransaction.deliveryPromoActive" row="3" columns="30, *, 80"
+                            class="cart-line top-line">
+
+                    <Label col="0" text=""
+                           verticalAlignment="center"
+                           horizontalAlignment="center">
+                    </Label>
+
+                    <Label col="1"
+                           text="FREE DELIVERY"
+                           textWrap="true"
+                           verticalAlignment="center"
+                           class="item-description">
+                    </Label>
+
+                    <Label col="2"
+                           [text]="appService.data.cartTransaction.deliveryFeeAmount  | currency"
+                           verticalAlignment="center"
+                           horizontalAlignment="right">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="!appService.data.cartTransaction.deliveryPromoActive" row="3">
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+        <ng-template #standardScreen>
+
+            <GridLayout rows="auto, auto, auto, auto">
+
+                <StackLayout row="0">
+
+                    <GridLayout *ngFor="let item of appService.data.cartTransaction.cartDisplayItems"
+                                 (tap)="customise(item)">
+
+                        <ng-container *ngIf="!item.isInstructions">
+
+                            <ng-container *ngIf="!item.isCondiment">
+
+                                <GridLayout columns="30, *, 80" class="cart-line top-line">
+
+                                    <Label col="0" [text]="item.qty" verticalAlignment="center"
+                                           horizontalAlignment="center"></Label>
+
+                                    <Label col="1"
+                                           [text]="item.description"
+                                           textWrap="true"
+                                           verticalAlignment="center"
+                                           class="item-description">
+                                    </Label>
+
+                                    <Label col="2"
+                                           [text]="item.total | currency"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="right"></Label>
+
+                                </GridLayout>
+
+                            </ng-container>
+
+                            <ng-container *ngIf="item.isCondiment">
+
+                                <GridLayout columns="30, *, 80" class="cart-line">
+
+                                    <Label col="0" text="">
+                                    </Label>
+
+                                    <Label col="1"
+                                           [text]="item.description"
+                                           textWrap="true"
+                                           verticalAlignment="center"
+                                           class="condiment-description">
+                                    </Label>
+
+                                    <Label *ngIf="item.total !== 0"
+                                           col="2"
+                                           [text]="item.total | currency"
+                                           verticalAlignment="center"
+                                           horizontalAlignment="right">
+                                    </Label>
+
+                                    <Label *ngIf="item.total === 0"
+                                           col="2"
+                                           [text]="">
+                                    </Label>
+
+                                </GridLayout>
+
+                            </ng-container>
+
+                        </ng-container>
+
+                        <ng-container *ngIf="item.isInstructions">
+
+                            <GridLayout columns="30, *, 80" class="cart-line">
+
+                                <Label col="0" [text]=""></Label>
+
+                                <Label col="1"
+                                       [text]="item.description"
+                                       textWrap="true"
+                                       verticalAlignment="center"
+                                       class="item-description">
+                                </Label>
+
+                                <Label col="2" [text]=""></Label>
+
+                            </GridLayout>
+
+                        </ng-container>
+
+                    </GridLayout>
+
+                </StackLayout>
+
+                <GridLayout *ngIf="appService.data.cartTransaction.promotion" row="1" columns="30, *, 80"
+                            class="cart-line top-line">
+
+                    <Label col="0" text=""
+                           verticalAlignment="center"
+                           horizontalAlignment="center">
+                    </Label>
+
+                    <Label col="1"
+                           text="PROMOTION"
+                           textWrap="true"
+                           verticalAlignment="center"
+                           class="item-description">
+                    </Label>
+
+                    <Label col="2"
+                           [text]="appService.data.cartTransaction.promotionAmount  | currency"
+                           verticalAlignment="center"
+                           horizontalAlignment="right">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="!appService.data.cartTransaction.promotion" row="1" >
+                </GridLayout>
+
+                <GridLayout *ngIf="appService.data.cartTransaction.deliveryFee" row="2" columns="30, *, 80"
+                            class="cart-line top-line">
+
+                    <Label col="0" text=""
+                           verticalAlignment="center"
+                           horizontalAlignment="center">
+                    </Label>
+
+                    <Label col="1"
+                           text="DELIVERY"
+                           textWrap="true"
+                           verticalAlignment="center"
+                           class="item-description">
+                    </Label>
+
+                    <Label col="2"
+                           [text]="appService.data.cartTransaction.deliveryFeeAmount  | currency"
+                           verticalAlignment="center"
+                           horizontalAlignment="right">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="!appService.data.cartTransaction.deliveryFee" row="2" >
+                </GridLayout>
+
+                <GridLayout *ngIf="appService.data.cartTransaction.deliveryPromoActive" row="3" columns="30, *, 80"
+                            class="cart-line top-line">
+
+                    <Label col="0" text=""
+                           verticalAlignment="center"
+                           horizontalAlignment="center">
+                    </Label>
+
+                    <Label col="1"
+                           text="FREE DELIVERY"
+                           textWrap="true"
+                           verticalAlignment="center"
+                           class="item-description">
+                    </Label>
+
+                    <Label col="2"
+                           [text]="appService.data.cartTransaction.deliveryFeeAmount  | currency"
+                           verticalAlignment="center"
+                           horizontalAlignment="right">
+                    </Label>
+
+                </GridLayout>
+
+                <GridLayout *ngIf="!appService.data.cartTransaction.deliveryPromoActive" row="3" >
+                </GridLayout>
+
+            </GridLayout>
+
+        </ng-template>
+
+    </ScrollView>
+</GridLayout>
