@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { TNSPlayer } from 'nativescript-audio';
+import { TNSPlayer } from 'nativescript-audio-player';
 
 export enum AppSound {
     none,
